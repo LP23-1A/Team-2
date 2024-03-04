@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { useRouter } from "../../../node_modules/next/navigation";
+import { useRouter } from "../../../../node_modules/next/navigation";
 
 const SignPage = () => {
   const [name, setName] = useState("");
@@ -9,7 +9,7 @@ const SignPage = () => {
   const router = useRouter();
 
   const jumpLogin = () => {
-    router.push("login");
+    router.push("step2");
   };
   const jumpNextStep = () => {
     localStorage.setItem("data", JSON.stringify(keys));
