@@ -1,6 +1,20 @@
 import img from "@/components/images/image.png";
- 
+import { useState } from "react";
+import axios from "axios";
+
+const BASE_URL_END_POINT = "http://localhost:8000/Product/createProduct"
+
 export default function AddProduct() {
+    const [productName, setproductName] = useState('')
+    const [description, setDescription] = useState('')
+    const [price, setPrice] = useState('')
+    const [qty, setQty] = useState('')
+
+    const handler = async () => {
+        let res = await axios.post(BASE_URL_END_POINT, {productName : productName, description : description, price : price, qty : qty})
+        console.log(res);
+    }
+
     return(
         <section className="flex gap-[25px] bg-[black]">
             <div className="flex flex-col gap-[25px]">

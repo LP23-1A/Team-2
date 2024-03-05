@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const productMongoose = new mongoose.Schema({
     productName : String,
     categoryID : String,
-    price : String,
+    price : Number,
     qty : Number,
     thumbnails : String,
     images : String,
