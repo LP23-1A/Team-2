@@ -5,7 +5,7 @@ const SignPage = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    shopName:"",
+    shopName: "",
     shopAddress: "",
     city: "",
     district: "",
@@ -76,6 +76,7 @@ const SignPage = () => {
         placeholder="Shop Address"
         onChange={(e) => setFormData({ ...formData, shopName: e.target.value })}
       />
+      <button onClick={prevStep}>omnoh</button>
       <button onClick={nextStep}>Дараах</button>
     </div>,
     <div className="w-[404px] box-border mx-auto justify-center flex flex-col gap-5">
@@ -121,6 +122,8 @@ const SignPage = () => {
             }
           />
         </div>
+        <button onClick={prevStep}>omnoh</button>
+        <button onClick={nextStep}>Дараах</button>
       </div>
     </div>,
     <div className="w-[404px] box-border mx-auto flex flex-col gap-5">
@@ -144,25 +147,22 @@ const SignPage = () => {
           setFormData({ ...formData, shoppingType: e.target.value })
         }
       />
-      <button onClick={log}>sadgdhrtsgerg</button>
+      <button onClick={prevStep}>omnoh</button>
+      <button onClick={log}>Дараах finish</button>
     </div>,
   ];
 
   return (
     <>
       {steps[activeStep]}
-      {activeStep === 0 && <button onClick={nextStep}>Next</button>}
+      {activeStep === 0 && <button onClick={nextStep}></button>}
       {activeStep !== 0 && activeStep !== steps.length - 1 && (
         <>
-          <button className="" onClick={prevStep}>
-            Previous
-          </button>
-          <button onClick={nextStep}>Next</button>
+          <button className="" onClick={prevStep}></button>
+          <button onClick={nextStep}></button>
         </>
       )}
-      {activeStep === steps.length - 1 && (
-        <button onClick={prevStep}>Previous</button>
-      )}
+      {activeStep === steps.length - 1 && <button onClick={prevStep}></button>}
     </>
   );
 };
