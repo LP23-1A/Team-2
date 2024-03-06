@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-
+import axios from "axios";
 const SignPage = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -35,9 +35,15 @@ const SignPage = () => {
   const prevStep = () => {
     setActiveStep((prevStep) => (prevStep === 0 ? prevStep : prevStep - 1));
   };
-  function log() {
-    console.log(formData);
-  }
+  const HandletoSignUp = async () => {
+    try {
+      const api = "http://localhost:8000/admin/adminsign";
+      const res = await axios.post(api, formData);
+      console.log("eee", formData);
+    } catch (err) {
+      console.log(err, "axios error");
+    }
+  };
 
   const steps = [
     <div className="w-[404px] box-border mx-auto flex flex-col gap-5">
@@ -51,7 +57,7 @@ const SignPage = () => {
           value={email}
           placeholder="Имэйл"
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-        />  
+        />
         <p>Таны нэр </p>
         <input
           className="border-2 rounded-xl w-[404px] h-[56px] box-border border-gray-300 p-2"
@@ -146,7 +152,7 @@ const SignPage = () => {
         }
       />
       <button onClick={prevStep}>omnoh</button>
-      <button onClick={log}>Дараах finish</button>
+      <button onClick={HandletoSignUp}>Дараах finish</button>
     </div>,
   ];
 
