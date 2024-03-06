@@ -32,3 +32,12 @@ export const updateProduct = async (req : Request, res : Response) => {
         res.status(500).send(error)
     }
 }
+
+export const getAllProduct = async (req : Request, res : Response) => {
+    try {
+        const getProduct = await productSchema.find()
+        res.status(201).send(getProduct)
+    } catch (error) {
+        res.status(500).send(error)
+    }
+}

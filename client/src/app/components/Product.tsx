@@ -1,8 +1,15 @@
+"use client"
+import { useRouter } from "next/navigation";
 import ProductData from "../components/ProductData";
 
 export default function Product() {
+    const router = useRouter()
     return(
         <section className="w-[1400px] bg-[white] p-[10px]">
+            <div className="py-[10px] px-[20px]">
+                <button className="px-[50px] py-[10px] bg-[black] rounded-md text-[white]">+ Бүтээгдэхүүн нэмэх</button>
+            </div>
+            <div></div>
             <div className="flex gap-[30px] py-[10px] px-[20px] font-[600]">
                 <div className="w-[68px]">
                     
