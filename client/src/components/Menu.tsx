@@ -12,35 +12,35 @@ function Menu() {
     <div>
       <div className="flex flex-col gap-4 font-semibold text-sm px-4 w-[222px]  ">
         <button
-          onClick={() => router.push("/dashboard")}
+          onClick={() => router.push("/admin/dashboard")}
           className="flex items-center gap-3"
         >
           <img className=" w-4, h-4" src={dashboardIcon.src} alt="" />
           Хяналтын самбар
         </button>
         <button
-          onClick={() => router.push("/order")}
+          onClick={() => router.push("/admin/order")}
           className="flex items-center gap-3"
         >
           <img className=" w-4, h-4" src={orderIcon.src} alt="" />
           Захиалга
         </button>
         <button
-          onClick={() => router.push("/income")}
+          onClick={() => router.push("/admin/income")}
           className="flex items-center gap-3"
         >
           <img className=" w-4, h-4" src={IncomeIcon.src} alt="" />
           Орлого
         </button>
         <button
-          onClick={() => router.push("/product")}
+          onClick={() => router.push("/admin/product")}
           className="flex items-center gap-3"
         >
           <img className=" w-4, h-4" src={productIcon.src} alt="" />
           Бүтээгдэхүүн
         </button>
         <button
-          onClick={() => router.push("/settings")}
+          onClick={() => router.push("/admin/settings")}
           className="flex items-center gap-3"
         >
           <img className=" w-4, h-4" src={settings.src} alt="" />
