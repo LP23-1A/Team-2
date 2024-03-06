@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "../../../../node_modules/axios/index";
+import { Arrow } from "../../../../public/arrow";
 const SignPage = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -24,9 +25,7 @@ const SignPage = () => {
     shoppingExprient,
     shoppingType,
   } = formData;
-
   const [activeStep, setActiveStep] = useState(0);
-
   const nextStep = () => {
     setActiveStep((prevStep) =>
       prevStep === steps.length - 1 ? prevStep : prevStep + 1
@@ -46,113 +45,198 @@ const SignPage = () => {
   };
 
   const steps = [
-    <div className="w-[404px] box-border mx-auto flex flex-col gap-5">
-      <h1>Бүртгүүлэх</h1>
-      <div className="w-[404px] box-border mx-auto flex flex-col gap-3">
-        <p>Таны имэйл </p>
-        <input
-          className="border-2 rounded-xl w-[404px] h-[56px] box-border border-gray-300 p-2"
-          type="email"
-          name="email"
-          value={email}
-          placeholder="Имэйл"
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-        />
-        <p>Таны нэр </p>
-        <input
-          className="border-2 rounded-xl w-[404px] h-[56px] box-border border-gray-300 p-2"
-          type="text"
-          name="name"
-          value={name}
-          placeholder="Name"
-          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-        />
-      </div>
-      <button onClick={nextStep}>Дараах</button>
-    </div>,
-    <div className="w-[404px] box-border mx-auto justify-center flex flex-col gap-5">
-      <h1>Танай дэлгүүрийн нэр юу вэ?</h1>
-      <input
-        className="border-2 rounded-xl w-[404px] h-[56px] box-border border-gray-300 p-2"
-        type="text"
-        name="shopName"
-        value={shopName}
-        placeholder="Shop Address"
-        onChange={(e) => setFormData({ ...formData, shopName: e.target.value })}
-      />
-      <button onClick={prevStep}>omnoh</button>
-      <button onClick={nextStep}>Дараах</button>
-    </div>,
-    <div className="w-[404px] box-border mx-auto justify-center flex flex-col gap-5">
-      <div className="w-[404px] box-border mx-auto flex flex-col gap-3">
-        <h1>Бүс нутгийн мэдээлэл</h1>
-        <div>
-          <input
-            className="border-2 rounded-xl w-[404px] h-[56px] box-border border-gray-300 p-2"
-            type="text"
-            name="shopAddress"
-            value={shopAddress}
-            placeholder="Name"
-            onChange={(e) =>
-              setFormData({ ...formData, shopAddress: e.target.value })
-            }
-          />
-          <input
-            className="border-2 rounded-xl w-[404px] h-[56px] box-border border-gray-300 p-2"
-            type="text"
-            name="city"
-            value={city}
-            placeholder="city"
-            onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-          />
-          <input
-            className="border-2 rounded-xl w-[404px] h-[56px] box-border border-gray-300 p-2"
-            type="text"
-            name="district"
-            value={district}
-            placeholder="district"
-            onChange={(e) =>
-              setFormData({ ...formData, district: e.target.value })
-            }
-          />
-          <input
-            className="border-2 rounded-xl w-[404px] h-[56px] box-border border-gray-300 p-2"
-            type="text"
-            name="khoroo"
-            value={khoroo}
-            placeholder="khoroo"
-            onChange={(e) =>
-              setFormData({ ...formData, khoroo: e.target.value })
-            }
-          />
+    <div className="flex items-center h-[100vh] ">
+      <div className="w-[404px] box-border mx-auto flex flex-col gap-8  items-center">
+        <h1 className=" text-[32px] font-bold">Бүртгүүлэх</h1>
+        <div className="flex gap-4 flex-col">
+          <div className="w-[404px] box-border mx-auto flex flex-col gap-3 ">
+            <div className="flex flex-col gap-1 ">
+              <p className="font-normal text-[16px]">Таны имэйл </p>
+              <input
+                className="border-2 rounded-[8px]   bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
+                type="email"
+                name="email"
+                value={email}
+                placeholder="Имэйл"
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
+              />
+            </div>
+            <div className="flex flex-col gap-1 ">
+              <p className="font-normal text-[16px]">Таны нэр </p>
+              <input
+                className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
+                type="text"
+                name="name"
+                value={name}
+                placeholder="Нэр"
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
+              />
+            </div>
+          </div>
+          <button
+            className="bg-black text-white rounded-[8px] h-[56px]  "
+            onClick={nextStep}
+          >
+            Дараах
+          </button>
         </div>
-        <button onClick={prevStep}>omnoh</button>
-        <button onClick={nextStep}>Дараах</button>
       </div>
     </div>,
-    <div className="w-[404px] box-border mx-auto flex flex-col gap-5">
-      <input
-        className="border-2 rounded-xl w-[404px] h-[56px] box-border border-gray-300 p-2"
-        type="text"
-        name="shoppingExprient"
-        value={shoppingExprient}
-        placeholder="shoppingExprient"
-        onChange={(e) =>
-          setFormData({ ...formData, shoppingExprient: e.target.value })
-        }
-      />
-      <input
-        className="border-2 rounded-xl w-[404px] h-[56px] box-border border-gray-300 p-2"
-        type="text"
-        name="shoppingType"
-        value={shoppingType}
-        placeholder="shoppingType"
-        onChange={(e) =>
-          setFormData({ ...formData, shoppingType: e.target.value })
-        }
-      />
-      <button onClick={prevStep}>omnoh</button>
-      <button onClick={HandletoSignUp}>Дараах finish</button>
+    <div className="flex items-center h-[100vh]">
+      <div className="w-[404px] box-border mx-auto justify-center flex flex-col gap-8">
+        <h1 className=" text-[32px] font-bold ">Дэлгүүрийн мэдээлэл</h1>
+        <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-1">
+            <p className="font-semibold text-[16px]">
+              Танай дэлгүүрийн нэр юу вэ?
+            </p>
+            <input
+              className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
+              type="text"
+              name="shopName"
+              value={shopName}
+              placeholder="Дэлгүүрийн нэр"
+              onChange={(e) =>
+                setFormData({ ...formData, shopName: e.target.value })
+              }
+            />
+          </div>
+          <div className="flex justify-between">
+            <button
+              className="w-[48px] flex justify-center items-center h-[48px] rounded-[50px] bg-[#1C20240A]"
+              onClick={prevStep}
+            >
+              <Arrow />
+            </button>
+            <button
+              className="bg-black text-white rounded-[8px] h-[56px] w-[127px]  "
+              onClick={nextStep}
+            >
+              Дараах
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>,
+    <div className="flex items-center h-[100vh]">
+      <div className="w-[404px] box-border mx-auto justify-center flex flex-col">
+        <div className="w-[404px] box-border mx-auto flex flex-col gap-8">
+          <h1 className=" text-[32px] font-bold ">Бүс нутгийн мэдээлэл</h1>
+          <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-1">
+              <p className="font-semibold text-[16px]">Хот/Аймаг</p>
+              <input
+                className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
+                type="text"
+                name="city"
+                value={city}
+                placeholder="Хот/Аймаг"
+                onChange={(e) =>
+                  setFormData({ ...formData, city: e.target.value })
+                }
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <p className="font-semibold text-[16px]">Сум/Дүүрэг</p>
+              <input
+                className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
+                type="text"
+                name="district"
+                value={district}
+                placeholder="Сум/Дүүрэг"
+                onChange={(e) =>
+                  setFormData({ ...formData, district: e.target.value })
+                }
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <p className="font-semibold text-[16px]">Хороо</p>
+              <input
+                className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
+                type="text"
+                name="khoroo"
+                value={khoroo}
+                placeholder="Хороо"
+                onChange={(e) =>
+                  setFormData({ ...formData, khoroo: e.target.value })
+                }
+              />
+            </div>
+          </div>
+          <div className="flex justify-between">
+            <button
+              className="w-[48px] flex justify-center items-center h-[48px] rounded-[50px] bg-[#1C20240A]"
+              onClick={prevStep}
+            >
+              <Arrow />
+            </button>
+            <button
+              className="bg-black text-white rounded-[8px] h-[56px] w-[127px]  "
+              onClick={nextStep}
+            >
+              Дараах
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>,
+    <div className="flex items-center h-[100vh]">
+      <div className="w-[404px] box-border mx-auto flex flex-col gap-8">
+        <h1 className="text-[32px] font-bold">Жоохон танилцья</h1>
+        <span className="text-[16px] font-normal ">
+          Энэ мэдээллийг дэлгүүрийн тохиргоонд туслах зорилгоор ашиглана.
+        </span>
+        <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-1">
+            <p className="font-semibold text-[16px]">
+              Та борлуулалт хийж байсан туршлагатай юу?
+            </p>
+            <input
+              className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
+              type="text"
+              name="shoppingExprient"
+              value={shoppingExprient}
+              placeholder="Сонгох"
+              onChange={(e) =>
+                setFormData({ ...formData, shoppingExprient: e.target.value })
+              }
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <p className="font-semibold text-[16px]">
+              Та ямар төрлийн бүтээгдэхүүн борлуулах вэ?
+            </p>
+            <input
+              className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
+              type="text"
+              name="shoppingType"
+              value={shoppingType}
+              placeholder="Сонгох"
+              onChange={(e) =>
+                setFormData({ ...formData, shoppingType: e.target.value })
+              }
+            />
+          </div>
+        </div>
+        <div className="flex justify-between">
+          <button
+            className="w-[48px] flex justify-center items-center h-[48px] rounded-[50px] bg-[#1C20240A]"
+            onClick={prevStep}
+          >
+            <Arrow />
+          </button>
+          <button
+            className="bg-black text-white rounded-[8px] w-[127px] h-[56px]  "
+            onClick={HandletoSignUp}
+          >
+            Дараах
+          </button>
+        </div>
+      </div>
     </div>,
   ];
 
