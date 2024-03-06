@@ -3,11 +3,12 @@ import dotenv from "dotenv";
 import { connectDatabase } from "./utils/database";
 import { AdminRouter } from "./router/adminSign";
 import cors from "cors";
-import { Product } from "./product/product.router";
+import { Product } from "./router/product";
+import { order} from "./router/order"
 
 dotenv.config();
 const PORT = process.env.PORT || 8000;
-connectDatabase()
+connectDatabase();
 
 const start = () => {
   connectDatabase();
@@ -20,9 +21,16 @@ const start = () => {
   app.get("/", (req:Request, res:Response) => {
     res.status(200).send({ success: true, msg: "Working" });
   });
+  app.use('/order',order);
+
+
+
+  // app.get("/", (req:Request, res:Response) => {
+  //   res.status(200).send({ success: true, msg: "Working" });
+  // });
 
   app.listen(PORT, () => {
-    console.log("Server is running!!!");
+    console.log("Server is running!!!", PORT);
   });
 };
 start();
