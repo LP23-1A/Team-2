@@ -1,8 +1,8 @@
 import express from 'express';
-import { newOrder, getAllOrders } from '../controller/order';
+import { newOrder, getAllOrders, updateOrderById } from '../controller/order';
 
 
 const order = express.Router();
-order.post('/neworder', newOrder);
-order.get("allorders",getAllOrders);
+order.route('/').post(newOrder).get(getAllOrders);
+order.route('/:id').put(updateOrderById)
 export { order };

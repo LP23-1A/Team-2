@@ -8,6 +8,7 @@ const OrderSchema = new mongoose.Schema({
     orderNumber: {
         type: String,
       },
+    
     status: {
         type: String,
         enum:['ordered', 'preparingToShip', 'shipped','delivered'],
@@ -15,6 +16,7 @@ const OrderSchema = new mongoose.Schema({
     },
     phoneNumber: {
         type:String,
+        
         length: {
             maxlength: 8,
             minlength: 8,

@@ -4,20 +4,29 @@ import axios from "axios";
 import Menu from "@/components/Menu";
 import Navbar from "@/components/Navbar";
 import Download from "@/components/images/Download.png";
-const API = "http://localhost:8000/order/getallorders";
+const API = "http://localhost:8000/order/order";
 
 export default function Income(){
-    const [transaction, setTransaction] = useState();
+    const [data,setdata] = useState([]);
     const handler = async () => {
+          
         let res = await axios.get(API);
-        setTransaction(res.data);
-        console.log("dataaaa", res.data);
+        console.log(res.data);
+        
+            setdata(res.data);
       };
+      
       useEffect(() => {
         handler();
       }, []);
-
+      const print = ()=>{
+        console.log(data);
+        
+      }
     return (
+      
+    
+      
         <div>
         <Navbar />
         <div className="flex h-screen">
@@ -28,7 +37,7 @@ export default function Income(){
                     <h2 className=" font-bold text-sm">Орлого</h2>
                     <div className=" flex gap-1 bg-[#1C20240A] px-3 py-2 rounded-lg ">
                             <img src={Download.src} alt="" />
-                            <h5>Хуулга татах</h5>
+                            <h5 onClick={print}>Хуулга татах</h5>
                     </div>
                 </div>
                 
@@ -38,28 +47,29 @@ export default function Income(){
                         <p>Захиалагч</p>
                         <p>Төлбөр</p>
                         <p>Огноо</p>
+                    </div>
 
-                        <div className=" flex flex-col gap-4">
-                  {transaction &&
-                    transaction.map((el, idp) => {
+              <div>
+              {data &&
+                    data.map((el:any, idp) => {
+                      console.log(el,'el')
                       return (
-                        <div key={idp + el.name} className="flex justify-between" >
+                        <div key={idp} className="flex justify-between" >
                           <div className="flex gap-4">
-                            <div className=" flex items-center justify-center w-10 h-10 bg-[#0166FF] rounded-full"><House /></div>                
-                            <p>{el.name}</p>
+                            <div className=" flex items-center justify-center w-10 h-10 bg-[#0166FF] rounded-full"></div>                
+                                <p>{el._id}</p>
                           </div>                   
-                            <p>{el.amount}</p>
+                          <p>{el.amountPaid}</p>
                           
                         </div>
                       );
                     })}
-                </div>
+              </div>
 
-              </div> 
-                    </div>
+              </div>
                     
 
-                </div>
+
           </div>
         </div>
       </div>
