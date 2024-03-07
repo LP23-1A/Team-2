@@ -45,44 +45,46 @@ const SignPage = () => {
   };
 
   const steps = [
-    <div className="flex items-center h-[100vh] ">
-      <div className="w-[404px] box-border mx-auto flex flex-col gap-8  items-center">
-        <h1 className=" text-[32px] font-bold">Бүртгүүлэх</h1>
-        <div className="flex gap-4 flex-col">
-          <div className="w-[404px] box-border mx-auto flex flex-col gap-3 ">
-            <div className="flex flex-col gap-1 ">
-              <p className="font-normal text-[16px]">Таны имэйл </p>
-              <input
-                className="border-2 rounded-[8px]   bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
-                type="email"
-                name="email"
-                value={email}
-                placeholder="Имэйл"
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
-              />
+    <div className="flex items-center justify-center h-[100vh]  ">
+      <div className="border-solid border-2 border-[#ECEDF0] rounded-[8px] p-[40px] ">
+        <div className="w-[404px] box-border mx-auto flex flex-col gap-8  items-center ">
+          <h1 className=" text-[32px] font-bold">Бүртгүүлэх</h1>
+          <div className="flex gap-4 flex-col">
+            <div className="w-[404px] box-border mx-auto flex flex-col gap-3 ">
+              <div className="flex flex-col gap-1 ">
+                <p className="font-normal text-[16px]">Таны имэйл </p>
+                <input
+                  className="border-2 rounded-[8px]   bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
+                  type="email"
+                  name="email"
+                  value={email}
+                  placeholder="Имэйл"
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
+                />
+              </div>
+              <div className="flex flex-col gap-1 ">
+                <p className="font-normal text-[16px]">Таны нэр </p>
+                <input
+                  className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
+                  type="text"
+                  name="name"
+                  value={name}
+                  placeholder="Нэр"
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
+                />
+              </div>
             </div>
-            <div className="flex flex-col gap-1 ">
-              <p className="font-normal text-[16px]">Таны нэр </p>
-              <input
-                className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
-                type="text"
-                name="name"
-                value={name}
-                placeholder="Нэр"
-                onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
-                }
-              />
-            </div>
+            <button
+              className="bg-black text-white rounded-[8px] h-[56px]  "
+              onClick={nextStep}
+            >
+              Дараах
+            </button>
           </div>
-          <button
-            className="bg-black text-white rounded-[8px] h-[56px]  "
-            onClick={nextStep}
-          >
-            Дараах
-          </button>
         </div>
       </div>
     </div>,
