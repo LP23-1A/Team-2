@@ -1,13 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import axios from "../../../../node_modules/axios/index";
-import { Arrow } from "../../../../public/arrow";
+import axios from "axios";
+import { Arrow } from "../../../components/images/arrow";
 const SignPage = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     shopName: "",
-    shopAddress: "",
     city: "",
     district: "",
     khoroo: "",
@@ -17,7 +16,6 @@ const SignPage = () => {
   const {
     name,
     email,
-    shopAddress,
     shopName,
     city,
     district,
@@ -26,26 +24,27 @@ const SignPage = () => {
     shoppingType,
   } = formData;
   const [activeStep, setActiveStep] = useState(0);
+
   const nextStep = () => {
     setActiveStep((prevStep) =>
       prevStep === steps.length - 1 ? prevStep : prevStep + 1
     );
   };
+
   const prevStep = () => {
     setActiveStep((prevStep) => (prevStep === 0 ? prevStep : prevStep - 1));
   };
-  const HandletoSignUp = async () => {
+
+  const handletoSignUp = async () => {
     try {
       const api = "http://localhost:8000/admin/adminsign";
       const res = await axios.post(api, formData);
-      console.log("eee", formData);
     } catch (err) {
       console.log(err, "axios error");
     }
   };
-
   const steps = [
-    <div className="flex items-center justify-center h-[100vh]  ">
+    <div className="flex items-center justify-center h-[100vh]">
       <div className="border-solid border-2 border-[#ECEDF0] rounded-[8px] p-[40px] ">
         <div className="w-[404px] box-border mx-auto flex flex-col gap-8  items-center ">
           <h1 className=" text-[32px] font-bold">Бүртгүүлэх</h1>
@@ -233,7 +232,7 @@ const SignPage = () => {
           </button>
           <button
             className="bg-black text-white rounded-[8px] w-[127px] h-[56px]  "
-            onClick={HandletoSignUp}
+            onClick={handletoSignUp}
           >
             Дараах
           </button>
@@ -241,7 +240,6 @@ const SignPage = () => {
       </div>
     </div>,
   ];
-
   return (
     <>
       {steps[activeStep]}
@@ -256,5 +254,4 @@ const SignPage = () => {
     </>
   );
 };
-
 export default SignPage;
