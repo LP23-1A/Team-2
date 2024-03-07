@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
-import { connectDatabase } from "./utils/Database";
+import { connectDatabase } from "./utils/database";
 import { AdminRouter } from "./router/adminSign";
 import cors from "cors";
 import { Product } from "./router/product";
@@ -11,7 +11,6 @@ const PORT = process.env.PORT || 8000;
 connectDatabase();
 
 const start = () => {
-  connectDatabase();
   const app = express();
 
   app.use(cors());
