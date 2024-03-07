@@ -1,16 +1,12 @@
-import mongoose from "mongoose";
-import dotenv from "dotenv";
-
-dotenv.config()
-
-const connectDatabase = async () => {
+import  mongoose  from "mongoose";
+ 
+const connectDatabase = async()=> {
     try {
-        const MONGODB_URI = "mongodb+srv://metamanppt:E19887310n@projects.fpnfjuw.mongodb.net/ecommerce?retryWrites=true&w=majority"
-        await mongoose.connect(MONGODB_URI)
-        console.log('Database connected');
-    } catch (error:unknown) {
-        throw new Error("Database cannot connect")
+    const MONGODB_URL = process.env.DB_URL || '';
+    await mongoose.connect(MONGODB_URL);
+    console.log('Database connections is successful');}
+    catch(error:unknown){
+         throw new Error('Database cannot connected',);
     }
 }
-
-export {connectDatabase}
+export {connectDatabase};
