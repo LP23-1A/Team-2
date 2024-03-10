@@ -1,4 +1,10 @@
+import ProductMain from "@/components/Product";
+
 const product = () => {
-  return;
+  return(
+    <main>
+      <ProductMain/>
+    </main>
+  )
 };
 export default product;
