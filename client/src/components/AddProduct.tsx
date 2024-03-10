@@ -17,10 +17,10 @@ export default function AddProduct() {
     }
 
     return(
-        <section className="w-[1065px] flex flex-col gap-[25px] bg-[gray] p-[20px]">
+        <section className="w-[1200px] flex flex-col gap-[25px] bg-[#ECEDF0] p-[20px]">
             <div className="flex gap-[25px]">
-                <div className="flex flex-col gap-[25px]">
-                    <div className="w-[500px] bg-[white] p-[25px] flex flex-col gap-[15px] rounded-md text-[black]">
+                <div className="w-[600px] flex flex-col gap-[25px]">
+                    <div className="bg-[white] p-[25px] flex flex-col gap-[15px] rounded-md text-[black]">
                         <div>
                             <p>Бүтээгдэхүүний нэp</p>
                             <input className="w-full bg-[#f2f2f2] py-[6px] px-[10px] rounded-md border-2 border-[#e0dfdf] mt-[5px]" type="text" placeholder="Нэр" 
@@ -40,13 +40,13 @@ export default function AddProduct() {
                             <input className="w-full bg-[#f2f2f2] py-[6px] px-[10px] rounded-md border-2 border-[#e0dfdf] mt-[5px]" type="text" placeholder="#12345678" />
                         </div>
                     </div>
-                    <div className="w-[500px] bg-[white] p-[25px] text-[18px] font-[600] rounded-md text-[black]">
+                    <div className="bg-[white] p-[25px] text-[18px] font-[600] rounded-md text-[black]">
                         <p>Бүтээгдэхүүний зураг</p>
                         <div className="mt-[10px] flex gap-[10px]">
                             <div className="w-[125px] h-[125px] rounded-md border-dashed border-2"></div>
                         </div>
                     </div>
-                    <div className="w-[500px] bg-[white] p-[25px] flex gap-[20px] rounded-md text-[black]">
+                    <div className=" bg-[white] p-[25px] flex gap-[20px] rounded-md text-[black]">
                         <div>
                             <p>Үндсэн үнэ</p>
                             <input className="bg-[#f2f2f2] py-[6px] px-[10px] rounded-md border-2 border-[#e0dfdf] mt-[5px]" type="text" placeholder="Үндсэн үнэ" 
@@ -63,8 +63,8 @@ export default function AddProduct() {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col gap-[25px] text-[black]">
-                    <div className="w-[500px] p-[25px] bg-[white] flex flex-col gap-[15px] rounded-md">
+                <div className="w-[600px] flex flex-col gap-[25px] text-[black]">
+                    <div className="p-[25px] bg-[white] flex flex-col gap-[15px] rounded-md">
                         <div>
                             <p>Ерөнхий ангилал</p>
                             <input className="w-full bg-[#f2f2f2] py-[8px] px-[12px] rounded-md border-2 border-[#e0dfdf] mt-[5px]" type="text" placeholder="Сонгох" />
@@ -95,9 +95,9 @@ export default function AddProduct() {
                     </div>
                 </div>
             </div>
-            <div className="pl-[805px]">
+            <div className="pl-[940px]">
                 <div className="flex gap-[15px] ">
-                    <button className="py-[10px] px-[20px] border-2 border-[#e0dfdf] rounded-md">Ноорог</button>
+                    <button className="py-[10px] px-[20px] border-2 border-[#e0dfdf] bg-[white] rounded-md">Ноорог</button>
                     <button onClick={handler} className="py-[10px] px-[20px] bg-[black] text-[white] rounded-md">Нийтлэх</button>
                 </div>
             </div>

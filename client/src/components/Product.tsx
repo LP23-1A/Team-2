@@ -5,34 +5,36 @@ import ProductData from "../components/ProductData";
 export default function Product() {
     const router = useRouter()
     return(
-        <section className="w-[1400px] bg-[white] p-[10px]">
-            <div className="py-[10px] px-[20px]">
-                <button onClick={() => router.push("/components/AddProduct")} className="px-[50px] py-[10px] bg-[black] rounded-md text-[white]">+ Бүтээгдэхүүн нэмэх</button>
+        <section className="w-[1420px] p-[10px] flex flex-col gap-[40px]">
+            <div className="py-[10px] bg-[#ECEDF0]">
+                <button onClick={() => router.push("/admin/addProduct")} className="px-[50px] py-[10px] bg-[black] rounded-md text-[white]">+ Бүтээгдэхүүн нэмэх</button>
             </div>
             <div></div>
-            <div className="flex gap-[30px] py-[10px] px-[20px] font-[600]">
-                <div className="w-[68px]">
+            <div className="rounded-md bg-[white]">
+                <div className="flex gap-[30px] py-[10px] px-[20px] font-[600]">
+                    <div className="w-[68px]">
+                    </div>
+                    <div className="w-[150px] py-[10px] px-[10px]">
+                        <p>Бүтээгдэхүүн</p>
+                    </div>
+                    <div className="w-[180px] py-[10px] px-[20px]">
+                        <p>Ангилал</p>
+                    </div>
+                    <div className="w-[150px] p-[10px]">
+                        <p>Үнэ</p>
+                    </div>
+                    <div className="w-[150px] py-[10px]">
+                        <p>Үлдэгдэл</p>
+                    </div>
+                    <div className="w-[150px] py-[10px]">
+                        <p>Зарагдсан</p>
+                    </div>
+                    <div className="w-[150px] py-[10px] px-[5px]">
+                        <p>Нэмсэн огноо</p>
+                    </div>
                 </div>
-                <div className="w-[150px] py-[10px] px-[20px]">
-                    <p>Бүтээгдэхүүн</p>
-                </div>
-                <div className="w-[214px] py-[10px] px-[20px]">
-                    <p>Ангилал</p>
-                </div>
-                <div className="w-[150px] p-[10px]">
-                    <p>Үнэ</p>
-                </div>
-                <div className="w-[150px] py-[10px]">
-                    <p>Үлдэгдэл</p>
-                </div>
-                <div className="w-[150px] py-[10px]">
-                    <p>Зарагдсан</p>
-                </div>
-                <div className="w-[150px] py-[10px] px-[5px]">
-                    <p>Нэмсэн огноо</p>
-                </div>
+                <ProductData/>
             </div>
-            <ProductData/>
         </section>
     )
 }
