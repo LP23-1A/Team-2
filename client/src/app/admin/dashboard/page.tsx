@@ -1,9 +1,23 @@
+"use client";
 import Menu from "@/components/Menu";
 import Navbar from "@/components/Navbar";
 import clipboard from "@/components/images/clipboard.png";
 import user from "@/components/images/user.png";
+import axios from "axios";
+import { useEffect, useState } from "react";
+const api = "http://localhost:8000/dashboard/status";
 
 const dashboard = () => {
+  const [data, setData] = useState();
+  const dashboardHandler = async () => {
+    let res = await axios.get(api);
+
+    setData(res.data.data);
+  };
+  useEffect(() => {
+    dashboardHandler();
+  }, []);
+
   return (
     <div>
       <Navbar />
@@ -17,7 +31,9 @@ const dashboard = () => {
                   <p>$</p>
                   <p>Орлого</p>
                 </div>
-                <p className=" font-bold text-[32px]">235,000₮</p>
+                <p className=" font-bold text-[32px]">
+                  {data?.incomeData[0].amountPaid}
+                </p>
                 <p className="text-[#5E6166] text-[14px]">Өнөөдөр</p>
               </div>
             </div>
@@ -31,7 +47,7 @@ const dashboard = () => {
                   />
                   <p>Захиалга</p>
                 </div>
-                <p className=" font-bold text-[32px]">52</p>
+                <p className=" font-bold text-[32px]">{data?.orderCount}</p>
                 <p className="text-[#5E6166] text-[14px]">Өнөөдөр</p>
               </div>
             </div>
@@ -41,7 +57,7 @@ const dashboard = () => {
                   <img className="w-[15px] h-[15px]" src={user.src} alt="" />
                   <p>Хэрэглэгч</p>
                 </div>
-                <p className=" font-bold text-[32px]">980</p>
+                <p className=" font-bold text-[32px]">{data?.userCount}</p>
                 <p className="text-[#5E6166] text-[14px]">Өнөөдөр</p>
               </div>
             </div>
