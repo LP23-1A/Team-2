@@ -1,11 +1,38 @@
 'use client'
 import img from "@/components/images/image.png";
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import axios from "axios";
 
 const BASE_URL_END_POINT = "http://localhost:8000/product/createProduct"
 
+type FileObject = File | null;
+
 export default function AddProduct() {
+    const [file, setFile] = useState<FileObject>(null);
+    const [caption, setCaption] = useState<string>("");
+  
+    const submit = async (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault()
+      if (file) {
+        const formData = new FormData();
+        formData.append("image", file)
+        formData.append("caption", caption)
+        try {
+          await axios.post(BASE_URL_END_POINT, formData, { headers: {'Content-Type': 'multipart/form-data'}});
+        } catch (error) {
+          console.error('Error while submitting form:', error);
+        }
+      } else {
+        console.error('No file selected.');
+      }
+    };
+
+    const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files && event.target.files.length > 0) {
+          setFile(event.target.files[0]); // Update the file state with the selected file
+        }
+      };
+
     const [productName, setproductName] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
@@ -14,6 +41,10 @@ export default function AddProduct() {
     const handler = async () => {
         let res = await axios.post(BASE_URL_END_POINT, {productName : productName, description : description, price : price, qty : qty})
         console.log(res);
+    }
+
+    function handleCaptionChange(event: ChangeEvent<HTMLInputElement>): void {
+        throw new Error("Function not implemented.");
     }
 
     return(
@@ -40,12 +71,17 @@ export default function AddProduct() {
                             <input className="w-full bg-[#f2f2f2] py-[6px] px-[10px] rounded-md border-2 border-[#e0dfdf] mt-[5px]" type="text" placeholder="#12345678" />
                         </div>
                     </div>
-                    <div className="bg-[white] p-[25px] text-[18px] font-[600] rounded-md text-[black]">
+                    <form onSubmit={submit}>
+                        <input onChange={handleFileChange} type="file" accept="image/*"></input>
+                        <input value={caption} onChange={handleCaptionChange} type="text" placeholder='Caption'></input>
+                        <button type="submit">Submit</button>
+                    </form>
+                    {/* <div className="bg-[white] p-[25px] text-[18px] font-[600] rounded-md text-[black]">
                         <p>Бүтээгдэхүүний зураг</p>
                         <div className="mt-[10px] flex gap-[10px]">
                             <div className="w-[125px] h-[125px] rounded-md border-dashed border-2"></div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className=" bg-[white] p-[25px] flex gap-[20px] rounded-md text-[black]">
                         <div>
                             <p>Үндсэн үнэ</p>
