@@ -17,7 +17,6 @@ const SignPage = () => {
     zipCode: "",
     address: "",
   });
-
   const formDataRef = useRef({
     name: "",
     email: "",
@@ -26,7 +25,9 @@ const SignPage = () => {
     address: "",
     password: "",
     repassword: "",
+  
   });
+
   const nextStep = () => {
     setActiveStep((prevStep) =>
       prevStep === steps.length - 1 ? prevStep : prevStep + 1
@@ -93,9 +94,6 @@ const SignPage = () => {
                   placeholder="Нэр"
                   onChange={(e) => handleOnChange("name", e.target.value)}
                 />
-                <p className="font-semibold text-[16px] text-red-600 ">
-                  {error.name}
-                </p>
               </div>
               <div className="flex flex-col gap-1 ">
                 <p className="font-normal text-[16px]">Таны Утасны дугаар</p>
@@ -149,7 +147,7 @@ const SignPage = () => {
               <input
                 className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
                 type="text"
-                name="zipcode"
+                name="Zipcode"
                 placeholder="Zipcode"
                 onChange={(e) => handleOnChange("zipCode", e.target.value)}
               />
@@ -180,12 +178,10 @@ const SignPage = () => {
         <h1 className="text-[32px] font-bold">Нууц үг</h1>
         <div className="flex flex-col gap-3">
           <div className="flex flex-col gap-1">
-            <p className="font-semibold text-[16px]">
-              Нууц үг (Багдаа 6 тэмдэгт оруулна уу)
-            </p>
+            <p className="font-semibold text-[16px]">Нууц үг </p>
             <input
               className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
-              type="password"
+              type="text"
               name="password"
               placeholder="Нууц үгээ оруулна уу"
               onChange={(e) => handleOnChange("password", e.target.value)}
