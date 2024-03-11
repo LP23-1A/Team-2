@@ -4,13 +4,13 @@ import orderIcon from "@/components/images/clipboard.png";
 import IncomeIcon from "@/components/images/income.png";
 import productIcon from "@/components/images/product.png";
 import settings from "@/components/images/settings.png";
-import Navbar from "@/components/Navbar";
+
 import { useRouter } from "next/navigation";
 function Menu() {
   const router = useRouter();
   return (
     <div>
-      <div className="flex flex-col gap-4 font-semibold text-sm px-4 w-[222px]  ">
+      <div className="flex flex-col gap-4 font-semibold text-sm px-4 w-[222px] pt-[34px]">
         <button
           onClick={() => router.push("/admin/dashboard")}
           className="flex items-center gap-3"
