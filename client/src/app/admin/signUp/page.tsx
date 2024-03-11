@@ -1,7 +1,15 @@
 "use client";
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
 import { Arrow } from "../../../components/images/arrow";
+import { useAuth0 } from "@auth0/auth0-react";
+
+type Auth0ProviderProps = {
+  domain: string;
+  clientId: string;
+  props: any;
+};
+
 const SignPage = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -24,7 +32,7 @@ const SignPage = () => {
     shoppingType,
   } = formData;
   const [activeStep, setActiveStep] = useState(0);
-
+  const { loginWithRedirect } = useAuth0();
   const nextStep = () => {
     setActiveStep((prevStep) =>
       prevStep === steps.length - 1 ? prevStep : prevStep + 1
@@ -82,6 +90,19 @@ const SignPage = () => {
               onClick={nextStep}
             >
               Дараах
+            </button>
+
+            <button
+              className="flex items-center gap-5 rounded-[8px] h-[56px] "
+              onClick={() => loginWithRedirect()}
+            >
+              <img
+                className=" rounded-lg"
+                width={"50px"}
+                src="https://i.pinimg.com/originals/b7/86/79/b786795a5bfba85a9d0422b015d2a460.jpg"
+                alt=""
+              />
+              <span>Google-ээр нэвтрэх</span>
             </button>
           </div>
         </div>
