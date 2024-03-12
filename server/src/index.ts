@@ -4,7 +4,8 @@ import { connectDatabase } from "./utils/database";
 import { AdminRouter } from "./router/adminSign";
 import cors from "cors";
 import { Product } from "./router/product";
-import { order} from "./router/order"
+import { order } from "./router/order";
+import { adminStatus } from "./router/dashboard";
 
 dotenv.config();
 const PORT = process.env.PORT || 8000;
@@ -16,15 +17,13 @@ const start = () => {
   app.use(cors());
   app.use(express.json());
   app.use("/admin", AdminRouter);
-  app.use("/Product", Product)
+  app.use("/Product", Product);
+  app.use("/dashboard", adminStatus);
 
-  app.get("/", (req:Request, res:Response) => {
+  app.get("/", (req: Request, res: Response) => {
     res.status(200).send({ success: true, msg: "Working" });
   });
-  app.use('/order',order);
-  
-
-
+  app.use("/order", order);
 
   // app.get("/", (req:Request, res:Response) => {
   //   res.status(200).send({ success: true, msg: "Working" });
