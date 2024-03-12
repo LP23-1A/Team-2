@@ -2,12 +2,14 @@
 import img from "@/components/images/image.png";
 import { ChangeEvent, FormEvent, useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const BASE_URL_END_POINT = "http://localhost:8000/product/createProduct"
 
 type FileObject = File | null;
 
 export default function AddProduct() {
+    const router = useRouter()
     const [file, setFile] = useState<FileObject>(null);
     const [caption, setCaption] = useState<string>("");
   
@@ -29,7 +31,7 @@ export default function AddProduct() {
 
     const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files.length > 0) {
-          setFile(event.target.files[0]); // Update the file state with the selected file
+          setFile(event.target.files[0])
         }
       };
 
@@ -37,6 +39,7 @@ export default function AddProduct() {
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
     const [qty, setQty] = useState('')
+    const [categoryID, setCategoryID] = useState('')
 
     const handler = async () => {
         let res = await axios.post(BASE_URL_END_POINT, {productName : productName, description : description, price : price, qty : qty})
@@ -71,17 +74,17 @@ export default function AddProduct() {
                             <input className="w-full bg-[#f2f2f2] py-[6px] px-[10px] rounded-md border-2 border-[#e0dfdf] mt-[5px]" type="text" placeholder="#12345678" />
                         </div>
                     </div>
-                    <form onSubmit={submit}>
+                    {/* <form onSubmit={submit}>
                         <input onChange={handleFileChange} type="file" accept="image/*"></input>
                         <input value={caption} onChange={handleCaptionChange} type="text" placeholder='Caption'></input>
                         <button type="submit">Submit</button>
-                    </form>
-                    {/* <div className="bg-[white] p-[25px] text-[18px] font-[600] rounded-md text-[black]">
+                    </form> */}
+                    <div className="bg-[white] p-[25px] text-[18px] font-[600] rounded-md text-[black]">
                         <p>Бүтээгдэхүүний зураг</p>
                         <div className="mt-[10px] flex gap-[10px]">
                             <div className="w-[125px] h-[125px] rounded-md border-dashed border-2"></div>
                         </div>
-                    </div> */}
+                    </div>
                     <div className=" bg-[white] p-[25px] flex gap-[20px] rounded-md text-[black]">
                         <div>
                             <p>Үндсэн үнэ</p>
@@ -103,7 +106,11 @@ export default function AddProduct() {
                     <div className="p-[25px] bg-[white] flex flex-col gap-[15px] rounded-md">
                         <div>
                             <p>Ерөнхий ангилал</p>
-                            <input className="w-full bg-[#f2f2f2] py-[8px] px-[12px] rounded-md border-2 border-[#e0dfdf] mt-[5px]" type="text" placeholder="Сонгох" />
+                            <select className="w-full bg-[#f2f2f2] py-[8px] px-[12px] rounded-md border-2 border-[#e0dfdf] mt-[5px]" id="Ерөнхий ангилал">
+                                <option value="Эрэгтэй">Эрэгтэй</option>
+                                <option value="Эмэгтэй">Эмэгтэй</option>
+                                <option value="Хүүхэд">Хүүхэд</option>
+                            </select>
                         </div>
                         <div>
                             <p>Дэд ангилал</p>
