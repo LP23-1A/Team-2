@@ -26,12 +26,12 @@ const s3 = new S3Client({
 
 export const createProduct = async (req : Request, res : Response) => {
     try {
-        const params = {
-            Bucket : bucketName
-        }
-        const command = new PutObjectCommand(params)
-        const {productName : productName, description : description, price : price, qty : qty} = req.body
-        const result = await productSchema.create({productName : productName, description : description, price : price, qty : qty, })
+        // const params = {
+        //     Bucket : bucketName
+        // }
+        // const command = new PutObjectCommand(params)
+        const {productName : productName, description : description, price : price, qty : qty, categoryID : categoryID} = req.body
+        const result = await productSchema.create({productName : productName, description : description, price : price, qty : qty, categoryID : categoryID})
         console.log(result);
     } catch (error) {
         console.log(error);
@@ -40,18 +40,18 @@ export const createProduct = async (req : Request, res : Response) => {
 
 export const deleteProduct = async (req : Request, res : Response) => {
     try {
-        const { productID } = req.params
+        const productID = req.params.id
         const deleteOneProduct = await productSchema.findByIdAndDelete(productID)
         res.status(201).send({success: true, deleteOneProduct})
-        console.log("deleted");
+        console.log("product deleted");
     } catch (error) {
         res.status(500).send(error)
     }
 }
- 
+
 export const updateProduct = async (req : Request, res : Response) => {
     try {
-        const { productID } = req.params
+        const productID = req.params.id
         const updateOneProduct = await productSchema.findByIdAndUpdate(productID)
         res.status(201).send({success: true, updateOneProduct})
         console.log("updated");

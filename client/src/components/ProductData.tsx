@@ -39,8 +39,17 @@ const AllProduct = [
 const BASE_URL_END_POINT = "http://localhost:8000/product/getAllProduct"
 const BASE_URL = "http://localhost:8000/product"
 
+interface ProductType {
+    _id: String
+    productName: String
+    description: String
+    price: Number
+    qty: Number
+}
+
 export default function ProductData() {
     const [productName, setproductName] = useState([])
+    const [data, setData] = useState<ProductType[]>([]);
 
     const GetAllProduct = async () => {
         try {
@@ -51,6 +60,17 @@ export default function ProductData() {
             console.log(error);
         }
     }
+
+    const removeProduct = async (productID: string) => {
+        try {
+          let res = await axios.delete(`${BASE_URL}/${productID}`);
+          const removeData = data.filter((item) => item._id === productID);
+          setData(removeData);
+          console.log("deleted", res);
+        } catch (error) {
+          console.log(error);
+        }
+      };
 
     useEffect( () =>{
         GetAllProduct()
@@ -71,7 +91,7 @@ export default function ProductData() {
                         </div>
                     </div>
                     <div className="w-[214px] py-[10px] ">
-                        <p>{props.category}</p>
+                        <p>{props.categoryID}</p>
                     </div>
                     <div className="w-[186px] py-[10px] px-[5px]">
                         <p>{props.price}</p>
@@ -86,7 +106,7 @@ export default function ProductData() {
                         <p>{props.createdDate}</p>
                     </div>
                     <div className="w-[186px] py-[10px] px-[20px] flex gap-[30px]">
-                        <button>
+                        <button onClick={() => removeProduct(props._id)}>
                             <TrashCan/>
                         </button>
                         <button>
