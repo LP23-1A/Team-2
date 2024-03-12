@@ -3,14 +3,16 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Arrow } from "../../../components/images/arrow";
 import { useAuth0 } from "@auth0/auth0-react";
+import Google from "@/components/images/google";
 
 type Auth0ProviderProps = {
   domain: string;
   clientId: string;
   props: any;
 };
-
 const SignPage = () => {
+  const { user } = useAuth0();
+  console.log(user);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,6 +22,7 @@ const SignPage = () => {
     khoroo: "",
     shoppingExprient: "",
     shoppingType: "",
+    user: user,
   });
   const {
     name,
@@ -31,6 +34,8 @@ const SignPage = () => {
     shoppingExprient,
     shoppingType,
   } = formData;
+  console.log(user);
+  
   const [activeStep, setActiveStep] = useState(0);
   const { loginWithRedirect } = useAuth0();
   const nextStep = () => {
@@ -38,7 +43,6 @@ const SignPage = () => {
       prevStep === steps.length - 1 ? prevStep : prevStep + 1
     );
   };
-
   const prevStep = () => {
     setActiveStep((prevStep) => (prevStep === 0 ? prevStep : prevStep - 1));
   };
@@ -51,6 +55,7 @@ const SignPage = () => {
       console.log(err, "axios error");
     }
   };
+
   const steps = [
     <div className="flex items-center justify-center h-[100vh]">
       <div className="border-solid border-2 border-[#ECEDF0] rounded-[8px] p-[40px] ">
@@ -91,17 +96,12 @@ const SignPage = () => {
             >
               Дараах
             </button>
-
+            <hr />
             <button
-              className="flex items-center gap-5 rounded-[8px] h-[56px] "
+              className="flex items-center bg-[#F7F7F8]  justify-center gap-5 rounded-[8px] h-[56px] "
               onClick={() => loginWithRedirect()}
             >
-              <img
-                className=" rounded-lg"
-                width={"50px"}
-                src="https://i.pinimg.com/originals/b7/86/79/b786795a5bfba85a9d0422b015d2a460.jpg"
-                alt=""
-              />
+              <Google />
               <span>Google-ээр нэвтрэх</span>
             </button>
           </div>
