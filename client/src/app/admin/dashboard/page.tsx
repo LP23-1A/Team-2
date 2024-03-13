@@ -1,6 +1,5 @@
 "use client";
-import Menu from "@/components/Menu";
-import Navbar from "@/components/Navbar";
+
 import clipboard from "@/components/images/clipboard.png";
 import user from "@/components/images/user.png";
 import axios from "axios";
@@ -19,11 +18,9 @@ const dashboard = () => {
   }, []);
 
   return (
-    <div>
-      <Navbar />
-      <div className="flex h-screen">
-        <Menu />
-        <div className=" w-screen bg-[#ECEDF0] px-6 pt-[34px]">
+    <>
+      <div className="flex">
+        <div className=" w-screen  px-6 pt-[34px]">
           <div className=" grid gap-[24px] grid-flow-col">
             <div className="bg-[white] px-6 py-4 rounded-xl">
               <div>
@@ -64,7 +61,7 @@ const dashboard = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 export default dashboard;
