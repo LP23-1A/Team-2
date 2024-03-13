@@ -10,7 +10,7 @@ const AuthProvider = ({ children }: Props) => {
       domain="dev-xgzfcxh7nwfo7arj.us.auth0.com"
       clientId="XoXEH8JmXaMDpSUrIl2KDtSqjiCRBikm"
       authorizationParams={{
-        redirect_uri: window.location.origin + "/admin/dashboard" ,
+        redirect_uri: window.location.origin + "/admin/dashboard",
       }}
     >
       {children}

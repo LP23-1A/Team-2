@@ -1,43 +1,24 @@
 "use client";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Arrow } from "../../../components/images/arrow";
 import { useAuth0 } from "@auth0/auth0-react";
-import Google from "@/components/images/google";
 
-type Auth0ProviderProps = {
-  domain: string;
-  clientId: string;
-  props: any;
-};
 const SignPage = () => {
   const { user } = useAuth0();
-  console.log(user);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    shopName: "",
-    city: "",
-    district: "",
-    khoroo: "",
-    shoppingExprient: "",
-    shoppingType: "",
-    user: user,
-  });
-  const {
-    name,
-    email,
-    shopName,
-    city,
-    district,
-    khoroo,
-    shoppingExprient,
-    shoppingType,
-  } = formData;
-  console.log(user);
-  
   const [activeStep, setActiveStep] = useState(0);
   const { loginWithRedirect } = useAuth0();
+  const formDataRef = useRef({
+    name: "",
+    email: "",
+    phoneNumber: "",
+    zipCode: "",
+    address: "",
+    password: "",
+    repassword: "",
+    user: user,
+  });
+
   const nextStep = () => {
     setActiveStep((prevStep) =>
       prevStep === steps.length - 1 ? prevStep : prevStep + 1
@@ -47,13 +28,18 @@ const SignPage = () => {
     setActiveStep((prevStep) => (prevStep === 0 ? prevStep : prevStep - 1));
   };
 
-  const handletoSignUp = async () => {
+  const handleToSignUp = async () => {
+    console.log(formDataRef.current);
     try {
       const api = "http://localhost:8000/admin/adminsign";
-      const res = await axios.post(api, formData);
+      await axios.post(api, formDataRef.current);
     } catch (err) {
       console.log(err, "axios error");
     }
+  };
+
+  const handleOnChange = (field: string, value: string | number) => {
+    formDataRef.current = { ...formDataRef.current, [field]: value };
   };
 
   const steps = [
@@ -66,14 +52,11 @@ const SignPage = () => {
               <div className="flex flex-col gap-1 ">
                 <p className="font-normal text-[16px]">Таны имэйл </p>
                 <input
-                  className="border-2 rounded-[8px]   bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
+                  className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
                   type="email"
                   name="email"
-                  value={email}
                   placeholder="Имэйл"
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
+                  onChange={(e) => handleOnChange("email", e.target.value)}
                 />
               </div>
               <div className="flex flex-col gap-1 ">
@@ -82,10 +65,19 @@ const SignPage = () => {
                   className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
                   type="text"
                   name="name"
-                  value={name}
                   placeholder="Нэр"
+                  onChange={(e) => handleOnChange("name", e.target.value)}
+                />
+              </div>
+              <div className="flex flex-col gap-1 ">
+                <p className="font-normal text-[16px]">Таны Утасны дугаар</p>
+                <input
+                  className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
+                  type="text"
+                  name="Утасны дугаар"
+                  placeholder="Утасны дугаар"
                   onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
+                    handleOnChange("phoneNumber", e.target.value)
                   }
                 />
               </div>
@@ -96,96 +88,36 @@ const SignPage = () => {
             >
               Дараах
             </button>
-            <hr />
-            <button
-              className="flex items-center bg-[#F7F7F8]  justify-center gap-5 rounded-[8px] h-[56px] "
-              onClick={() => loginWithRedirect()}
-            >
-              <Google />
-              <span>Google-ээр нэвтрэх</span>
-            </button>
           </div>
         </div>
       </div>
     </div>,
     <div className="flex items-center h-[100vh]">
       <div className="w-[404px] box-border mx-auto justify-center flex flex-col gap-8">
-        <h1 className=" text-[32px] font-bold ">Дэлгүүрийн мэдээлэл</h1>
+        <h1 className=" text-[32px] font-bold ">Хаяг</h1>
         <div className="flex flex-col gap-8">
           <div className="flex flex-col gap-1">
-            <p className="font-semibold text-[16px]">
-              Танай дэлгүүрийн нэр юу вэ?
-            </p>
-            <input
-              className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
-              type="text"
-              name="shopName"
-              value={shopName}
-              placeholder="Дэлгүүрийн нэр"
-              onChange={(e) =>
-                setFormData({ ...formData, shopName: e.target.value })
-              }
-            />
-          </div>
-          <div className="flex justify-between">
-            <button
-              className="w-[48px] flex justify-center items-center h-[48px] rounded-[50px] bg-[#1C20240A]"
-              onClick={prevStep}
-            >
-              <Arrow />
-            </button>
-            <button
-              className="bg-black text-white rounded-[8px] h-[56px] w-[127px]  "
-              onClick={nextStep}
-            >
-              Дараах
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>,
-    <div className="flex items-center h-[100vh]">
-      <div className="w-[404px] box-border mx-auto justify-center flex flex-col">
-        <div className="w-[404px] box-border mx-auto flex flex-col gap-8">
-          <h1 className=" text-[32px] font-bold ">Бүс нутгийн мэдээлэл</h1>
-          <div className="flex flex-col gap-3">
-            <div className="flex flex-col gap-1">
-              <p className="font-semibold text-[16px]">Хот/Аймаг</p>
+            <div>
+              <p className="font-normal text-[16px]">Таны Хаяг</p>
+              <p className="text-[14px]">
+                (Жишээ нь Баянзүрх дүүрэг 13 хороо 56-р байр 24 тоот)
+              </p>
               <input
                 className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
                 type="text"
-                name="city"
-                value={city}
-                placeholder="Хот/Аймаг"
-                onChange={(e) =>
-                  setFormData({ ...formData, city: e.target.value })
-                }
+                name="Хаяг"
+                placeholder="Хаяг"
+                onChange={(e) => handleOnChange("address", e.target.value)}
               />
             </div>
-            <div className="flex flex-col gap-1">
-              <p className="font-semibold text-[16px]">Сум/Дүүрэг</p>
+            <div>
+              <p className="font-normal text-[16px]">Zipcode</p>
               <input
                 className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
                 type="text"
-                name="district"
-                value={district}
-                placeholder="Сум/Дүүрэг"
-                onChange={(e) =>
-                  setFormData({ ...formData, district: e.target.value })
-                }
-              />
-            </div>
-            <div className="flex flex-col gap-1">
-              <p className="font-semibold text-[16px]">Хороо</p>
-              <input
-                className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
-                type="text"
-                name="khoroo"
-                value={khoroo}
-                placeholder="Хороо"
-                onChange={(e) =>
-                  setFormData({ ...formData, khoroo: e.target.value })
-                }
+                name="Zipcode"
+                placeholder="Zipcode"
+                onChange={(e) => handleOnChange("zipCode", e.target.value)}
               />
             </div>
           </div>
@@ -208,39 +140,28 @@ const SignPage = () => {
     </div>,
     <div className="flex items-center h-[100vh]">
       <div className="w-[404px] box-border mx-auto flex flex-col gap-8">
-        <h1 className="text-[32px] font-bold">Жоохон танилцья</h1>
-        <span className="text-[16px] font-normal ">
-          Энэ мэдээллийг дэлгүүрийн тохиргоонд туслах зорилгоор ашиглана.
-        </span>
+        <h1 className="text-[32px] font-bold">Нууц үг</h1>
         <div className="flex flex-col gap-3">
           <div className="flex flex-col gap-1">
-            <p className="font-semibold text-[16px]">
-              Та борлуулалт хийж байсан туршлагатай юу?
-            </p>
+            <p className="font-semibold text-[16px]">Нууц үг </p>
             <input
               className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
               type="text"
               name="shoppingExprient"
-              value={shoppingExprient}
-              placeholder="Сонгох"
-              onChange={(e) =>
-                setFormData({ ...formData, shoppingExprient: e.target.value })
-              }
+              placeholder="Нууц үгээ оруулна уу"
+              onChange={(e) => handleOnChange("password", e.target.value)}
             />
           </div>
           <div className="flex flex-col gap-1">
             <p className="font-semibold text-[16px]">
-              Та ямар төрлийн бүтээгдэхүүн борлуулах вэ?
+              Нууц үгээ давтан оруулна уу
             </p>
             <input
               className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
               type="text"
               name="shoppingType"
-              value={shoppingType}
-              placeholder="Сонгох"
-              onChange={(e) =>
-                setFormData({ ...formData, shoppingType: e.target.value })
-              }
+              placeholder="Нууц үгээ давтан оруулна уу"
+              onChange={(e) => handleOnChange("repassword", e.target.value)}
             />
           </div>
         </div>
@@ -253,7 +174,7 @@ const SignPage = () => {
           </button>
           <button
             className="bg-black text-white rounded-[8px] w-[127px] h-[56px]  "
-            onClick={handletoSignUp}
+            onClick={handleToSignUp}
           >
             Дараах
           </button>
