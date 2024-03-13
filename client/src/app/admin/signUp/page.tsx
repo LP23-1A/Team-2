@@ -2,12 +2,10 @@
 import axios from "axios";
 import React, { useRef, useState } from "react";
 import { Arrow } from "../../../components/images/arrow";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useRouter } from "next/navigation";
 
 const SignPage = () => {
-  const { user } = useAuth0();
   const [activeStep, setActiveStep] = useState(0);
-  const { loginWithRedirect } = useAuth0();
   const formDataRef = useRef({
     name: "",
     email: "",
@@ -16,9 +14,8 @@ const SignPage = () => {
     address: "",
     password: "",
     repassword: "",
-    user: user,
   });
-
+  const router = useRouter();
   const nextStep = () => {
     setActiveStep((prevStep) =>
       prevStep === steps.length - 1 ? prevStep : prevStep + 1
@@ -29,7 +26,7 @@ const SignPage = () => {
   };
 
   const handleToSignUp = async () => {
-    console.log(formDataRef.current);
+    router.push("login");
     try {
       const api = "http://localhost:8000/admin/adminsign";
       await axios.post(api, formDataRef.current);
@@ -115,7 +112,7 @@ const SignPage = () => {
               <input
                 className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
                 type="text"
-                name="Zipcode"
+                name="zipcode"
                 placeholder="Zipcode"
                 onChange={(e) => handleOnChange("zipCode", e.target.value)}
               />
@@ -147,7 +144,7 @@ const SignPage = () => {
             <input
               className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
               type="text"
-              name="shoppingExprient"
+              name="password"
               placeholder="Нууц үгээ оруулна уу"
               onChange={(e) => handleOnChange("password", e.target.value)}
             />
@@ -159,7 +156,7 @@ const SignPage = () => {
             <input
               className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
               type="text"
-              name="shoppingType"
+              name="repassword"
               placeholder="Нууц үгээ давтан оруулна уу"
               onChange={(e) => handleOnChange("repassword", e.target.value)}
             />
