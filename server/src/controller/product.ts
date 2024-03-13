@@ -52,7 +52,7 @@ export const deleteProduct = async (req : Request, res : Response) => {
 export const updateProduct = async (req : Request, res : Response) => {
     try {
         const productID = req.params.id
-        const updateOneProduct = await productSchema.findByIdAndUpdate(productID)
+        const updateOneProduct = await productSchema.findByIdAndUpdate(productID, req.body)
         res.status(201).send({success: true, updateOneProduct})
         console.log("updated");
     } catch (error) {

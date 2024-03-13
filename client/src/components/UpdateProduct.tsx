@@ -1,18 +1,28 @@
 'use client'
-import img from "@/components/images/image.png";
 import { ChangeEvent, FormEvent, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
 const BASE_URL_END_POINT = "http://localhost:8000/product/createProduct"
+const BASE_URL = "http://localhost:8000/product"
 
 type FileObject = File | null;
 
-export default function AddProduct() {
+interface ProductType {
+    _id: String
+    productName: String
+    description: String
+    price: Number
+    qty: Number
+    category : String
+}
+
+export default function updateProduct() {
     const router = useRouter()
     const [file, setFile] = useState<FileObject>(null);
     const [caption, setCaption] = useState<string>("");
-  
+    const [data, setData] = useState<ProductType[]>([])
+
     const submit = async (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault()
       if (file) {
@@ -41,10 +51,15 @@ export default function AddProduct() {
     const [qty, setQty] = useState('')
     const [categoryID, setCategoryID] = useState('Эрэгтэй,')
 
-    const handler = async () => {
-        let res = await axios.post(BASE_URL_END_POINT, {productName : productName, description : description, price : price, qty : qty, categoryID : categoryID})
-        console.log(res);
-        router.push("/admin/product")
+    const updateHandler = async (productID: string, updatedProductData: any) => {
+        try {
+            let res = await axios.put(`${BASE_URL}/${productID}`, updatedProductData)
+            setData(prevData => prevData.map(item => item._id === productID ? updatedProductData : item))
+            console.log("updated", res)
+            router.push("/admin/product")
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     function handleCaptionChange(event: ChangeEvent<HTMLInputElement>): void {
@@ -142,7 +157,7 @@ export default function AddProduct() {
             <div className="pl-[940px]">
                 <div className="flex gap-[15px] ">
                     <button className="py-[10px] px-[20px] border-2 border-[#e0dfdf] bg-[white] rounded-md">Ноорог</button>
-                    <button onClick={handler} className="py-[10px] px-[20px] bg-[black] text-[white] rounded-md">Нийтлэх</button>
+                    <button onClick={updateHandler} className="py-[10px] px-[20px] bg-[black] text-[white] rounded-md">Нийтлэх</button>
                 </div>
             </div>
         </section>
