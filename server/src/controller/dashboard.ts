@@ -1,6 +1,7 @@
 import { Response, Request } from "express";
 import { AdminModel } from "../model/adminSign";
 import { OrderModel } from "../model/order";
+import { productSchema } from "../model/product";
 
 const dashboard = async (req: Request, res: Response) => {
   try {
@@ -16,10 +17,12 @@ const dashboard = async (req: Request, res: Response) => {
         },
       },
     ]);
+    const productInfo = await productSchema.find();
 
-    return res
-      .status(201)
-      .send({ success: true, data: { userCount, orderCount, incomeData } });
+    return res.status(201).send({
+      success: true,
+      data: { userCount, orderCount, incomeData, productInfo },
+    });
   } catch (error) {
     return res.status(400).send({ error });
   }
