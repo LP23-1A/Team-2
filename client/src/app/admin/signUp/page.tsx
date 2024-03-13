@@ -3,36 +3,19 @@ import axios from "axios";
 import React, { useRef, useState } from "react";
 import { Arrow } from "../../../components/images/arrow";
 import { useRouter } from "next/navigation";
-import { useAuth0 } from "@auth0/auth0-react";
 
 const SignPage = () => {
-  const { user } = useAuth0();
-  console.log(user);
-  const [formData, setFormData] = useState({
+  const [activeStep, setActiveStep] = useState(0);
+  const formDataRef = useRef({
     name: "",
     email: "",
-    shopName: "",
-    city: "",
-    district: "",
-    khoroo: "",
-    shoppingExprient: "",
-    shoppingType: "",
-    user: user,
+    phoneNumber: "",
+    zipCode: "",
+    address: "",
+    password: "",
+    repassword: "",
   });
-  const {
-    name,
-    email,
-    shopName,
-    city,
-    district,
-    khoroo,
-    shoppingExprient,
-    shoppingType,
-  } = formData;
-  console.log(user);
-  
-  const [activeStep, setActiveStep] = useState(0);
-  const { loginWithRedirect } = useAuth0();
+  const router = useRouter();
   const nextStep = () => {
     setActiveStep((prevStep) =>
       prevStep === steps.length - 1 ? prevStep : prevStep + 1
@@ -42,7 +25,8 @@ const SignPage = () => {
     setActiveStep((prevStep) => (prevStep === 0 ? prevStep : prevStep - 1));
   };
 
-  const handletoSignUp = async () => {
+  const handleToSignUp = async () => {
+    router.push("login");
     try {
       const api = "http://localhost:8000/admin/adminsign";
       const res = await axios.post(api, formData);
@@ -137,25 +121,9 @@ const SignPage = () => {
               <input
                 className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
                 type="text"
-                name="district"
-                value={district}
-                placeholder="Сум/Дүүрэг"
-                onChange={(e) =>
-                  setFormData({ ...formData, district: e.target.value })
-                }
-              />
-            </div>
-            <div className="flex flex-col gap-1">
-              <p className="font-semibold text-[16px]">Хороо</p>
-              <input
-                className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
-                type="text"
-                name="khoroo"
-                value={khoroo}
-                placeholder="Хороо"
-                onChange={(e) =>
-                  setFormData({ ...formData, khoroo: e.target.value })
-                }
+                name="zipcode"
+                placeholder="Zipcode"
+                onChange={(e) => handleOnChange("zipCode", e.target.value)}
               />
             </div>
           </div>
@@ -185,12 +153,9 @@ const SignPage = () => {
             <input
               className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
               type="text"
-              name="shoppingExprient"
-              value={shoppingExprient}
-              placeholder="Сонгох"
-              onChange={(e) =>
-                setFormData({ ...formData, shoppingExprient: e.target.value })
-              }
+              name="password"
+              placeholder="Нууц үгээ оруулна уу"
+              onChange={(e) => handleOnChange("password", e.target.value)}
             />
           </div>
           <div className="flex flex-col gap-1">
@@ -200,12 +165,9 @@ const SignPage = () => {
             <input
               className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
               type="text"
-              name="shoppingType"
-              value={shoppingType}
-              placeholder="Сонгох"
-              onChange={(e) =>
-                setFormData({ ...formData, shoppingType: e.target.value })
-              }
+              name="repassword"
+              placeholder="Нууц үгээ давтан оруулна уу"
+              onChange={(e) => handleOnChange("repassword", e.target.value)}
             />
           </div>
         </div>
