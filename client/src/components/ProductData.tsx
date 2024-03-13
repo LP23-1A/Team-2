@@ -1,40 +1,9 @@
+'use client'
 import axios from "axios";
 import { useEffect, useState } from "react";
 import TrashCan from "./images/trash";
 import Update from "./images/update";
-
-const AllProduct = [
-    {
-        img : "https://s3-alpha-sig.figma.com/img/870c/ff96/3a9d86a8561466394d0f19d0e0819d0d?Expires=1710720000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=OVn-WSw~T877olfsd2k6g~0FenXXBBOeejEW5Cjqre4thnjWy61YhA8gtGUhFqdmGC7Bmiawql5t2-Du0wy6V0x2Op8sNvHrBg8iF0oEDdSVMJD~9xYfj1vL6zGBUnnKdPFtz9rRaMy-WWBMYu~lNLL4AYvbkvznq1jS3NC~uwrWceANpkp7QGp9I-Z~s8t3t3eDr1dekSTkQ7QtShEj6suKnpUhjurGx1fMXgps1lju~ed-Ets8KPuWEI9ouJ10649d9XoX5OVDF7ZUwhH46S2e0VuceAhWFCeUhXbY3rjyjyVK6rmjhpWHxRs3GO~UrO56tuWeWAK2xY8tlJOQbw__",
-        productName : "Laptop",
-        code : "001",
-        category : "emegtei, tsunh",
-        price : 15000,
-        remainderOf : 51,
-        soldOut : 15,
-        createdDate : "2024-01-10"
-    },
-    {
-        img : "https://s3-alpha-sig.figma.com/img/870c/ff96/3a9d86a8561466394d0f19d0e0819d0d?Expires=1710720000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=OVn-WSw~T877olfsd2k6g~0FenXXBBOeejEW5Cjqre4thnjWy61YhA8gtGUhFqdmGC7Bmiawql5t2-Du0wy6V0x2Op8sNvHrBg8iF0oEDdSVMJD~9xYfj1vL6zGBUnnKdPFtz9rRaMy-WWBMYu~lNLL4AYvbkvznq1jS3NC~uwrWceANpkp7QGp9I-Z~s8t3t3eDr1dekSTkQ7QtShEj6suKnpUhjurGx1fMXgps1lju~ed-Ets8KPuWEI9ouJ10649d9XoX5OVDF7ZUwhH46S2e0VuceAhWFCeUhXbY3rjyjyVK6rmjhpWHxRs3GO~UrO56tuWeWAK2xY8tlJOQbw__",
-        productName : "Laptop",
-        code : "001",
-        category : "emegtei, tsunh",
-        price : 15000,
-        remainderOf : 51,
-        soldOut : 15,
-        createdDate : "2024-01-10"
-    },
-    {
-        img : "https://s3-alpha-sig.figma.com/img/870c/ff96/3a9d86a8561466394d0f19d0e0819d0d?Expires=1710720000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=OVn-WSw~T877olfsd2k6g~0FenXXBBOeejEW5Cjqre4thnjWy61YhA8gtGUhFqdmGC7Bmiawql5t2-Du0wy6V0x2Op8sNvHrBg8iF0oEDdSVMJD~9xYfj1vL6zGBUnnKdPFtz9rRaMy-WWBMYu~lNLL4AYvbkvznq1jS3NC~uwrWceANpkp7QGp9I-Z~s8t3t3eDr1dekSTkQ7QtShEj6suKnpUhjurGx1fMXgps1lju~ed-Ets8KPuWEI9ouJ10649d9XoX5OVDF7ZUwhH46S2e0VuceAhWFCeUhXbY3rjyjyVK6rmjhpWHxRs3GO~UrO56tuWeWAK2xY8tlJOQbw__",
-        productName : "Laptop",
-        code : "001",
-        category : "emegtei, tsunh",
-        price : 15000,
-        remainderOf : 51,
-        soldOut : 15,
-        createdDate : "2024-01-10"
-    },
-]
+import { useRouter } from "next/navigation";
 
 const BASE_URL_END_POINT = "http://localhost:8000/product/getAllProduct"
 const BASE_URL = "http://localhost:8000/product"
@@ -45,32 +14,32 @@ interface ProductType {
     description: String
     price: Number
     qty: Number
+    category : String
 }
 
 export default function ProductData() {
+    const router = useRouter()
     const [productName, setproductName] = useState([])
-    const [data, setData] = useState<ProductType[]>([]);
+    const [data, setData] = useState<ProductType[]>([])
 
     const GetAllProduct = async () => {
         try {
             let res = await axios.get(BASE_URL_END_POINT)
             setproductName(res.data)
-            console.log('data', res.data);
+            console.log('data', res.data)
         } catch (error) {
-            console.log(error);
+            console.log(error)
         }
     }
 
     const removeProduct = async (productID: string) => {
         try {
-          let res = await axios.delete(`${BASE_URL}/${productID}`);
-          const removeData = data.filter((item) => item._id === productID);
-          setData(removeData);
-          console.log("deleted", res);
+          let res = await axios.delete(`${BASE_URL}/${productID}`)
+          console.log("deleted", res)
         } catch (error) {
-          console.log(error);
+          console.log(error)
         }
-      };
+      }
 
     useEffect( () =>{
         GetAllProduct()
@@ -109,7 +78,7 @@ export default function ProductData() {
                         <button onClick={() => removeProduct(props._id)}>
                             <TrashCan/>
                         </button>
-                        <button>
+                        <button onClick={() => router.push('/admin/updateProduct')}>
                             <Update/>
                         </button>
                     </div>
