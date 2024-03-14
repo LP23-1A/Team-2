@@ -13,16 +13,20 @@ export default function Sales() {
       </div>
       <div>
         <Bar
+          style={{ maxWidth: "fit" }}
           data={{
-            labels: ["A", "B", "C", "D"],
+            labels: ["A", "B", "C", "D", "E", "F", "G"],
             datasets: [
               {
                 label: "  My First dataset",
-                backgroundColor: "#4c51bf",
-                borderColor: "#4c51bf",
+                backgroundColor: "#000",
                 hoverBackgroundColor: "#EC2F73",
                 hoverBorderColor: "#EC2F73",
-                data: [65, 78, 56, 65, 90],
+                data: [300, 225, 370, 225, 250, 400, 400],
+                borderRadius: 20,
+                borderWidth: 1,
+                borderSkipped: false,
+                barPercentage: 0.1,
               },
             ],
           }}

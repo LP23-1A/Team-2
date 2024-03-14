@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 const api = "http://localhost:8000/dashboard/status";
 
 export default function Best() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([{ productName: "", qty: "", price: "" }]);
   const dashboardProducts = async () => {
     try {
       const res = await axios.get(api);
