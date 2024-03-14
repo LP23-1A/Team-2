@@ -10,4 +10,33 @@ const Admin = async (req: Request, res: Response) => {
     return res.status(400).send({ error });
   }
 };
-export { Admin };
+
+const Login = async (req: Request, res: Response) => {
+  try {
+    const { email, password } = req.body;
+    const user: any = await AdminModel.findOne({ email }).select("+password");
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.status(200).json();
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+const LoginAuth = async (req: Request, res: Response) => {
+  try {
+    const { email, password } = req.body;
+    const user: any = await AdminModel.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.status(200).json();
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+export { Admin, Login, LoginAuth };
