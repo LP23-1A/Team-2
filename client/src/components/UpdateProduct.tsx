@@ -157,7 +157,7 @@ export default function updateProduct() {
             <div className="pl-[940px]">
                 <div className="flex gap-[15px] ">
                     <button className="py-[10px] px-[20px] border-2 border-[#e0dfdf] bg-[white] rounded-md">Ноорог</button>
-                    <button onClick={updateHandler} className="py-[10px] px-[20px] bg-[black] text-[white] rounded-md">Нийтлэх</button>
+                    <button onChange={updateHandler} className="py-[10px] px-[20px] bg-[black] text-[white] rounded-md">Нийтлэх</button>
                 </div>
             </div>
         </section>
