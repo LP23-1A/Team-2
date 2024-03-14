@@ -20,7 +20,6 @@ interface ProductType {
 export default function ProductData() {
     const router = useRouter()
     const [productName, setproductName] = useState([])
-    const [data, setData] = useState<ProductType[]>([])
 
     const GetAllProduct = async () => {
         try {
@@ -53,7 +52,7 @@ export default function ProductData() {
                         <input className="h-[17px] w-[17px]" type="checkbox"/>
                     </div>
                     <div className="w-[186px] flex items-center gap-[10px] py-[10px] ">
-                        <img className="w-[40px] h-[40px] rounded-[50%]" src={props.img} alt="" />
+                        <img className="w-[40px] h-[40px] rounded-[50%]" src={props.images} alt="" />
                         <div>
                             <p>{props.productName}</p>
                             <p>{props.code}</p>
@@ -72,7 +71,7 @@ export default function ProductData() {
                         <p>{props.soldOut}</p>
                     </div>
                     <div className="w-[186px] py-[10px] ">
-                        <p>{props.createdDate}</p>
+                        <p>{props.createdAt}</p>
                     </div>
                     <div className="w-[186px] py-[10px] px-[20px] flex gap-[30px]">
                         <button onClick={() => removeProduct(props._id)}>
