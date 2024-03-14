@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import TrashCan from "./images/trash";
 import Update from "./images/update";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const BASE_URL_END_POINT = "http://localhost:8000/product/getAllProduct"
 const BASE_URL = "http://localhost:8000/product"
@@ -20,7 +20,8 @@ interface ProductType {
 export default function ProductData() {
     const router = useRouter()
     const [productName, setproductName] = useState([])
-
+    const search = useSearchParams();
+    const productID = search.get("productID")
     const GetAllProduct = async () => {
         try {
             let res = await axios.get(BASE_URL_END_POINT)
@@ -77,7 +78,7 @@ export default function ProductData() {
                         <button onClick={() => removeProduct(props._id)}>
                             <TrashCan/>
                         </button>
-                        <button onClick={() => router.push('/admin/updateProduct')}>
+                        <button onClick={() => router.push(`/admin/updateProduct?/productID=${props._id}`)}>
                             <Update/>
                         </button>
                     </div>
