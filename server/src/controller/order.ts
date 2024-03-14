@@ -21,6 +21,18 @@ const getAllOrders = async (req: Request, res: Response) => {
     }
   };
 
+  const getOrders = async (req: Request, res: Response) => {
+    try {
+      const orderData = await OrderModel.find().populate("userid");
+      return res.status(201).send({ success: true,  orderData });
+      console.log(orderData);
+      
+      // res.status(201).json(orderData);
+    } catch (error) {
+      return res.status(400).send({ error });
+    }
+  };
+
   const getIncome = async (req: Request, res: Response) => {
     try {
       const orderData = await OrderModel.find().populate("userid");
@@ -45,5 +57,5 @@ const getAllOrders = async (req: Request, res: Response) => {
     }
   };
 
-  export {newOrder, getAllOrders, updateOrderById, getIncome}
+  export {newOrder, getAllOrders, updateOrderById, getIncome, getOrders}
   
