@@ -23,7 +23,7 @@ const ParLayout = ({
           style={{ width: "calc(100vw - 225px)" }}
         >
           {children}
-          <div className="grid grid-flow-col px-6 gap-6">
+          <div className="grid grid-cols-2 px-6 gap-6">
             {bestProducts}
             <div className="flex flex-col gap-6">
               {sales}
