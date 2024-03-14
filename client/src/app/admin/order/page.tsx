@@ -87,7 +87,7 @@ export default function Order() {
                       <p  className="pl-6 py-[14px] w-[129px] text-[14px] flex items-center">{formattedTime}</p>
                       <p  className=" pl-6 py-[14px] w-[137px] text-[14px] flex items-center">{formattedamount}</p>
                       <p  className=" pl-6 py-[14px] w-[214px] text-[14px] flex items-center">Хүргэгдсэн</p>
-                      <button className=" pl-6 py-[14px] w-[122px] text-[14px] flex items-center justify-center"> > </button>
+                      <button className=" pl-6 py-[14px] w-[122px] text-[14px] flex items-center justify-center"> </button>
                
                     </div>        
                              

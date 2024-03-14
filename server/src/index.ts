@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
-import { connectDatabase } from "./utils/Database";
+import { connectDatabase } from "..//src/utils/database";
 import { AdminRouter } from "./router/adminSign";
 import cors from "cors";
 import { product } from "./router/product";
