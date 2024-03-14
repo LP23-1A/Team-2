@@ -1,9 +1,9 @@
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
-import { connectDatabase } from "./utils/Database";
+import { connectDatabase } from "..//src/utils/database";
 import { AdminRouter } from "./router/adminSign";
 import cors from "cors";
-import { Product } from "./router/product";
+import { product } from "./router/product";
 import { order } from "./router/order";
 import { adminStatus } from "./router/dashboard";
 
@@ -17,9 +17,8 @@ const start = () => {
   app.use(cors());
   app.use(express.json());
   app.use("/admin", AdminRouter);
-  app.use("/Product", Product);
+  app.use("/product", product);
   app.use("/dashboard", adminStatus);
-  app.use("/Product", Product)
   app.use('/order',order);
 
   app.get("/", (req: Request, res: Response) => {

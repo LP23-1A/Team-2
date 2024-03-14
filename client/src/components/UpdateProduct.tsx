@@ -1,28 +1,69 @@
 'use client'
-import img from "@/components/images/image.png";
 import { ChangeEvent, FormEvent, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import ProductIMG from "@/components/ProductIMG";
 
 const BASE_URL_END_POINT = "http://localhost:8000/product/createProduct"
+const BASE_URL = "http://localhost:8000/product"
 
 type FileObject = File | null;
 
-export default function AddProduct() {
+interface ProductType {
+    _id: String
+    productName: String
+    description: String
+    price: Number
+    qty: Number
+    category : String
+}
+
+export default function updateProduct() {
     const router = useRouter()
+    const [file, setFile] = useState<FileObject>(null);
+    const [caption, setCaption] = useState<string>("");
+    const [data, setData] = useState<ProductType[]>([])
+
+    const submit = async (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault()
+      if (file) {
+        const formData = new FormData();
+        formData.append("image", file)
+        formData.append("caption", caption)
+        try {
+          await axios.post(BASE_URL_END_POINT, formData, { headers: {'Content-Type': 'multipart/form-data'}});
+        } catch (error) {
+          console.error('Error while submitting form:', error);
+        }
+      } else {
+        console.error('No file selected.');
+      }
+    };
+
+    const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files && event.target.files.length > 0) {
+          setFile(event.target.files[0])
+        }
+      };
 
     const [productName, setproductName] = useState('')
     const [description, setDescription] = useState('')
-    const [images, setImages] = useState('')
     const [price, setPrice] = useState('')
     const [qty, setQty] = useState('')
     const [categoryID, setCategoryID] = useState('Эрэгтэй,')
 
-    const handler = async () => {
-        let res = await axios.post(BASE_URL_END_POINT, {productName : productName, description : description, price : price, qty : qty, categoryID : categoryID, images : images})
-        console.log(res);
-        router.push("/admin/product")
+    const updateHandler = async (productID: string, updatedProductData: any) => {
+        try {
+            let res = await axios.put(`${BASE_URL}/${productID}`, updatedProductData)
+            setData(prevData => prevData.map(item => item._id === productID ? updatedProductData : item))
+            console.log("updated", res)
+            router.push("/admin/product")
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    function handleCaptionChange(event: ChangeEvent<HTMLInputElement>): void {
+        throw new Error("Function not implemented.");
     }
 
     return(
@@ -49,13 +90,17 @@ export default function AddProduct() {
                             <input className="w-full bg-[#f2f2f2] py-[6px] px-[10px] rounded-md border-2 border-[#e0dfdf] mt-[5px]" type="text" placeholder="#12345678" />
                         </div>
                     </div>
-                    <ProductIMG/>
-                    {/* <div className="bg-[white] p-[25px] text-[18px] font-[600] rounded-md text-[black]">
+                    {/* <form onSubmit={submit}>
+                        <input onChange={handleFileChange} type="file" accept="image/*"></input>
+                        <input value={caption} onChange={handleCaptionChange} type="text" placeholder='Caption'></input>
+                        <button type="submit">Submit</button>
+                    </form> */}
+                    <div className="bg-[white] p-[25px] text-[18px] font-[600] rounded-md text-[black]">
                         <p>Бүтээгдэхүүний зураг</p>
                         <div className="mt-[10px] flex gap-[10px]">
                             <div className="w-[125px] h-[125px] rounded-md border-dashed border-2"></div>
                         </div>
-                    </div> */}
+                    </div>
                     <div className=" bg-[white] p-[25px] flex gap-[20px] rounded-md text-[black]">
                         <div>
                             <p>Үндсэн үнэ</p>
@@ -112,7 +157,7 @@ export default function AddProduct() {
             <div className="pl-[940px]">
                 <div className="flex gap-[15px] ">
                     <button className="py-[10px] px-[20px] border-2 border-[#e0dfdf] bg-[white] rounded-md">Ноорог</button>
-                    <button onClick={handler} className="py-[10px] px-[20px] bg-[black] text-[white] rounded-md">Нийтлэх</button>
+                    <button onChange={updateHandler} className="py-[10px] px-[20px] bg-[black] text-[white] rounded-md">Нийтлэх</button>
                 </div>
             </div>
         </section>
