@@ -5,7 +5,9 @@ import { Arrow } from "../../../components/images/arrow";
 import { useRouter } from "next/navigation";
 
 const SignPage = () => {
+  const router = useRouter();
   const [activeStep, setActiveStep] = useState(0);
+  const inputError = { email: "", password: "", repassword: "" };
   const formDataRef = useRef({
     name: "",
     email: "",
@@ -15,7 +17,9 @@ const SignPage = () => {
     password: "",
     repassword: "",
   });
-  const router = useRouter();
+  const [error, setError] = useState({
+    repassword: "",
+  });
   const nextStep = () => {
     setActiveStep((prevStep) =>
       prevStep === steps.length - 1 ? prevStep : prevStep + 1
@@ -25,11 +29,23 @@ const SignPage = () => {
     setActiveStep((prevStep) => (prevStep === 0 ? prevStep : prevStep - 1));
   };
 
-  const handleToSignUp = async () => {
-    router.push("login");
+  const handleSignUp = async () => {
     try {
       const api = "http://localhost:8000/admin/adminsign";
-      const res = await axios.post(api, formData);
+      await axios.post(api, formDataRef.current);
+      setError({
+        repassword: "",
+      });
+      if (formDataRef.current.repassword !== formDataRef.current.password) {
+        setError({
+          ...error,
+          repassword: "Passwords do not match",
+        });
+      } else {
+        const api = "http://localhost:8000/admin/adminsign";
+        await axios.post(api, formDataRef.current);
+        router.push("login");
+      }
     } catch (err) {
       console.log(err, "axios error");
     }
@@ -55,9 +71,6 @@ const SignPage = () => {
                   placeholder="Имэйл"
                   onChange={(e) => handleOnChange("email", e.target.value)}
                 />
-                <p className="font-semibold text-[16px] text-red-600 ">
-                  {error.email}
-                </p>
               </div>
               <div className="flex flex-col gap-1 ">
                 <p className="font-normal text-[16px]">Таны нэр </p>
@@ -80,9 +93,6 @@ const SignPage = () => {
                     handleOnChange("phoneNumber", e.target.value)
                   }
                 />
-                <p className="font-semibold text-[16px] text-red-600 ">
-                  {error.phoneNumber}
-                </p>
               </div>
             </div>
             <button
@@ -109,11 +119,8 @@ const SignPage = () => {
                 className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
                 type="text"
                 name="city"
-                value={city}
                 placeholder="Хот/Аймаг"
-                onChange={(e) =>
-                  setFormData({ ...formData, city: e.target.value })
-                }
+                onChange={(e) => handleOnChange("address", e.target.value)}
               />
             </div>
             <div>
@@ -149,10 +156,12 @@ const SignPage = () => {
         <h1 className="text-[32px] font-bold">Нууц үг</h1>
         <div className="flex flex-col gap-3">
           <div className="flex flex-col gap-1">
-            <p className="font-semibold text-[16px]">Нууц үг </p>
+            <p className="font-semibold text-[16px]">
+              Нууц үг (Багдаа 6 тэмдэгт оруулна уу)
+            </p>
             <input
               className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
-              type="text"
+              type="password"
               name="password"
               placeholder="Нууц үгээ оруулна уу"
               onChange={(e) => handleOnChange("password", e.target.value)}
@@ -164,11 +173,12 @@ const SignPage = () => {
             </p>
             <input
               className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
-              type="text"
+              type="password"
               name="repassword"
               placeholder="Нууц үгээ давтан оруулна уу"
               onChange={(e) => handleOnChange("repassword", e.target.value)}
             />
+            <p className="font-semibold text-red-600 text-[16px]">{error.repassword}</p>
           </div>
         </div>
         <div className="flex justify-between">
@@ -180,7 +190,7 @@ const SignPage = () => {
           </button>
           <button
             className="bg-black text-white rounded-[8px] w-[127px] h-[56px]  "
-            onClick={handletoSignUp}
+            onClick={handleSignUp}
           >
             Дараах
           </button>
