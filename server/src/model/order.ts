@@ -3,7 +3,7 @@ import mongoose, { Schema } from 'mongoose';
 const OrderSchema = new mongoose.Schema({
     userid: {
         type: Schema.Types.ObjectId ,
-        ref: 'users',
+        ref: 'adminUser',
     },
     orderNumber: {
         type: String,
@@ -19,7 +19,7 @@ const OrderSchema = new mongoose.Schema({
         
         length: {
             maxlength: 8,
-            minlength: 8,
+            minlength: 6,
         }
     },
     deliveryDate: {

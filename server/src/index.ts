@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
-import { connectDatabase } from "./utils/database";
+import { connectDatabase } from "./utils/Database";
 import { AdminRouter } from "./router/adminSign";
 import cors from "cors";
 import { Product } from "./router/product";
@@ -19,11 +19,17 @@ const start = () => {
   app.use("/admin", AdminRouter);
   app.use("/Product", Product);
   app.use("/dashboard", adminStatus);
+  app.use("/Product", Product)
+  app.use('/order',order);
 
   app.get("/", (req: Request, res: Response) => {
     res.status(200).send({ success: true, msg: "Working" });
   });
   app.use("/order", order);
+
+  
+
+
 
   // app.get("/", (req:Request, res:Response) => {
   //   res.status(200).send({ success: true, msg: "Working" });
