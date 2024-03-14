@@ -5,20 +5,18 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const login = () => {
-  const { loginWithRedirect } = useAuth0();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { loginWithRedirect } = useAuth0();
   const router = useRouter();
+  
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:8000/admin/adminlogin",
-        {
-          email,
-          password,                   
-        }
-      );
+      await axios.post("http://localhost:8000/admin/adminlogin", {
+        email,
+        password,
+      });
       router.push("dashboard");
     } catch (error) {
       console.error("Error during login:", error);

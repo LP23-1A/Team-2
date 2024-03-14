@@ -3,9 +3,21 @@ import axios from "axios";
 import React, { useRef, useState } from "react";
 import { Arrow } from "../../../components/images/arrow";
 import { useRouter } from "next/navigation";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const SignPage = () => {
+  const router = useRouter();
   const [activeStep, setActiveStep] = useState(0);
+  const inputError = { email: "", password: "", repassword: "" };
+  const [error, setError] = useState({
+    name: "",
+    email: "",
+    repassword: "",
+    phoneNumber: "",
+    zipCode: "",
+    address: "",
+  });
+
   const formDataRef = useRef({
     name: "",
     email: "",
@@ -15,7 +27,6 @@ const SignPage = () => {
     password: "",
     repassword: "",
   });
-  const router = useRouter();
   const nextStep = () => {
     setActiveStep((prevStep) =>
       prevStep === steps.length - 1 ? prevStep : prevStep + 1
@@ -24,12 +35,26 @@ const SignPage = () => {
   const prevStep = () => {
     setActiveStep((prevStep) => (prevStep === 0 ? prevStep : prevStep - 1));
   };
-
-  const handleToSignUp = async () => {
-    router.push("login");
+  const handleSignUp = async () => {
     try {
-      const api = "http://localhost:8000/admin/adminsign";
-      await axios.post(api, formDataRef.current);
+      setError({
+        name: "",
+        repassword: "",
+        email: "",
+        phoneNumber: "",
+        zipCode: "",
+        address: "",
+      });
+      if (formDataRef.current.repassword !== formDataRef.current.password) {
+        setError({
+          ...error,
+          repassword: "Passwords do not match",
+        });
+      } else {
+        const api = "http://localhost:8000/admin/adminsign";
+        await axios.post(api, formDataRef.current);
+        router.push("login");
+      }
     } catch (err) {
       console.log(err, "axios error");
     }
@@ -55,6 +80,9 @@ const SignPage = () => {
                   placeholder="Имэйл"
                   onChange={(e) => handleOnChange("email", e.target.value)}
                 />
+                <p className="font-semibold text-[16px] text-red-600 ">
+                  {error.email}
+                </p>
               </div>
               <div className="flex flex-col gap-1 ">
                 <p className="font-normal text-[16px]">Таны нэр </p>
@@ -65,6 +93,9 @@ const SignPage = () => {
                   placeholder="Нэр"
                   onChange={(e) => handleOnChange("name", e.target.value)}
                 />
+                <p className="font-semibold text-[16px] text-red-600 ">
+                  {error.name}
+                </p>
               </div>
               <div className="flex flex-col gap-1 ">
                 <p className="font-normal text-[16px]">Таны Утасны дугаар</p>
@@ -77,6 +108,9 @@ const SignPage = () => {
                     handleOnChange("phoneNumber", e.target.value)
                   }
                 />
+                <p className="font-semibold text-[16px] text-red-600 ">
+                  {error.phoneNumber}
+                </p>
               </div>
             </div>
             <button
@@ -106,6 +140,9 @@ const SignPage = () => {
                 placeholder="Хаяг"
                 onChange={(e) => handleOnChange("address", e.target.value)}
               />
+              <p className="font-semibold text-[16px] text-red-600 ">
+                {error.address}
+              </p>
             </div>
             <div>
               <p className="font-normal text-[16px]">Zipcode</p>
@@ -116,6 +153,9 @@ const SignPage = () => {
                 placeholder="Zipcode"
                 onChange={(e) => handleOnChange("zipCode", e.target.value)}
               />
+              <p className="font-semibold text-[16px] text-red-600 ">
+                {error.zipCode}
+              </p>
             </div>
           </div>
           <div className="flex justify-between">
@@ -140,10 +180,12 @@ const SignPage = () => {
         <h1 className="text-[32px] font-bold">Нууц үг</h1>
         <div className="flex flex-col gap-3">
           <div className="flex flex-col gap-1">
-            <p className="font-semibold text-[16px]">Нууц үг </p>
+            <p className="font-semibold text-[16px]">
+              Нууц үг (Багдаа 6 тэмдэгт оруулна уу)
+            </p>
             <input
               className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
-              type="text"
+              type="password"
               name="password"
               placeholder="Нууц үгээ оруулна уу"
               onChange={(e) => handleOnChange("password", e.target.value)}
@@ -155,11 +197,14 @@ const SignPage = () => {
             </p>
             <input
               className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
-              type="text"
+              type="password"
               name="repassword"
               placeholder="Нууц үгээ давтан оруулна уу"
               onChange={(e) => handleOnChange("repassword", e.target.value)}
             />
+            <p className="font-semibold text-[16px] text-red-600 ">
+              {error.repassword}
+            </p>
           </div>
         </div>
         <div className="flex justify-between">
@@ -171,7 +216,7 @@ const SignPage = () => {
           </button>
           <button
             className="bg-black text-white rounded-[8px] w-[127px] h-[56px]  "
-            onClick={handleToSignUp}
+            onClick={handleSignUp}
           >
             Дараах
           </button>

@@ -5,6 +5,8 @@ type Props = {
   children: ReactNode;
 };
 const AuthProvider = ({ children }: Props) => {
+  console.log();
+  
   return (
     <Auth0Provider
       domain="dev-xgzfcxh7nwfo7arj.us.auth0.com"
