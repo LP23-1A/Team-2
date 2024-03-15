@@ -3,16 +3,18 @@
 import clipboard from "@/components/images/clipboard.png";
 import user from "@/components/images/user.png";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 const api = "http://localhost:8000/dashboard/status";
 
 const dashboard = () => {
-  const [data, setData] = useState();
+  const [data, setData]: any = useState([]);
+  const amount = useRef(0);
   const dashboardHandler = async () => {
     let res = await axios.get(api);
-
+    amount.current = res.data.data.incomeData[0].amountPaid;
     setData(res.data.data);
   };
+
   useEffect(() => {
     dashboardHandler();
   }, []);
@@ -28,9 +30,7 @@ const dashboard = () => {
                   <p>$</p>
                   <p>Орлого</p>
                 </div>
-                <p className=" font-bold text-[32px]">
-                  {data?.incomeData[0].amountPaid}
-                </p>
+                <p className=" font-bold text-[32px]">{amount.current}</p>
                 <p className="text-[#5E6166] text-[14px]">Өнөөдөр</p>
               </div>
             </div>

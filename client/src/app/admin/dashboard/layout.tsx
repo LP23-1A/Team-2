@@ -19,7 +19,7 @@ const ParLayout = ({
       <div className="flex">
         <Menu />
         <div
-          className="bg-[#ECEDF0] h-screen flex flex-col gap-8"
+          className="bg-[#ECEDF0] h-full flex flex-col gap-8"
           style={{ width: "calc(100vw - 225px)" }}
         >
           {children}

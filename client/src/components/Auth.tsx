@@ -6,13 +6,16 @@ type Props = {
 };
 const AuthProvider = ({ children }: Props) => {
   console.log();
-  
+
   return (
     <Auth0Provider
       domain="dev-xgzfcxh7nwfo7arj.us.auth0.com"
       clientId="XoXEH8JmXaMDpSUrIl2KDtSqjiCRBikm"
       authorizationParams={{
-        redirect_uri: window.location.origin + "/admin/dashboard",
+        redirect_uri:
+          typeof window !== undefined
+            ? window.location.origin + "/admin/dashboard"
+            : "",
       }}
     >
       {children}
