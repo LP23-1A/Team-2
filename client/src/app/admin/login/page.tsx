@@ -27,6 +27,9 @@ const Login = () => {
       console.error("Error during login:", error);
     }
   };
+  const handleJump = () => {
+    router.push("signUp");
+  };
 
   return (
     <div className="flex items-center h-[100vh]">
@@ -54,7 +57,9 @@ const Login = () => {
             />
           </div>
           {errorMessage && (
-            <p className="font-semibold text-[16px] text-red-600 ">{errorMessage}</p>
+            <p className="font-semibold text-[16px] text-red-600 ">
+              {errorMessage}
+            </p>
           )}
         </div>
         <button
@@ -69,6 +74,9 @@ const Login = () => {
         >
           Google-ээр нэвтрэх
         </button>
+        <p className=" text-blue-600 text-center" onClick={handleJump}>
+          Бүртгүүлэх 
+        </p>
       </div>
     </div>
   );
