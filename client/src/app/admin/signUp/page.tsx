@@ -50,6 +50,9 @@ const SignPage = () => {
       console.log(err, "axios error");
     }
   };
+  const handleJump = () => {
+    router.push("login");
+  };
 
   const handleOnChange = (field: string, value: string | number) => {
     formDataRef.current = { ...formDataRef.current, [field]: value };
@@ -101,6 +104,9 @@ const SignPage = () => {
             >
               Дараах
             </button>
+            <p className="text-center  text-blue-600" onClick={handleJump}>
+              Нэвтрэх
+            </p>
           </div>
         </div>
       </div>
@@ -178,7 +184,9 @@ const SignPage = () => {
               placeholder="Нууц үгээ давтан оруулна уу"
               onChange={(e) => handleOnChange("repassword", e.target.value)}
             />
-            <p className="font-semibold text-red-600 text-[16px]">{error.repassword}</p>
+            <p className="font-semibold text-red-600 text-[16px]">
+              {error.repassword}
+            </p>
           </div>
         </div>
         <div className="flex justify-between">
