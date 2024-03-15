@@ -4,6 +4,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import ProductIMG from "@/components/ProductIMG";
+import { Aws } from "./Aws";
 
 const BASE_URL_END_POINT = "http://localhost:8000/product/createProduct";
 

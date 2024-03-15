@@ -78,17 +78,12 @@ export default function updateProduct() {
             <div className="mt-[10px] flex gap-[10px]">
               <div className="w-[125px] h-[125px] rounded-md border-dashed border-2"></div>
             </div>
-          </div>
-          <div className=" bg-[white] p-[25px] flex gap-[20px] rounded-md text-[black]">
-            <div>
-              <p>Үндсэн үнэ</p>
-              <input
-                className="bg-[#f2f2f2] py-[6px] px-[10px] rounded-md border-2 border-[#e0dfdf] mt-[5px]"
-                type="text"
-                placeholder="Үндсэн үнэ"
-                value={price}
-                onChange={(event) => setPrice(event.target.value)}
-              />
+            <div className="pl-[940px]">
+                <div className="flex gap-[15px] ">
+                    <button className="py-[10px] px-[20px] border-2 border-[#e0dfdf] bg-[white] rounded-md">Ноорог</button>
+                    <button onClick={() => {handleUpdate(); router.push("/admin/product");}} 
+                    className="py-[10px] px-[20px] bg-[black] text-[white] rounded-md">Нийтлэх</button>
+                </div>
             </div>
             <div>
               <p>Үлдэгдэл тоо ширхэг</p>
