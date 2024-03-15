@@ -13,9 +13,7 @@ export const createProduct =  async (req : Request, res : Response) => {
     try {
         const {productName : productName, description : description, price : price, qty : qty, categoryID : categoryID, images : images} = req.body
         const result = await productSchema.create({productName : productName, description : description, price : price, qty : qty, categoryID : categoryID, images : images})
-        console.log(result, "");
-        console.log('req.body', req.body);
-        
+
     } catch (error) {
         console.log(error);
     }
