@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import TrashCan from "./images/trash";
 import Update from "./images/update";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const BASE_URL_END_POINT = "http://localhost:8000/product/getAllProduct"
 const BASE_URL = "http://localhost:8000/product"
@@ -20,7 +20,8 @@ interface ProductType {
 export default function ProductData() {
     const router = useRouter()
     const [productName, setproductName] = useState([])
-
+    const search = useSearchParams();
+    const productID = search.get("productID")
     const GetAllProduct = async () => {
         try {
             let res = await axios.get(BASE_URL_END_POINT)
@@ -45,7 +46,7 @@ export default function ProductData() {
     })
 
     return(
-        productName.map((props) =>{
+        productName.map((props : any) =>{
             return(
                 <section key={props} className="flex items-center gap-[50px] py-[10px] px-[20px] border-t ">
                     <div className="w-[68px] flex items-center justify-center">
@@ -71,13 +72,13 @@ export default function ProductData() {
                         <p>{props.soldOut}</p>
                     </div>
                     <div className="w-[186px] py-[10px] ">
-                        <p>{props.createdAt}</p>
+                        <p>{props.createdAt.slice(0, 10)}</p>
                     </div>
                     <div className="w-[186px] py-[10px] px-[20px] flex gap-[30px]">
                         <button onClick={() => removeProduct(props._id)}>
                             <TrashCan/>
                         </button>
-                        <button onClick={() => router.push('/admin/updateProduct')}>
+                        <button onClick={() => router.push(`/admin/updateProduct?/productID=${props._id}`)}>
                             <Update/>
                         </button>
                     </div>

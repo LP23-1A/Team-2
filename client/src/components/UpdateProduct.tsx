@@ -1,70 +1,38 @@
 'use client'
 import { ChangeEvent, FormEvent, useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
-const BASE_URL_END_POINT = "http://localhost:8000/product/createProduct"
 const BASE_URL = "http://localhost:8000/product"
 
 type FileObject = File | null;
 
-interface ProductType {
-    _id: String
-    productName: String
-    description: String
-    price: Number
-    qty: Number
-    category : String
-}
-
 export default function updateProduct() {
     const router = useRouter()
-    const [file, setFile] = useState<FileObject>(null);
-    const [caption, setCaption] = useState<string>("");
-    const [data, setData] = useState<ProductType[]>([])
-
-    const submit = async (event: FormEvent<HTMLFormElement>) => {
-      event.preventDefault()
-      if (file) {
-        const formData = new FormData();
-        formData.append("image", file)
-        formData.append("caption", caption)
-        try {
-          await axios.post(BASE_URL_END_POINT, formData, { headers: {'Content-Type': 'multipart/form-data'}});
-        } catch (error) {
-          console.error('Error while submitting form:', error);
-        }
-      } else {
-        console.error('No file selected.');
-      }
-    };
-
-    const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files && event.target.files.length > 0) {
-          setFile(event.target.files[0])
-        }
-      };
 
     const [productName, setproductName] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
     const [qty, setQty] = useState('')
-    const [categoryID, setCategoryID] = useState('Эрэгтэй,')
+    const [categoryID, setCategoryID] = useState('')
 
-    const updateHandler = async (productID: string, updatedProductData: any) => {
+    const search = useSearchParams();
+    const productID = search.get("productID");
+
+    const handleUpdate = async () => {
         try {
-            let res = await axios.put(`${BASE_URL}/${productID}`, updatedProductData)
-            setData(prevData => prevData.map(item => item._id === productID ? updatedProductData : item))
-            console.log("updated", res)
-            router.push("/admin/product")
+          const Data = {
+            ...(productName && { productName }),
+            ...(price && { price }),
+            ...(qty && { qty }),
+            ...(categoryID && { categoryID }),
+          };
+          console.log("product updated", productID);
+          await axios.put(`${BASE_URL}/${productID}`, Data);
         } catch (error) {
-            console.log(error)
+          console.log("can't update");
         }
-    }
-
-    function handleCaptionChange(event: ChangeEvent<HTMLInputElement>): void {
-        throw new Error("Function not implemented.");
-    }
+      };
 
     return(
         <section className="w-[1200px] flex flex-col gap-[25px] bg-[#ECEDF0] p-[20px]">
@@ -157,7 +125,8 @@ export default function updateProduct() {
             <div className="pl-[940px]">
                 <div className="flex gap-[15px] ">
                     <button className="py-[10px] px-[20px] border-2 border-[#e0dfdf] bg-[white] rounded-md">Ноорог</button>
-                    <button onChange={updateHandler} className="py-[10px] px-[20px] bg-[black] text-[white] rounded-md">Нийтлэх</button>
+                    <button  onClick={() => {handleUpdate(); router.push("/admin/product");}} 
+                    className="py-[10px] px-[20px] bg-[black] text-[white] rounded-md">Нийтлэх</button>
                 </div>
             </div>
         </section>
