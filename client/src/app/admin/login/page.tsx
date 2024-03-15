@@ -3,20 +3,25 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-
 const Login = () => {
+  const [errorMessage, setErrorMessage] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { loginWithRedirect } = useAuth0();
   const router = useRouter();
-  
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!email || !password) {
+      setErrorMessage("Email and password are required.");
+      return;
+    }
     try {
       await axios.post("http://localhost:8000/admin/adminlogin", {
         email,
         password,
       });
+
       router.push("dashboard");
     } catch (error) {
       console.error("Error during login:", error);
@@ -42,12 +47,15 @@ const Login = () => {
             <p className="font-semibold text-[16px]">Нууц үг </p>
             <input
               className="border-2 rounded-[8px] bg-[#F7F7F8] w-[404px] h-[56px] box-border border-gray-300 p-2"
-              type="text"
+              type="password"
               name="password"
               placeholder="Нууц үгээ оруулна уу"
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          {errorMessage && (
+            <p className="font-semibold text-[16px] text-red-600 ">{errorMessage}</p>
+          )}
         </div>
         <button
           className="bg-black text-white rounded-[8px] h-[56px] w-[404px]  "
