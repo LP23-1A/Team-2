@@ -6,9 +6,11 @@ import Navbar from "@/components/Navbar";
 import Searchbar from "@/components/svg/Searchbar";
 import Download from "@/components/images/Download.png";
 const API = "http://localhost:8000/order/getorder";
+import { useRouter } from "next/navigation";
 
 export default function Order() {
   const [data, setdata] = useState([]);
+  const router = useRouter();
 
   const Orderhandler = async () => {
     let res = await axios.get(API);  
@@ -87,7 +89,9 @@ export default function Order() {
                       <p  className="pl-6 py-[14px] w-[129px] text-[14px] flex items-center">{formattedTime}</p>
                       <p  className=" pl-6 py-[14px] w-[137px] text-[14px] flex items-center">{formattedamount}</p>
                       <p  className=" pl-6 py-[14px] w-[214px] text-[14px] flex items-center">Хүргэгдсэн</p>
-                      <button className=" pl-6 py-[14px] w-[122px] text-[14px] flex items-center justify-center"> </button>
+                      <button className=" pl-6 py-[14px] w-[122px] text-[14px] flex items-center justify-center"
+                     onClick={() => router.push("/admin/order/orderdetails")}
+                      > {">"} </button>
                
                     </div>        
                              
