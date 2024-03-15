@@ -46,7 +46,7 @@ export default function ProductData() {
     })
 
     return(
-        productName.map((props) =>{
+        productName.map((props : any) =>{
             return(
                 <section key={props} className="flex items-center gap-[50px] py-[10px] px-[20px] border-t ">
                     <div className="w-[68px] flex items-center justify-center">
@@ -72,7 +72,7 @@ export default function ProductData() {
                         <p>{props.soldOut}</p>
                     </div>
                     <div className="w-[186px] py-[10px] ">
-                        <p>{props.createdAt}</p>
+                        <p>{props.createdAt.slice(0, 10)}</p>
                     </div>
                     <div className="w-[186px] py-[10px] px-[20px] flex gap-[30px]">
                         <button onClick={() => removeProduct(props._id)}>
