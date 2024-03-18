@@ -98,6 +98,7 @@ export default function Order() {
 
                     const formatteddate = `${year}-${month}-${day}`;
 
+<<<<<<< HEAD
                     const amount = el.amountPaid;
                     const formattedamount = amount + "₮";
 
@@ -134,6 +135,26 @@ export default function Order() {
                     );
                   })}
               </div>
+=======
+                  return (
+                    <div key={idp} className="flex border-t-2">              
+                      <p className=" pl-6 py-[16px] w-[291px] text-[12px] flex items-center">{el._id}</p>
+                      <div className="pl-6 py-[16px] w-[209px] text-[12px]">
+                      {el.userid.name} <br />   {el.userid.email}
+                      </div>                  
+                      <p  className="pl-6 py-[14px] w-[168px] text-[14px] flex items-center">{formatteddate}</p>
+                      <p  className="pl-6 py-[14px] w-[129px] text-[14px] flex items-center">{formattedTime}</p>
+                      <p  className=" pl-6 py-[14px] w-[137px] text-[14px] flex items-center">{formattedamount}</p>
+                      <p  className=" pl-6 py-[14px] w-[214px] text-[14px] flex items-center">{el.status}</p>
+                      <button className=" pl-6 py-[14px] w-[122px] text-[14px] flex items-center justify-center"
+                     onClick={() => router.push("/admin/order/orderdetails")}
+                      > {">"} </button>
+               
+                    </div>        
+                             
+                  );
+                })}
+>>>>>>> 58493b0 (order status changed)
             </div>
           </div>
         </div>
