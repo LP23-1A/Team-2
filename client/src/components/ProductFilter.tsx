@@ -1,4 +1,3 @@
-import { MongoClient } from "mongodb";
 import Calendar from "./images/Calendar";
 import CategoryICON from "./images/CategoryICON";
 import Dollar from "./images/Dollar";
@@ -18,7 +17,7 @@ export default function ProductFilter() {
     const [data, setData] = useState<ProductCategory[]>([]);
     const [products, setProducts] = useState<ProductCategory[]>([]);
     const [selectedCategory, setSelectedCategory] = useState<string>("");
-  
+
     const fetchProductsByCategory = async (categoryID: string) => {
       try {
         const res = await fetch(`${BASE_URL_END_POINT}?categoryID=${categoryID}`);
