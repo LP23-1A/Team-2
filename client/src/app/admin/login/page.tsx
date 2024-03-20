@@ -28,7 +28,7 @@ const Login = () => {
     }
   };
   const handleJump = () => {
-    router.push("signUp");
+    router.push("/");
   };
 
   return (

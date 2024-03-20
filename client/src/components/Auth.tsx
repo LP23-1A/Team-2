@@ -14,7 +14,7 @@ const AuthProvider = ({ children }: Props) => {
       authorizationParams={{
         redirect_uri:
           typeof window !== undefined
-            ? window.location.origin + "/admin/dashboard"
+            ? window.location.origin + "/admin/checkRole"
             : "",
       }}
     >

@@ -44,14 +44,14 @@ const SignPage = () => {
       } else {
         const api = "http://localhost:8000/admin/adminsign";
         await axios.post(api, formDataRef.current);
-        router.push("login");
+        router.push("admin/login");
       }
     } catch (err) {
       console.log(err, "axios error");
     }
   };
   const handleJump = () => {
-    router.push("login");
+    router.push("admin/login");
   };
 
   const handleOnChange = (field: string, value: string | number) => {
@@ -61,7 +61,7 @@ const SignPage = () => {
   const steps = [
     <div className="flex items-center justify-center h-[100vh]">
       <div className="border-solid border-2 border-[#ECEDF0] rounded-[8px] p-[40px] ">
-        <div className="w-[404px] box-border mx-auto flex flex-col gap-8  items-center ">
+        <div className="w-[404px] box-border mx-auto flex flex-col gap-8  items-center">
           <h1 className=" text-[32px] font-bold">Бүртгүүлэх</h1>
           <div className="flex gap-4 flex-col">
             <div className="w-[404px] box-border mx-auto flex flex-col gap-3 ">
