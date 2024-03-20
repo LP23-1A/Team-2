@@ -9,8 +9,13 @@ const BASE_URL = "http://localhost:8000/product"
 const BASE_URL_END_POINT = "http://localhost:8000/product/getAllProduct"
 
 interface ProductCategory{
-    _id: string;
-    categoryID: string;
+  _id: String
+  productName: String
+  description: String
+  price: Number
+  qty: Number
+  categoryID : String
+  category : String
   }
 
 export default function ProductFilter() {
@@ -45,7 +50,7 @@ export default function ProductFilter() {
         const fetchData = async () => {
           try {
             const res = await axios.get<ProductCategory[]>(BASE_URL_END_POINT);
-            setSelectedCategory(res.data);
+            console.log(res);
           } catch (error) {
             console.log(error);
           }

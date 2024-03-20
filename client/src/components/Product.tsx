@@ -3,7 +3,19 @@ import { useRouter } from "next/navigation";
 import ProductData from "./ProductData";
 import ProductFilter from "./ProductFilter";
 
+interface ProductCategory{
+    _id: String
+    productName: String
+    description: String
+    price: Number
+    qty: Number
+    categoryID : String
+    category : String
+    }
+
 export default function Product() {
+    
+
     const router = useRouter()
     return(
         <section className="w-[1420px] p-[10px] flex flex-col gap-[20px]">
