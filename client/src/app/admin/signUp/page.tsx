@@ -17,9 +17,7 @@ const SignPage = () => {
     password: "",
     repassword: "",
   });
-  const [error, setError] = useState({
-    repassword: "",
-  });
+  const [error, setError] = useState("");
   const nextStep = () => {
     setActiveStep((prevStep) =>
       prevStep === steps.length - 1 ? prevStep : prevStep + 1
@@ -30,24 +28,16 @@ const SignPage = () => {
   };
 
   const handleSignUp = async () => {
-    try {
-      const api = "http://localhost:8000/admin/adminsign";
-      await axios.post(api, formDataRef.current);
-      setError({
-        repassword: "",
-      });
-      if (formDataRef.current.repassword !== formDataRef.current.password) {
-        setError({
-          ...error,
-          repassword: "Passwords do not match",
-        });
-      } else {
+    if (formDataRef.current.repassword === formDataRef.current.password) {
+      try {
         const api = "http://localhost:8000/admin/adminsign";
         await axios.post(api, formDataRef.current);
         router.push("admin/login");
+      } catch (error) {
+        console.log(error, "axios error");
       }
-    } catch (err) {
-      console.log(err, "axios error");
+    } else {
+      setError("Passwords do not match");
     }
   };
   const handleJump = () => {
@@ -184,9 +174,7 @@ const SignPage = () => {
               placeholder="Нууц үгээ давтан оруулна уу"
               onChange={(e) => handleOnChange("repassword", e.target.value)}
             />
-            <p className="font-semibold text-red-600 text-[16px]">
-              {error.repassword}
-            </p>
+            <p className="font-semibold text-red-600 text-[16px]">{error}</p>
           </div>
         </div>
         <div className="flex justify-between">

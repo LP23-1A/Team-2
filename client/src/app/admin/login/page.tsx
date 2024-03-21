@@ -21,7 +21,6 @@ const Login = () => {
         email,
         password,
       });
-
       router.push("dashboard");
     } catch (error) {
       console.error("Error during login:", error);
