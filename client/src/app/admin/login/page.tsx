@@ -1,14 +1,12 @@
 "use client";
-import dashboard from "@/app/user/dashboard/page";
-import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { useState } from "react";
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const { loginWithRedirect } = useAuth0();
   const router = useRouter();
 

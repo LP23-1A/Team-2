@@ -16,10 +16,9 @@ const Login = async (req: Request, res: Response) => {
     const { email, password } = req.body;
     const user: any = await AdminModel.findOne({ email });
     const { role } = user;
-
     if (user) {
       if (user.password === password) {
-        res.status(200).json({ message: "Login successful", role });
+        res.status(200).json({ message: "Login successful",email, role });
       } else {
         return res.status(401).send({ message: "Invalid login" });
       }
