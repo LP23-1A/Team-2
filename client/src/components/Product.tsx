@@ -2,8 +2,9 @@
 import { useRouter } from "next/navigation";
 import ProductData from "./ProductData";
 import ProductFilter from "./ProductFilter";
+import { useEffect } from "react";
 
-interface ProductCategory{
+interface ProductData{
     _id: String
     productName: String
     description: String
@@ -15,7 +16,6 @@ interface ProductCategory{
 
 export default function Product() {
     
-
     const router = useRouter()
     return(
         <section className="w-[1420px] p-[10px] flex flex-col gap-[20px]">
