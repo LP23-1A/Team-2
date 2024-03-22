@@ -14,29 +14,34 @@ const Admin = async (req: Request, res: Response) => {
 const Login = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
-    const user: any = await AdminModel.findOne({ email }).select("+password");
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-    res.status(200).json();
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-};
-
-const LoginAuth = async (req: Request, res: Response) => {
-  try {
-    const { email, password } = req.body;
     const user: any = await AdminModel.findOne({ email });
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
+    const { role } = user;
+
+    if (user) {
+      if (user.password === password) {
+        res.status(200).json({ message: "Login successful", role });
+      } else {
+        return res.status(401).send({ message: "Invalid login" });
+      }
     }
-    res.status(200).json();
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
+    res.status(401).json({ message: "Invalid login" });
   }
 };
 
-export { Admin, Login, LoginAuth };
+const LoginCheck = async (req: Request, res: Response) => {
+  try {
+    const { email } = req.body;
+    const user = await AdminModel.findOne({ email });
+    if (user) {
+      const { role } = user;
+      res.status(200).json({ role });
+    } else {
+      return res.status(404).json({ message: "Username not found" });
+    }
+  } catch (error) {
+    console.error("Error in LoginCheck:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+export { Admin, Login, LoginCheck };

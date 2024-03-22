@@ -5,8 +5,6 @@ type Props = {
   children: ReactNode;
 };
 const AuthProvider = ({ children }: Props) => {
-  console.log();
-
   return (
     <Auth0Provider
       domain="dev-xgzfcxh7nwfo7arj.us.auth0.com"
@@ -14,7 +12,7 @@ const AuthProvider = ({ children }: Props) => {
       authorizationParams={{
         redirect_uri:
           typeof window !== undefined
-            ? window.location.origin + "/admin/dashboard"
+            ? window.location.origin + "/admin/checkRole"
             : "",
       }}
     >

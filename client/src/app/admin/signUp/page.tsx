@@ -17,9 +17,7 @@ const SignPage = () => {
     password: "",
     repassword: "",
   });
-  const [error, setError] = useState({
-    repassword: "",
-  });
+  const [error, setError] = useState("");
   const nextStep = () => {
     setActiveStep((prevStep) =>
       prevStep === steps.length - 1 ? prevStep : prevStep + 1
@@ -30,28 +28,20 @@ const SignPage = () => {
   };
 
   const handleSignUp = async () => {
-    try {
-      const api = "http://localhost:8000/admin/adminsign";
-      await axios.post(api, formDataRef.current);
-      setError({
-        repassword: "",
-      });
-      if (formDataRef.current.repassword !== formDataRef.current.password) {
-        setError({
-          ...error,
-          repassword: "Passwords do not match",
-        });
-      } else {
+    if (formDataRef.current.repassword === formDataRef.current.password) {
+      try {
         const api = "http://localhost:8000/admin/adminsign";
         await axios.post(api, formDataRef.current);
-        router.push("login");
+        router.push("admin/login");
+      } catch (error) {
+        console.log(error, "axios error");
       }
-    } catch (err) {
-      console.log(err, "axios error");
+    } else {
+      setError("Passwords do not match");
     }
   };
   const handleJump = () => {
-    router.push("login");
+    router.push("admin/login");
   };
 
   const handleOnChange = (field: string, value: string | number) => {
@@ -61,7 +51,7 @@ const SignPage = () => {
   const steps = [
     <div className="flex items-center justify-center h-[100vh]">
       <div className="border-solid border-2 border-[#ECEDF0] rounded-[8px] p-[40px] ">
-        <div className="w-[404px] box-border mx-auto flex flex-col gap-8  items-center ">
+        <div className="w-[404px] box-border mx-auto flex flex-col gap-8  items-center">
           <h1 className=" text-[32px] font-bold">Бүртгүүлэх</h1>
           <div className="flex gap-4 flex-col">
             <div className="w-[404px] box-border mx-auto flex flex-col gap-3 ">
@@ -104,7 +94,10 @@ const SignPage = () => {
             >
               Дараах
             </button>
-            <p className="text-center  text-blue-600" onClick={handleJump}>
+            <p
+              className="text-center cursor-pointer   text-blue-600"
+              onClick={handleJump}
+            >
               Нэвтрэх
             </p>
           </div>
@@ -184,9 +177,7 @@ const SignPage = () => {
               placeholder="Нууц үгээ давтан оруулна уу"
               onChange={(e) => handleOnChange("repassword", e.target.value)}
             />
-            <p className="font-semibold text-red-600 text-[16px]">
-              {error.repassword}
-            </p>
+            <p className="font-semibold text-red-600 text-[16px]">{error}</p>
           </div>
         </div>
         <div className="flex justify-between">

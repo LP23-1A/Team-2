@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Menu from "@/components/Menu";
 import Navbar from "@/components/Navbar";
 import AddProduct from "@/components/AddProduct";
@@ -6,25 +6,28 @@ import ChevronBack from "@/components/images/chevronArrow";
 import { useRouter } from "next/navigation";
 
 const product = () => {
-  const router = useRouter()
-  return(
+  const router = useRouter();
+  return (
     <main>
       <Navbar />
       <div className="flex h-screen">
         <Menu />
         <div className=" w-screen bg-[#ECEDF0]">
           <div className="bg-[white]">
-            <button onClick={() => router.push("/admin/product")} className="flex p-[20px] gap-[20px]">
-                <ChevronBack/>
-                <p>Бүтээгдэхүүн нэмэх</p>
+            <button
+              onClick={() => router.push("/admin/product")}
+              className="flex p-[20px] gap-[20px]"
+            >
+              <ChevronBack />
+              <p>Бүтээгдэхүүн нэмэх</p>
             </button>
           </div>
           <div className="m-[40px]">
-            <AddProduct/>
+            <AddProduct />
           </div>
         </div>
       </div>
     </main>
-  )
+  );
 };
 export default product;

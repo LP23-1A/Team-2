@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 
-const BASE_URL_END_POINT = "http://localhost:8000/product/getAllProduct"
+const BASE_URL_END_POINT = "http://localhost:8000/product/getAllProduct";
 
 const AddProductImage: React.FC = () => {
   const [file, setFile] = useState<File | undefined>();
@@ -14,7 +14,7 @@ const AddProductImage: React.FC = () => {
       const formData = new FormData();
       formData.append("image", file);
       formData.append("caption", caption);
-      
+
       try {
         await axios.post(BASE_URL_END_POINT, formData, {
           headers: { "Content-Type": "multipart/form-data" },
