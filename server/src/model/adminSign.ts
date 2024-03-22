@@ -6,9 +6,9 @@ const AdminSchema = new mongoose.Schema({
   email: { type: String },
   name: { type: String },
   address: { type: String },
-  zipCode:{type:Number},
-  password:{type:String},
-  repassword:{type:String},
+  zipCode: { type: Number },
+  password: { type: String },
+  repassword: { type: String },
   role: { type: String, enum: ["admin", "user"], default: "user" },
 });
 const AdminModel = model("adminUser", AdminSchema);

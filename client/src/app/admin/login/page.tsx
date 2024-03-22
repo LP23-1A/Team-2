@@ -1,4 +1,5 @@
 "use client";
+import dashboard from "@/app/user/dashboard/page";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -7,6 +8,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const { loginWithRedirect } = useAuth0();
   const router = useRouter();
 
@@ -17,13 +19,22 @@ const Login = () => {
       return;
     }
     try {
-      await axios.post("http://localhost:8000/admin/adminlogin", {
-        email,
-        password,
-      });
-      router.push("dashboard");
-    } catch (error) {
-      console.error("Error during login:", error);
+      const response = await axios.post(
+        "http://localhost:8000/admin/adminlogin",
+        {
+          email,
+          password,
+        }
+      );
+      if (response.data.role === "user") {
+        router.push("../../user/dashboard");
+      } else if (response.data.role === "admin") {
+        router.push("dashboard");
+      }
+    } catch (error: any) {
+      if (error.response.data.message === "Invalid login") {
+        setErrorMessage("Username and password wrong");
+      }
     }
   };
   const handleJump = () => {
@@ -61,21 +72,26 @@ const Login = () => {
             </p>
           )}
         </div>
-        <button
-          className="bg-black text-white rounded-[8px] h-[56px] w-[404px]  "
-          onClick={handleLogin}
-        >
-          Нэвтрэх
-        </button>
-        <button
-          onClick={() => loginWithRedirect()}
-          className="bg-[#F7F7F8] border-gray-300 border-2 rounded-[8px] w-[404px] h-[56px]  "
-        >
-          Google-ээр нэвтрэх
-        </button>
-        <p className=" text-blue-600 text-center" onClick={handleJump}>
-          Бүртгүүлэх 
-        </p>
+        <div className="flex flex-col gap-4">
+          <button
+            className="bg-black text-white rounded-[8px] h-[56px] w-[404px]  "
+            onClick={handleLogin}
+          >
+            Нэвтрэх
+          </button>
+          <button
+            onClick={() => loginWithRedirect()}
+            className="bg-[#F7F7F8] border-gray-300 border-2 rounded-[8px] w-[404px] h-[56px]  "
+          >
+            Google-ээр нэвтрэх
+          </button>
+          <p
+            className=" text-blue-600 text-center cursor-pointer "
+            onClick={handleJump}
+          >
+            Бүртгүүлэх
+          </p>
+        </div>
       </div>
     </div>
   );

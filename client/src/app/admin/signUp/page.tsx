@@ -94,7 +94,10 @@ const SignPage = () => {
             >
               Дараах
             </button>
-            <p className="text-center  text-blue-600" onClick={handleJump}>
+            <p
+              className="text-center cursor-pointer   text-blue-600"
+              onClick={handleJump}
+            >
               Нэвтрэх
             </p>
           </div>

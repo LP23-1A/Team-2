@@ -19,16 +19,12 @@ const start = () => {
   app.use("/admin", AdminRouter);
   app.use("/product", product);
   app.use("/dashboard", adminStatus);
-  app.use('/order',order);
+  app.use("/order", order);
 
   app.get("/", (req: Request, res: Response) => {
     res.status(200).send({ success: true, msg: "Working" });
   });
   app.use("/order", order);
-
-  
-
-
 
   // app.get("/", (req:Request, res:Response) => {
   //   res.status(200).send({ success: true, msg: "Working" });
