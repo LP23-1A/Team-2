@@ -34,7 +34,7 @@ export default function AddProduct() {
 
     const handleImageUpload = async (e: any) => {
         try {
-          setImages((prev) => [...prev, e.target.files[0]]);
+        //   setImages((prev) => [...prev, e.target.files[0]]);
         } catch (error) {
           console.log("Error uploading image:", error);
         }
