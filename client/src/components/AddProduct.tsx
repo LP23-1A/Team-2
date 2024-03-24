@@ -32,42 +32,68 @@ export default function AddProduct() {
     router.push("/admin/product");
   };
 
-  return (
-    <section className="w-[1200px] flex flex-col gap-[25px] bg-[#ECEDF0] p-[20px]">
-      <div className="flex gap-[25px]">
-        <div className="w-[600px] flex flex-col gap-[25px]">
-          <div className="bg-[white] p-[25px] flex flex-col gap-[15px] rounded-md text-[black]">
-            <div>
-              <p>Бүтээгдэхүүний нэp</p>
-              <input
-                className="w-full bg-[#f2f2f2] py-[6px] px-[10px] rounded-md border-2 border-[#e0dfdf] mt-[5px]"
-                type="text"
-                placeholder="Нэр"
-                value={productName}
-                onChange={(event) => setproductName(event.target.value)}
-              />
-            </div>
-            <div>
-              <p>Нэмэлт мэдээлэл</p>
-              <input
-                className="w-full  bg-[#f2f2f2] py-[6px] px-[10px] rounded-md border-2 border-[#e0dfdf] mt-[5px]"
-                type="description"
-                placeholder="Гол онцлог, давуу тал, техникийн үзүүлэлтүүдийг онцолсон дэлгэрэнгүй, сонирхолтой тайлбар."
-                value={description}
-                onChange={(event) => setDescription(event.target.value)}
-              />
-            </div>
-            <div>
-              <p>Барааны код</p>
-              <input
-                className="w-full bg-[#f2f2f2] py-[6px] px-[10px] rounded-md border-2 border-[#e0dfdf] mt-[5px]"
-                type="text"
-                placeholder="#12345678"
-              />
-            </div>
-          </div>
-          <ProductIMG />
-          {/* <div className="bg-[white] p-[25px] text-[18px] font-[600] rounded-md text-[black]">
+    const handleImageUpload = async (e: any) => {
+        try {
+          setImages((prev) => [...prev, e.target.files[0]]);
+        } catch (error) {
+          console.log("Error uploading image:", error);
+        }
+      };
+
+      const handleSubmit = async () => {
+        if (!images.length) {
+          return;
+        }
+        try {
+          const urls = await axios.get("BASE_URL_END_POINT/upload-image");
+          const imageRes = await axios.put(urls.data?.signedUrl, images[0], {
+            headers: {
+              "Content-Type": images[0],
+            },
+          });
+          const formData = {
+            productName,
+            price,
+            description,
+            qty,
+            categoryID,
+            category,
+            images: urls.data?.objectUrl,
+          };
+          const res = await axios.post(BASE_URL_END_POINT, formData);
+          localStorage.setItem("product", JSON.stringify([res]));
+          console.log(res);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+    return(
+        <section className="w-[1200px] flex flex-col gap-[25px] bg-[#ECEDF0] p-[20px]">
+            <div className="flex gap-[25px]">
+                <div className="w-[600px] flex flex-col gap-[25px]">
+                    <div className="bg-[white] p-[25px] flex flex-col gap-[15px] rounded-md text-[black]">
+                        <div>
+                            <p>Бүтээгдэхүүний нэp</p>
+                            <input className="w-full bg-[#f2f2f2] py-[6px] px-[10px] rounded-md border-2 border-[#e0dfdf] mt-[5px]" type="text" placeholder="Нэр" 
+                            value={productName} 
+                            onChange={(event) => setproductName(event.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <p>Нэмэлт мэдээлэл</p>
+                            <input className="w-full  bg-[#f2f2f2] py-[6px] px-[10px] rounded-md border-2 border-[#e0dfdf] mt-[5px]" type="description" placeholder="Гол онцлог, давуу тал, техникийн үзүүлэлтүүдийг онцолсон дэлгэрэнгүй, сонирхолтой тайлбар." 
+                            value={description} 
+                            onChange={(event) => setDescription(event.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <p>Барааны код</p>
+                            <input className="w-full bg-[#f2f2f2] py-[6px] px-[10px] rounded-md border-2 border-[#e0dfdf] mt-[5px]" type="text" placeholder="#12345678" />
+                        </div>
+                    </div>
+                    <Aws/>
+                    {/* <div className="bg-[white] p-[25px] text-[18px] font-[600] rounded-md text-[black]">
                         <p>Бүтээгдэхүүний зураг</p>
                         <div className="mt-[10px] flex gap-[10px]">
                             <div className="w-[125px] h-[125px] rounded-md border-dashed border-2"></div>

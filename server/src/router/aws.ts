@@ -1,53 +1,28 @@
-import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3"
+import  AWS, { Credentials } from "aws-sdk";
 import dotenv from "dotenv";
-import { v4 } from 'uuid';
+import fs from "fs";
 
-dotenv.config()
+dotenv.config();
 
-const bucketName = process.env.BUCKET_NAME
-const bucketRegion = process.env.BUCKET_REGION
-const accessKey = process.env.ACCESS_KEY
-const secretAccessKey = process.env.SECRET_ACCESS_KEY
+AWS.config.correctClockSkew = true;
+const s3 = new AWS.S3();
 
-const s3 = new S3Client({
-    credentials: {
-      accessKeyId: accessKey || "",
-      secretAccessKey: secretAccessKey || ""
-    },
-    region : bucketRegion,
-})
+export const UploadFile = (fileName: string, bucketName: string): void => {
+  const fileContent: Buffer = fs.readFileSync(fileName);
 
-export async function GET(request: Request) {
-  const url = new URL(request.url);
-  const count = url.searchParams.get('count');
+  const params: AWS.S3.Types.PutObjectRequest = {
+    Bucket: bucketName,
+    Key: fileName,
+    Body: fileContent,
+  };
 
-  if (!count) {
-    return Response.json(
-      { message: 'Missing count parameter' },
-      { status: 400 }
-    );
-  }
-
-  const keys = Array.from({ length: Number(count) }, () => v4());
-
-  const urls = await Promise.all(
-    keys.map((key) =>
-      getSignedUrl(
-        s3,
-        new PutObjectCommand({
-          Bucket: 'test',
-          Key: key,
-          ACL: 'public-read',
-        }),
-        {
-          expiresIn: 60 * 60,
-        }
-      )
-    )
-  );
-
-  return Response.json({
-    uploadUrls: urls,
-    accessUrls: keys.map((key) => process.env.PUB_URL + key),
+  s3.upload(params, (err: Error, data: AWS.S3.ManagedUpload.SendData) => {
+    if (err) {
+      console.error("Error uploading file:", err);
+    } else {
+      console.log(`File uploaded successfully. ${data.Location}`);
+    }
   });
-}
+};
+
+UploadFile("", "ecommerce-team2-uploads");
