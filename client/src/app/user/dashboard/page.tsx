@@ -1,3 +1,10 @@
+import Navbar from "@/components/user/Navbar";
+import Footer from "@/components/user/Footer";
 export default function dashboard() {
-  return <h1>dsfds</h1>;
+  return (
+    <div>
+      <Navbar />
+      <Footer />
+    </div>
+  );
 }

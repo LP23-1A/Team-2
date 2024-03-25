@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import { user } from "./router/user";
 import { product } from "./router/product";
 import { order } from "./router/order";
 import { subCategory } from "./router/subCategory";
@@ -10,7 +11,7 @@ import { comment } from "./router/comment";
 import { review } from "./router/review";
 import { payment } from "./router/payment";
 import { shoppingCart } from "./router/ShoppingCart";
-import { connectDatabase } from "./utils/database";
+import { connectDatabase } from "../src/utils/Database";
 import { AdminRouter } from "./router/adminSign";
 
 dotenv.config();
@@ -22,6 +23,7 @@ const start = () => {
   app.use(express.json());
   app.use(cors());
   app.use('/admin', AdminRouter);
+  app.use("/user", user);
   app.use("/product", product);
   app.use("/dashboard", adminStatus);
   app.use('/order',order);
