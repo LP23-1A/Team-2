@@ -5,7 +5,6 @@ import { Chart as ChartJS } from "chart.js/auto";
 import { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import dayjs from "dayjs";
-import { log } from "console";
 
 const api = "http://localhost:8000/order/getorder";
 interface OrderData {
@@ -20,7 +19,7 @@ export default function Sales() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(api);  
+        const response = await axios.get(api);
         const mappingSalesData = {
           datas: [] as number[],
           labels: [] as string[],
