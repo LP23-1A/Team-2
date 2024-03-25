@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { connectDatabase } from "..//src/utils/database";
+import { connectDatabase } from "../src/utils/Database";
 import { user } from "./router/user";
 import { product } from "./router/product";
 import { order } from "./router/order";
