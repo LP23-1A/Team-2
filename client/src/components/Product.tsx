@@ -74,8 +74,8 @@ export default function Product() {
                         <p>Нэмсэн огноо</p>
                     </div>
                 </div>
-                <ProductData/>
-            </div>
+                <ProductData filteredData={filteredData}/>
+            </div>                        
         </section>
     )
 }
