@@ -1,9 +1,11 @@
 "use client";
-import SignPage from "./admin/signUp/page";
+
+import Sign from "./user/sign/page";
+
 const home = () => {
   return (
     <div>
-      <SignPage />
+      <Sign/>
     </div>
   );
 };
