@@ -5,7 +5,7 @@ import TrashCan from "./images/trash";
 import Update from "./images/update";
 import { useRouter, useSearchParams } from "next/navigation";
 
-const BASE_URL_END_POINT = "http://localhost:8000/product/getAllProduct";
+const BASE_URL_END_POINT = "http://localhost:8000/product";
 const BASE_URL = "http://localhost:8000/product";
 
 interface ProductType {

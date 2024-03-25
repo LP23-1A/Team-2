@@ -10,7 +10,7 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 export const createProduct = async (req: Request, res: Response) => {
-    // const { productName: productName, description: description, price: price, qty: qty, categoryID: categoryID, images: images } = req.body
+    const { productName: productName, description: description, price: price, qty: qty, categoryID: categoryID, images: images } = req.body
     try {
         const result = await productSchema.create(req.body);
         return res.status(200).send({ success: true , result});
