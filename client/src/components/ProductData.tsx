@@ -47,8 +47,8 @@ export default function ProductData({ data, setFilteredData, filteredData }: any
     }, [])
 
     return (
-        filteredData?.map((props: any, i:number) => {
-            return (
+      productName.map((props: any, i:number) => {
+      return (
                 <section key={i} className="flex items-center gap-[50px] py-[10px] px-[20px] border-t ">
                     <div className="w-[68px] flex items-center justify-center">
                         <input className="h-[17px] w-[17px]" type="checkbox" />
