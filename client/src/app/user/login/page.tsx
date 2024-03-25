@@ -38,7 +38,7 @@ const Login = () => {
     }
   };
   const jumpSign = () => {
-    router.push("sign");
+    router.push("/");
   };
   const jumpAdminLogin = () => {
     router.push("../../admin/login");
