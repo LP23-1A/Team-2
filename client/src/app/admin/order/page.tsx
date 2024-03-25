@@ -5,7 +5,7 @@ import Menu from "@/components/Menu";
 import Navbar from "@/components/Navbar";
 import Searchbar from "@/components/svg/Searchbar";
 import Download from "@/components/images/Download.png";
-const API = "http://localhost:8000/order/getorder";
+const API = "http://localhost:8000/order";
 import { useRouter } from "next/navigation";
 
 export default function Order() {
@@ -140,7 +140,7 @@ export default function Order() {
                     <div key={idp} className="flex border-t-2">              
                       <p className=" pl-6 py-[16px] w-[291px] text-[12px] flex items-center">{el._id}</p>
                       <div className="pl-6 py-[16px] w-[209px] text-[12px]">
-                      {el.userid.name} <br />   {el.userid.email}
+                      {el.userId.name} <br />   {el.userId.email}
                       </div>                  
                       <p  className="pl-6 py-[14px] w-[168px] text-[14px] flex items-center">{formatteddate}</p>
                       <p  className="pl-6 py-[14px] w-[129px] text-[14px] flex items-center">{formattedTime}</p>

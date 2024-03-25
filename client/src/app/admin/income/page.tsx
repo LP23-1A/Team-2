@@ -81,7 +81,7 @@ export default function Income() {
                         {el._id}
                       </p>
                       <div className="pl-6 py-[14px] w-[268px] text-[14px]">
-                        {el.userid.email} <br /> {el.phoneNumber}
+                      {el.userId.email} <br /> {el.phoneNumber}
                       </div>
 
                       <p className=" pl-6 py-[14px] w-[137px] text-[14px] flex items-center">

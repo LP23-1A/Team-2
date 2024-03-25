@@ -1,46 +1,33 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from 'mongoose';
 
 const OrderSchema = new mongoose.Schema({
-    userid: {
-        type: Schema.Types.ObjectId ,
-        ref: 'adminUser',
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'users',
+        required:true
     },
-    orderNumber: {
-        type: String,
-      },
-    
+    productId : {
+        type:mongoose.Schema.Types.ObjectId,
+        ref: `product`,
+    },
+    orderNumber: String,
     status: {
         type: String,
         enum:['Шинэ-захиалга', 'Бэлтгэгдэж байна', 'Хүргэлтэнд гарсан','Хүргэгдсэн'],
-        default: 'Шинэ-захиалга ',
+        default: 'Шинэ-захиалга',
     },
     phoneNumber: {
-        type:String,
-        
+        type:Number,   
         length: {
             maxlength: 8,
-            minlength: 6,
-        }
+            minlength: 8, }
     },
-    deliveryDate: {
-        type: Date,
-    },
-    amountPaid: {
-            type:Number,        
-    },
-    amountToBePaid: {
-        type: Number,
-    },
-    coupon: {
-        type: String,
-    },
-    description: {
-        type: String,
-    },
-    orderType: {
-        type:String,
-        enum:[''],
-    },
+    deliveryDate: Date,
+    amountPaid: Number,
+    amountToBePaid: Number,
+    coupon: String,
+    description:  String,
+    orderType: String,
     details: [{
         type:String,
     }],
@@ -48,48 +35,8 @@ const OrderSchema = new mongoose.Schema({
         type:Date,
         default: Date.now,
     },
-    updatedAt: {
-        type: Date,
-    },
-
-    length: {
-      maxlength: 8,
-      minlength: 6,
-    },
-  },
-  deliveryDate: {
-    type: Date,
-  },
-  amountPaid: {
-    type: Number,
-  },
-  amountToBePaid: {
-    type: Number,
-  },
-  coupon: {
-    type: String,
-  },
-  description: {
-    type: String,
-  },
-  orderType: {
-    type: String,
-    enum: [""],
-  },
-  details: [
-    {
-      type: String,
-    },
-  ],
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  updatedAt: {
-    type: Date,
-  },
+    updatedAt: Date,
 });
 
-const OrderModel = mongoose.model("orders", OrderSchema);
-
-export { OrderModel };
+const orderModel = mongoose.model('orders', OrderSchema);
+export { orderModel };
