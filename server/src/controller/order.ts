@@ -1,60 +1,63 @@
-import { Response, Request } from "express";
-import { OrderModel } from "../model/order";
-import { AdminModel } from "../model/adminSign";
+import { Response, Request } from 'express';
+import {orderModel} from "../model/order"
+import {userModel} from "../model/user"
 
 const newOrder = async (req: Request, res: Response) => {
   try {
-    await OrderModel.create(req.body);
+    await orderModel.create(req.body); 
     return res.status(201).send({ success: true });
   } catch (error) {
-    return res.status(400).send({ error });
+    return res.status(400).send({success: false, error });
   }
 };
 
 const getAllOrders = async (req: Request, res: Response) => {
-  try {
-    const orderData = await OrderModel.find();
-    return res.status(201).send({ success: true, orderData });
-    // res.status(201).json(orderData);
-  } catch (error) {
-    return res.status(400).send({ error });
-  }
+    try {
+      const orderData = await orderModel.find();
+      return res.status(201).send({ success: true, orderData });
+    } catch (error) {
+      return res.status(400).send({success: false, error });
+    }
 };
 
-const getOrders = async (req: Request, res: Response) => {
-  try {
-    const orderData = await OrderModel.find().populate("userid");
-    return res.status(201).send({ success: true, orderData });
-    console.log(orderData);
+  const getOrders = async (req: Request, res: Response) => {
+    try {
+      const orderData = await orderModel.find().populate("userid");
+      return res.status(201).send({ success: true,  orderData });
+    } catch (error) {
+      return res.status(400).send({success: false, error });
+    }
+  };
 
-    // res.status(201).json(orderData);
-  } catch (error) {
-    return res.status(400).send({ error });
-  }
-};
+  const getIncome = async (req: Request, res: Response) => {
+    try {
+      const orderData = await orderModel.find().populate("userId");
+      return res.status(201).send({ success: true, incomeData: orderData });
+    } catch (error) {
+      return res.status(400).send({success: false, error });
+    }
+  };
 
-const getIncome = async (req: Request, res: Response) => {
-  try {
-    const orderData = await OrderModel.find().populate("userid");
-    return res.status(201).send({ success: true, incomeData: orderData });
+  const updateOrderById = async (req: Request, res: Response) => {
+    const {id} = req.params;  
+    try {
+      const updatedData = await orderModel.findByIdAndUpdate(id, req.body, {new:true});  
+      return res.status(201).send({ success: true, updatedData });
+    } catch (error) {
+      return res.status(400).send({success: false, error });
+    }
+  };
 
-    // res.status(201).json(orderData);
-  } catch (error) {
-    return res.status(400).send({ error });
-  }
-};
+  const deleteOrderById = async (req: Request, res: Response) => {
+   const {id} = req.params;  
+   try {
+     const deletedData = await orderModel.findByIdAndDelete(id);  
+     return res.status(201).send({ success: true, deletedData });
+   } catch (error) {
+    return res.status(400).send({success: false, error });
+   }
+ };
 
-const updateOrderById = async (req: Request, res: Response) => {
-  const orderId = req.body;
-  try {
-    const updateData = await OrderModel.findByIdAndUpdate(orderId, req.body, {
-      new: true,
-    });
-    // return res.status(201).send({ success: true });
-    res.status(201).json(updateData);
-  } catch (error) {
-    return res.status(400).send({ error });
-  }
-};
 
-export { newOrder, getAllOrders, updateOrderById, getIncome, getOrders };
+  export {newOrder, getAllOrders, updateOrderById, getIncome, getOrders, deleteOrderById}
+  

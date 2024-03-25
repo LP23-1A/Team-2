@@ -7,6 +7,6 @@ import {
 } from "../controller/product";
 
 export const product = express.Router();
-product.route("/getAllProduct").get(getAllProduct);
-product.route("/createProduct").post(createProduct);
+
+product.route("/").post(createProduct).get(getAllProduct);
 product.route("/:id").delete(deleteProduct).put(updateProduct);
