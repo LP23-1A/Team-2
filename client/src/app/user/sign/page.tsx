@@ -22,7 +22,7 @@ const Sign = () => {
       try {
         const api = "http://localhost:8000/admin/adminsign";
         await axios.post(api, formDataRef.current);
-        router.push("login");
+        router.push("user/login");
       } catch (error) {
         console.log(error, "axios error");
       }
@@ -31,7 +31,7 @@ const Sign = () => {
     }
   };
   const jumpLogin = () => {
-    router.push("login");
+    router.push("user/login");
   };
   const handleOnChange = (field: string, value: string | number) => {
     formDataRef.current = { ...formDataRef.current, [field]: value };
