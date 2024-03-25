@@ -5,16 +5,17 @@ import TrashCan from "./images/trash";
 import Update from "./images/update";
 import { useRouter, useSearchParams } from "next/navigation";
 
-const BASE_URL_END_POINT = "http://localhost:8000/product/getAllProduct";
+const BASE_URL_END_POINT = "http://localhost:8000/product";
 const BASE_URL = "http://localhost:8000/product";
 
 interface ProductType {
-  _id: String;
-  productName: String;
-  description: String;
-  price: Number;
-  qty: Number;
-  category: String;
+    _id: String
+    productName: String
+    description: String
+    price: Number
+    qty: Number
+    categoryID : String
+    category : String
 }
 
 export default function ProductData() {
