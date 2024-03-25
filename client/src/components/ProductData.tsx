@@ -18,7 +18,7 @@ interface ProductType {
     category : String
 }
 
-export default function ProductData() {
+export default function ProductData({ data, setFilteredData, filteredData }: any) {
   const router = useRouter();
   const [productName, setproductName] = useState([]);
   const search = useSearchParams();
