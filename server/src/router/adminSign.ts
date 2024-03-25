@@ -1,9 +1,9 @@
 import express from "express";
-import { Admin, Login, LoginCheck } from "../controller/adminSign";
+import { AdminSign, Login, LoginCheck } from "../controller/adminSign";
 
 const AdminRouter = express.Router();
 
-AdminRouter.post("/adminsign", Admin);
+AdminRouter.post("/adminsignup", AdminSign);
 AdminRouter.post("/adminlogin", Login);
 AdminRouter.post("/checkrole", LoginCheck);
 

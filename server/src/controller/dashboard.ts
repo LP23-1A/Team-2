@@ -1,11 +1,11 @@
 import { Response, Request } from "express";
-import { userModel } from "../model/user";
 import { orderModel } from "../model/order";
 import { productSchema } from "../model/product";
+import { AdminModel } from "../model/adminSign";
 
 const dashboard = async (req: Request, res: Response) => {
   try {
-    const userCount = await userModel.find().countDocuments();
+    const userCount = await AdminModel.find().countDocuments();
     const orderCount = await orderModel.find().countDocuments();
     const productInfo = await productSchema.find();
     const incomeData = await orderModel.aggregate([

@@ -1,7 +1,5 @@
 import { Response, Request } from 'express';
 import {orderModel} from "../model/order"
-import {userModel} from "../model/user"
-import { order } from '../router/order';
 
 const newOrder = async (req: Request, res: Response) => {
   try {

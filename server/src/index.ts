@@ -1,8 +1,6 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { connectDatabase } from "../src/utils/Database";
-import { user } from "./router/user";
 import { product } from "./router/product";
 import { order } from "./router/order";
 import { subCategory } from "./router/subCategory";
@@ -12,6 +10,8 @@ import { comment } from "./router/comment";
 import { review } from "./router/review";
 import { payment } from "./router/payment";
 import { shoppingCart } from "./router/ShoppingCart";
+import { connectDatabase } from "./utils/database";
+import { AdminRouter } from "./router/adminSign";
 
 dotenv.config();
 const PORT = process.env.PORT || 8000;
@@ -21,8 +21,7 @@ const start = () => {
   const app = express();
   app.use(express.json());
   app.use(cors());
-
-  app.use("/admin", user);
+  app.use('/admin', AdminRouter);
   app.use("/product", product);
   app.use("/dashboard", adminStatus);
   app.use('/order',order);

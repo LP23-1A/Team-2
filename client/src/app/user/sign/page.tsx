@@ -20,7 +20,7 @@ const Sign = () => {
     }
     if (formDataRef.current.repassword === formDataRef.current.password) {
       try {
-        const api = "http://localhost:8000/admin/adminsign";
+        const api = "http://localhost:8000/admin/adminsignup";
         await axios.post(api, formDataRef.current);
         router.push("user/login");
       } catch (error) {

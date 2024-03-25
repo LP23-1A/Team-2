@@ -11,5 +11,5 @@ const AdminSchema = new mongoose.Schema({
   repassword: { type: String },
   role: { type: String, enum: ["admin", "user"], default: "user" },
 });
-const AdminModel = model("adminUser", AdminSchema);
+const AdminModel = model("user", AdminSchema);
 export { AdminModel };
