@@ -3,6 +3,7 @@
 import clipboard from "@/components/images/clipboard.png";
 import user from "@/components/images/user.png";
 import axios from "axios";
+import { log } from "console";
 import { useEffect, useRef, useState } from "react";
 const api = "http://localhost:8000/dashboard/status";
 

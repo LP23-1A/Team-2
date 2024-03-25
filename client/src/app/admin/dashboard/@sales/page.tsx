@@ -4,18 +4,32 @@ import axios from "axios";
 import { Chart as ChartJS } from "chart.js/auto";
 import { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
+import dayjs from "dayjs";
 
-const api = "http://localhost:8000/dashboard/status";
+const api = "http://localhost:8000/order/getorder";
+interface OrderData {
+  amountPaid: number;
+  createdAt: string;
+}
 
 ChartJS;
 export default function Sales() {
-  const [salesData, setSalesData]: any = useState(null);
+  const [salesData, setSalesData]: any = useState({ datas: [], labels: [] });
 
   useEffect(() => {
     async function fetchData() {
       try {
         const response = await axios.get(api);
-        setSalesData(response.data);
+        const mappingSalesData = {
+          datas: [] as number[],
+          labels: [] as string[],
+        };
+
+        response.data.orderData.map((e: OrderData) => {
+          mappingSalesData.datas.push(e.amountPaid);
+          mappingSalesData.labels.push(dayjs(e.createdAt).format("M/D"));
+        });
+        setSalesData(mappingSalesData);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -41,9 +55,9 @@ export default function Sales() {
                   backgroundColor: "#000",
                   hoverBackgroundColor: "#EC2F73",
                   hoverBorderColor: "#EC2F73",
-                  data: salesData.data,
+                  data: salesData.datas,
                   borderRadius: 20,
-                  borderWidth: 1,
+                  borderWidth: 4,
                   borderSkipped: false,
                   barPercentage: 0.1,
                 },
