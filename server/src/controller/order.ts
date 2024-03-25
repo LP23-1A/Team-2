@@ -1,6 +1,7 @@
 import { Response, Request } from 'express';
 import {orderModel} from "../model/order"
 import {userModel} from "../model/user"
+import { order } from '../router/order';
 
 const newOrder = async (req: Request, res: Response) => {
   try {
@@ -22,7 +23,7 @@ const getAllOrders = async (req: Request, res: Response) => {
 
   const getOrders = async (req: Request, res: Response) => {
     try {
-      const orderData = await orderModel.find().populate("userid");
+      const orderData = await orderModel.find().populate("userId");
       return res.status(201).send({ success: true,  orderData });
     } catch (error) {
       return res.status(400).send({success: false, error });
