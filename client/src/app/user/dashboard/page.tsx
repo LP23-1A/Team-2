@@ -4,8 +4,8 @@ import HorizontalMenu from "@/components/user/HorizontalMenu";
 export default function Dashboard() {
   return (
     <div>
-      <Navbar /> 
-      <HorizontalMenu/>
+      <Navbar />
+      <HorizontalMenu />
       <Footer />
     </div>
   );
