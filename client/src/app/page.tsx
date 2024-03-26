@@ -1,11 +1,12 @@
 "use client";
 
 import Sign from "./user/sign/page";
+import Dashboard from "../app/user/dashboard/page"
 
 const home = () => {
   return (
     <div>
-      <Sign/>
+      <Dashboard/>
     </div>
   );
 };
