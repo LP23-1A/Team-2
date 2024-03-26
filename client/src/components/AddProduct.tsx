@@ -1,14 +1,9 @@
 'use client'
-import img from "@/components/images/image.png";
 import { ChangeEvent, FormEvent, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import ProductIMG from "@/components/ProductIMG";
-import { Aws } from "./Aws";
 
 const BASE_URL_END_POINT = "http://localhost:8000/product"
-
-type FileObject = File | null;
 
 export default function AddProduct() {
     const router = useRouter()
@@ -18,50 +13,14 @@ export default function AddProduct() {
     const [images, setImages] = useState('')
     const [price, setPrice] = useState('')
     const [qty, setQty] = useState('')
-    const [categoryID, setCategoryID] = useState('Эрэгтэй,')
-    const [category, setCategory] = useState('Tsamts')
+    const [mainCategory, setMainCategory] = useState('')
+    const [subCategory, setSubCategory] = useState('Tsamts')
 
-    const handler = async () => {
-        let res = await axios.post(BASE_URL_END_POINT, {productName : productName, description : description, price : price, qty : qty, categoryID : categoryID, images : images, category : category})
+    const handlerCreateProduct = async () => {
+        let res = await axios.post(BASE_URL_END_POINT, {productName : productName, description : description, price : price, qty : qty, mainCategory : mainCategory, images : images, subCategory : subCategory})
         console.log(res);
         router.push("/admin/product")
     }
-
-    const handleImageUpload = async (e: any) => {
-        try {
-        //   setImages((prev) => [...prev, e.target.files[0]]);
-        } catch (error) {
-          console.log("Error uploading image:", error);
-        }
-      };
-
-      const handleSubmit = async () => {
-        if (!images.length) {
-          return;
-        }
-        try {
-          const urls = await axios.get("BASE_URL_END_POINT/upload-image");
-          const imageRes = await axios.put(urls.data?.signedUrl, images[0], {
-            headers: {
-              "Content-Type": images[0],
-            },
-          });
-          const formData = {
-            productName,
-            price,
-            description,
-            qty,
-            categoryID,
-            category,
-            images: urls.data?.objectUrl,
-          };
-          const res = await axios.post(BASE_URL_END_POINT, formData);
-          localStorage.setItem("product", JSON.stringify([res]));
-          console.log(res);
-        } catch (error) {
-          console.log(error);
-        }
-      };
 
     return(
         <section className="w-[1200px] flex flex-col gap-[25px] bg-[#ECEDF0] p-[20px]">
@@ -87,13 +46,6 @@ export default function AddProduct() {
                             <input className="w-full bg-[#f2f2f2] py-[6px] px-[10px] rounded-md border-2 border-[#e0dfdf] mt-[5px]" type="text" placeholder="#12345678" />
                         </div>
                     </div>
-                    <Aws/>
-                    {/* <div className="bg-[white] p-[25px] text-[18px] font-[600] rounded-md text-[black]">
-                        <p>Бүтээгдэхүүний зураг</p>
-                        <div className="mt-[10px] flex gap-[10px]">
-                            <div className="w-[125px] h-[125px] rounded-md border-dashed border-2"></div>
-                        </div>
-                    </div> */}
                     <div className=" bg-[white] p-[25px] flex gap-[20px] rounded-md text-[black]">
                         <div>
                             <p>Үндсэн үнэ</p>
@@ -115,7 +67,7 @@ export default function AddProduct() {
                     <div className="p-[25px] bg-[white] flex flex-col gap-[15px] rounded-md">
                         <div>
                             <p>Ерөнхий ангилал</p>
-                            <select onChange={(event) => setCategoryID(event.target.value)} className="w-full bg-[#f2f2f2] py-[8px] px-[12px] rounded-md border-2 border-[#e0dfdf] mt-[5px]" id="Ерөнхий ангилал">
+                            <select onChange={(event) => setMainCategory(event.target.value)} className="w-full bg-[#f2f2f2] py-[8px] px-[12px] rounded-md border-2 border-[#e0dfdf] mt-[5px]" id="Ерөнхий ангилал">
                                 <option value="Эрэгтэй">Эрэгтэй</option>
                                 <option value="Эмэгтэй">Эмэгтэй</option>
                                 <option value="Хүүхэд">Хүүхэд</option>
@@ -123,7 +75,7 @@ export default function AddProduct() {
                         </div>
                         <div>
                             <p>Дэд ангилал</p>
-                            <select onChange={(event) => setCategory(event.target.value)} className="w-full bg-[#f2f2f2] py-[8px] px-[12px] rounded-md border-2 border-[#e0dfdf] mt-[5px]" id="Ерөнхий ангилал">
+                            <select onChange={(event) => setSubCategory(event.target.value)} className="w-full bg-[#f2f2f2] py-[8px] px-[12px] rounded-md border-2 border-[#e0dfdf] mt-[5px]" id="Ерөнхий ангилал">
                                 <option value="Tsamts">Tsamts</option>
                                 <option value="Umd">Umd</option>
                                 <option value="Gutal">Gutal</option>
@@ -154,7 +106,7 @@ export default function AddProduct() {
             <div className="pl-[940px]">
                 <div className="flex gap-[15px] ">
                     <button className="py-[10px] px-[20px] border-2 border-[#e0dfdf] bg-[white] rounded-md">Ноорог</button>
-                    <button onClick={() => {handler(); router.push("/admin/product");}}  className="py-[10px] px-[20px] bg-[black] text-[white] rounded-md">Нийтлэх</button>
+                    <button onClick={() => {handlerCreateProduct(); router.push("/admin/product");}}  className="py-[10px] px-[20px] bg-[black] text-[white] rounded-md">Нийтлэх</button>
                 </div>
             </div>
         </section>

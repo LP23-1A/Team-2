@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const BASE_URL = "http://localhost:8000/product"
-const BASE_URL_END_POINT = "http://localhost:8000/product/getAllProduct"
+const BASE_URL_END_POINT = "http://localhost:8000/product"
 
 interface ProductData{
     _id: String

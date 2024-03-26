@@ -17,7 +17,7 @@ export function Aws({ handleImageUpload, images }: any) {
           handleImageUpload(e.target.files[0]);
         }
       };
-  
+
     return (
       <div className="bg-white w-[563px] h-[312px] p-4 rounded-lg">
         <div className="flex flex-col gap-8">

@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 const BASE_URL_END_POINT = "http://localhost:8000/product";
 const BASE_URL = "http://localhost:8000/product";
+const MAIN_CATEGORY_URL = "http://localhost:8000/maincategory"
 
 interface ProductType {
     _id: String
@@ -14,15 +15,21 @@ interface ProductType {
     description: String
     price: Number
     qty: Number
-    categoryID : String
-    category : String
+    mainCategory : String
+    subCategory : String
+}
+
+interface MainCategoryType {
+    _id: String
+    categoryName : String
 }
 
 export default function ProductData({ data, setFilteredData, filteredData }: any) {
   const router = useRouter();
-  const [productName, setproductName] = useState([]);
+  const [productName, setproductName] = useState<ProductType[]>([]);
+  const [categoryName, setCategoryName] = useState<MainCategoryType[]>([]);
   const search = useSearchParams();
-  const productID = search.get("productID");
+  
   const GetAllProduct = async () => {
     try {
       let res = await axios.get(BASE_URL_END_POINT);
@@ -32,6 +39,24 @@ export default function ProductData({ data, setFilteredData, filteredData }: any
       console.log(error);
     }
   };
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const [product, mainCategory] = await Promise.all([
+//           fetch(BASE_URL_END_POINT).then((res) => res.json()),
+//           fetch(MAIN_CATEGORY_URL).then((res) => res.json())
+//         ]);
+
+//         setproductName(product);
+//         setCategoryName(mainCategory);
+//       } catch (error) {
+//         console.error("Error fetching data:", error);
+//       }
+//     };
+
+//     fetchData();
+//   }, []);
 
     const removeProduct = async (productID: string) => {
         try {
@@ -47,7 +72,7 @@ export default function ProductData({ data, setFilteredData, filteredData }: any
     }, [])
 
     return (
-      productName.map((props: any, i:number) => {
+      filteredData.map((props: any, i:number) => {
       return (
                 <section key={i} className="flex items-center gap-[50px] py-[10px] px-[20px] border-t ">
                     <div className="w-[68px] flex items-center justify-center">
@@ -61,7 +86,7 @@ export default function ProductData({ data, setFilteredData, filteredData }: any
                         </div>
                     </div>
                     <div className="w-[214px] py-[10px] ">
-                        <p>{props.categoryID}</p>
+                        <p>{props.mainCategory}</p>
                     </div>
                     <div className="w-[186px] py-[10px] px-[5px]">
                         <p>{props.price}</p>
