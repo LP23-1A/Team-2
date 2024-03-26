@@ -31,7 +31,7 @@ const Sign = () => {
     }
   };
   const jumpLogin = () => {
-    router.push("user/login");
+    router.push("login");
   };
   const handleOnChange = (field: string, value: string | number) => {
     formDataRef.current = { ...formDataRef.current, [field]: value };

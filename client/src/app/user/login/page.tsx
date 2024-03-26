@@ -1,12 +1,15 @@
 "use client";
 
 import axios from "axios";
+import { UserContext } from "@/components/user/context";
 import { useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 
 const Login = () => {
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState("");
+  const context = useContext(UserContext);
+
   const formDataRef = useRef({
     email: "",
     password: "",
@@ -25,7 +28,7 @@ const Login = () => {
           password,
         }
       );
-
+      context.setEmail(response?.data?.email);
       if (response.data.role === "user") {
         router.push("dashboard");
       } else if (response.data.role === "admin") {
@@ -38,7 +41,7 @@ const Login = () => {
     }
   };
   const jumpSign = () => {
-    router.push("/");
+    router.push("sign");
   };
   const jumpAdminLogin = () => {
     router.push("../../admin/login");
