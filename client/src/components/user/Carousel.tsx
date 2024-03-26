@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import sandal from "@/components/images/sandal.png";
 import Slider from "react-slick";
 
@@ -30,4 +31,9 @@ const Carousel = () => {
     </div>
   );
 };
+=======
+function Carousel() {
+  return <div></div>;
+}
+>>>>>>> ehlvvlsen
 export default Carousel;
