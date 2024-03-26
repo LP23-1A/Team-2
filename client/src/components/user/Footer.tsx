@@ -1,5 +1,21 @@
+'use client';
+import {useEffect, useState} from 'react';
+import axios from 'axios';
 import { Facebook, Instagram, Twitter } from "../svg/Allicons";
+
+const API = "http://localhost:8000/subcategory";
+
 export default function Footer() {
+
+  const [data, setData] = useState([]);
+  const categoryHandler = async()=> {
+      const res = await axios.get(API);
+      setData(res.data.categories);
+  }
+  useEffect(()=> {
+    categoryHandler();
+  },[]);
+
   return (
     <div>
       <div className=" bg-[#EEEFFB] flex justify-between px-[360px] pt-[95px] pb-[142px]">
@@ -19,13 +35,15 @@ export default function Footer() {
         </div>
         <div className=" flex flex-col gap-[37px]">
           <h1 className=" text-[22px] font-extrabold">Ангилал</h1>
+
           <div className=" text-[#8A8FB9] flex flex-col gap-[21px]">
-            <p>Хувцас</p>
-            <p>Камер, хэрэгсэл</p>
-            <p>Ухаалаг утас, таблет</p>
-            <p>Чихэвч</p>
-            <p>Гэр ахуйн бараа</p>
+            {data && data.map((el:any)=>{
+              return (
+                <p className=' cursor-pointer'>{el.categoryName}</p>
+              );
+            })}
           </div>
+          
         </div>
         <div className=" flex flex-col gap-[37px]">
           <h1 className=" text-[22px] font-extrabold">Бусад</h1>
@@ -36,7 +54,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="bg-[#E7E4F8] text-[#9DA0AE] py-[17px]">
+      <div className=" flex bg-[#E7E4F8] text-[#9DA0AE] py-[17px] px-[360px] justify-between">
         <p>©ecommerce</p>
         <div className="flex gap-3">
             <div className="bg-[#151875] p-2 rounded-full items-center justify-center">  <Facebook/> </div>
