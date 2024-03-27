@@ -25,14 +25,16 @@
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18",
     "react-range": "^1.8.14",
-    "swr": "^2.2.5",
-    "use-context-selector": "^1.4.4"
+    "react-slick": "^0.30.2",
+    "slick-carousel": "^1.8.1",
+    "swr": "^2.2.5"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/node": "20.11.24",
     "@types/react": "18.2.62",
     "@types/react-dom": "^18",
+    "@types/react-slick": "^0.23.13",
     "@types/uuid": "^9.0.8",
     "autoprefixer": "^10.0.1",
     "postcss": "^8",

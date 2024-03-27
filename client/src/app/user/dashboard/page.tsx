@@ -8,7 +8,7 @@ import BestProducts from "@/components/user/BestProducts";
 import Product from "@/components/user/NewProduct";
 import AboutTheService from "@/components/user/AboutTheService";
 const API = "http://localhost:8000/product/bestproducts";
-import Carousel from "@/components/user/Carousel";
+import CarouselMain from "@/components/user/CarouselMain";
 export default function Dashboard() {
   const [data, setData] = useState([]);
   const categoryHandler = async () => {
@@ -23,7 +23,7 @@ export default function Dashboard() {
     <div className=" flex flex-col gap-7 px-4">
       <Navbar />
       <HorizontalMenu />
-      <Carousel />
+      <CarouselMain />
       <BestProducts data={data} />
       <Product />
       <AboutTheService/>

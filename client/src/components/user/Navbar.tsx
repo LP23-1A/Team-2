@@ -79,6 +79,7 @@ export default function Navbar() {
             name="search"
           />
           <div className=" bg-[#FB2E86] px-[10px] py-[15px]">
+            {" "}
             <Search />
           </div>
         </div>
