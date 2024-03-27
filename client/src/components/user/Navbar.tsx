@@ -20,7 +20,7 @@ export default function Navbar() {
   const context = useContext(UserContext);
   const router = useRouter();
   const handleJumpLogin = () => {
-    router.push("login");
+    router.push("user/login");
   };
   const handle = () => {
     if (context.email === "") {
