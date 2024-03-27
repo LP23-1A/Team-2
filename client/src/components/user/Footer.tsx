@@ -39,7 +39,7 @@ export default function Footer() {
           <div className=" text-[#8A8FB9] flex flex-col gap-[21px]">
             {data && data.map((el:any)=>{
               return (
-                <p className=' cursor-pointer'>{el.categoryName}</p>
+                <p key={el.id} className=' cursor-pointer'>{el.categoryName}</p>
               );
             })}
           </div>

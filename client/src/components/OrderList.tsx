@@ -5,6 +5,8 @@ import { RightArrow } from "./svg/Allicons";
 
 export default function OrderList({ data }: any) {
     const router = useRouter();
+    console.log(data);
+    
     return (
         <div className=" flex flex-col">
             <div className=" text-[20px] py-5 px-6 bg-white flex  rounded-t-xl">
@@ -25,7 +27,8 @@ export default function OrderList({ data }: any) {
                     Дэлгэрэнгүй
                 </p>
             </div>
-
+    
+            
             <div className=" bg-white">
                 {data &&
                     data.map((el:any) => {
@@ -48,11 +51,12 @@ export default function OrderList({ data }: any) {
                             <div className="flex border-t-2">
                                 <p className=" pl-6 py-[16px] w-[291px] text-[12px] flex items-center">{el._id}</p>
                                 <div className="pl-6 py-[16px] w-[209px] text-[12px]">
-                                    {el.userId.name} <br />   {el.userId.email}
+                                
+                                   {el.userId.email}
                                 </div>
                                 <p className="pl-6 py-[14px] w-[168px] text-[14px] flex items-center">{formatteddate}</p>
                                 <p className="pl-6 py-[14px] w-[129px] text-[14px] flex items-center">{formattedTime}</p>
-                                <p className=" pl-6 py-[14px] w-[137px] text-[14px] flex items-center">{el.amount}</p>
+                                <p className=" pl-6 py-[14px] w-[137px] text-[14px] flex items-center">{el.amountPaid}</p>
                                 <p className=" pl-6 py-[14px] w-[214px] text-[14px] flex items-center">{el.status}</p>
                                 <button className=" pl-6 py-[14px] w-[122px] text-[14px] flex items-center justify-center"
                                     onClick={() => router.push("/admin/order/orderdetails")}

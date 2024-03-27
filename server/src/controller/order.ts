@@ -19,15 +19,6 @@ const getAllOrders = async (req: Request, res: Response) => {
     }
 };
 
-  const getOrders = async (req: Request, res: Response) => {
-    try {
-      const orderData = await orderModel.find().populate("userId");
-      return res.status(201).send({ success: true,  orderData });
-    } catch (error) {
-      return res.status(400).send({success: false, error });
-    }
-  };
-
   const getIncome = async (req: Request, res: Response) => {
     try {
       const orderData = await orderModel.find().populate("userId");
@@ -58,5 +49,5 @@ const getAllOrders = async (req: Request, res: Response) => {
  };
 
 
-  export {newOrder, getAllOrders, updateOrderById, getIncome, getOrders, deleteOrderById}
+  export {newOrder, getAllOrders, updateOrderById, getIncome,  deleteOrderById}
   
