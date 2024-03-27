@@ -6,7 +6,7 @@ import {
   Email,
   Phone,
   Heart,
-  Cart,
+  CartNavbar,
   DownArrow,
   Search,
 } from "../svg/Allicons";
@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const print =  () => {
-    console.log("Working");
+    console.log("Navbar Working");
   };
 
   const context = useContext(UserContext);
@@ -59,7 +59,7 @@ export default function Navbar() {
             <button>Хадгалах</button>
             <Heart />
           </div>
-          <Cart onclick={print}/>
+          <CartNavbar onclick={print}/>
         </div>
       </div>
       <div className=" flex bg-white px-[360px] py-[22px] justify-between">
