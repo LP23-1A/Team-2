@@ -47,3 +47,22 @@ export const getAllProduct = async (req: Request, res: Response) => {
         res.status(500).send({success: false, error})
     }
 }
+
+export const getBestProducts = async (req: Request, res: Response) => {
+    try {
+        const getMainProducts = await productSchema.find().populate("mainCategory")
+        res.status(201).send(getMainProducts)
+    } catch (error) {
+        res.status(500).send({success: false, error})
+    }
+}
+
+export const getProductById = async (req: Request, res: Response) => {
+    const {id} = req.params;  
+    try {
+      const product = await productSchema.findById(id);  
+      return res.status(201).send({ success: true, product });
+    } catch (error) {
+     return res.status(400).send({success: false, error });
+    }
+  };
