@@ -1,6 +1,22 @@
 import ContactData from "@/components/user/ContactData"
+import { useRef } from "react";
 
 export default function ContactInformation() {
+    const formDataRef = useRef({
+        email: "",
+        phoneNumber: "",
+        firstName : "",
+        lastName : "",
+        appaetnentment: "",
+        address: "",
+        city : "",
+        postalCode : ""
+      });
+
+      const handleOnChange = (field: string, value: string | number) => {
+        formDataRef.current = { ...formDataRef.current, [field]: value };
+      };
+
     return(
         <section className="w-[1200px] flex flex-col text-[#1D3178]">
             <div>
@@ -14,7 +30,7 @@ export default function ContactInformation() {
                             <p className="font-bold ">Contact Information</p>
                         </div>
                         <div className="mt-[30px] ">
-                            <input className="w-full bg-[#BFC6E0]" type="text" placeholder="Email or mobile phone number" />
+                            <input className="w-full bg-[#BFC6E0]" type="text" placeholder="Email or mobile phone number" onChange={(e) => handleOnChange("email", e.target.value)}/>
                             <div className="mt-[10px]">
                                 <hr />
                             </div>
@@ -28,32 +44,32 @@ export default function ContactInformation() {
                         </div>
                         <div className="w-full flex justify-between mt-[30px]">
                             <div>
-                                <input className="w-[336px] bg-[#BFC6E0]" type="text" placeholder="First name (optional)" />
+                                <input className="w-[336px] bg-[#BFC6E0]" type="text" placeholder="First name (optional)" onChange={(e) => handleOnChange("firstName", e.target.value)}/>
                                 <div className="mt-[10px]">
                                     <hr />
                                 </div>
                             </div>
                             <div>
-                                <input className="w-[336px] bg-[#BFC6E0]" type="text" placeholder="Last name" />
+                                <input className="w-[336px] bg-[#BFC6E0]" type="text" placeholder="Last name" onChange={(e) => handleOnChange("lastName", e.target.value)}/>
                                 <div className="mt-[10px]">
                                     <hr />
                                 </div>
                             </div>
                         </div>
                         <div className="mt-[40px] ">
-                            <input className="w-full bg-[#BFC6E0]" type="text" placeholder="Address" />
+                            <input className="w-full bg-[#BFC6E0]" type="text" placeholder="Address" onChange={(e) => handleOnChange("Address", e.target.value)}/>
                             <div className="mt-[10px]">
                                 <hr />
                             </div>
                         </div>
                         <div className="mt-[40px] ">
-                            <input className="w-full bg-[#BFC6E0]" type="text" placeholder="Appaetnentment,suit,e.t.c (optinal)" />
+                            <input className="w-full bg-[#BFC6E0]" type="text" placeholder="Appaetnentment,suit,e.t.c (optinal)" onChange={(e) => handleOnChange("Appaetnentment", e.target.value)}/>
                             <div className="mt-[10px]">
                                 <hr />
                             </div>
                         </div>
                         <div className="mt-[40px] ">
-                            <input className="w-full bg-[#BFC6E0]" type="text" placeholder="City" />
+                            <input className="w-full bg-[#BFC6E0]" type="text" placeholder="City" onChange={(e) => handleOnChange("city", e.target.value)}/>
                             <div className="mt-[10px]">
                                 <hr />
                             </div>
@@ -79,7 +95,7 @@ export default function ContactInformation() {
                 </div>
                 <div className="w-[384px] mt-[30px]"> 
                 <ContactData/>
-                    <div className="384px p-[30px] bg-[#BFC6E0] rounded-md">
+                    <div className="384px p-[30px] bg-[#BFC6E0] rounded-md mt-[30px]">
                         <div>
                             <div className="flex items-center justify-between ">
                                 <p>Нийлбэр:</p>
