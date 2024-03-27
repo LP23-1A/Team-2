@@ -1,3 +1,4 @@
+"use client";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Navbar from "@/components/user/Navbar";
@@ -5,6 +6,7 @@ import Footer from "@/components/user/Footer";
 import HorizontalMenu from "@/components/user/HorizontalMenu";
 import BestProducts from "@/components/user/BestProducts";
 import Product from "@/components/user/Product";
+import AboutTheService from "@/components/user/AboutTheService";
 const API = "http://localhost:8000/product/bestproducts";
 export default function Dashboard() {
   const [data, setData] = useState([]);
@@ -22,6 +24,7 @@ export default function Dashboard() {
       <HorizontalMenu />
       <BestProducts data={data} />
       <Product />
+      <AboutTheService/>
       <Footer />
     </div>
   );
