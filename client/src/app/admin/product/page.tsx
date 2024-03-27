@@ -3,10 +3,10 @@ import Navbar from "@/components/Navbar";
 import ProductMain from "@/components/Product";
 
 const product = () => {
-  return(
+  return (
     <main>
       <Navbar />
-      <div className="flex h-screen">
+      <div className="flex h-full">
         <Menu />
         <div className="w-screen bg-[#ECEDF0]">
           <div className="flex gap-[30px] p-[20px]">
@@ -14,11 +14,11 @@ const product = () => {
             <button className="p-[10px]">Ангилал</button>
           </div>
           <div className="ml-[20px]">
-            <ProductMain/>
+            <ProductMain />
           </div>
         </div>
       </div>
     </main>
-  )
+  );
 };
 export default product;

@@ -1,7 +1,5 @@
 "use client";
 
-import { useParams } from "next/navigation";
-
 const data = [
   {
     img: "https://s3-alpha-sig.figma.com/img/5d23/d89f/fb399a001ca2c9596b7e4e167945bbdc?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QtRuQ7scZohUz1uAGd3TPwdB6DAAFv5pvk-SgBJgvIzWpazvDA88mMqq-ONhsJqxbbmDr7sU1TM24DJ7r3gl6kR4FraW3JIAMQxyDvRBkuj8HDejIVsZu3OFLH7V3Maeo9AFVwlHRzysIiDebNq2lP7d5LBRaW9EPaLDt-TNlRdKhCyG1sZdZEgITohSCqH6eOt4RYvDZ9khjTVN4Hss~w70d8aI5RE6a-01Q8mq2JdLBRN9MAH0YGBEjsAwn7ya9frhLmReMTno8wqCpUefGC1SBGy-sp2uEKwVRm~~hruTanezFISpjCPfluxt19LG5JxgeVj9~nf9Sk55dil6Qw__",
@@ -47,7 +45,10 @@ const data = [
 
 function Product() {
   return (
-    <div className=" flex justify-center my-5">
+    <div className=" flex flex-col items-center gap-5 my-5">
+      <h1 className="text-[#151875] text-[42px] font-extrabold ">
+        Шинээр нэмэгдсэн
+      </h1>
       <div className="flex w-[1200px] gap[] justify-between flex-wrap ">
         {data.map(({ img, name, price }) => (
           <div>

@@ -4,8 +4,8 @@ import Navbar from "@/components/user/Navbar";
 import Footer from "@/components/user/Footer";
 import HorizontalMenu from "@/components/user/HorizontalMenu";
 import BestProducts from "@/components/user/BestProducts";
-const API = "http://localhost:8000/product/bestproducts";
 import Product from "@/components/user/Product";
+const API = "http://localhost:8000/product/bestproducts";
 export default function Dashboard() {
   const [data, setData] = useState([]);
   const categoryHandler = async () => {
