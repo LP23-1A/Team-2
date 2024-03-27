@@ -1,20 +1,20 @@
 "use client";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import axios from "axios";
+import useSWR from "swr";
 import Menu from "@/components/Menu";
 import Navbar from "@/components/Navbar";
-import Searchbar from "@/components/svg/Searchbar";
-import Download from "@/components/images/Download.png";
-const API = "http://localhost:8000/order/getorder";
 
-export default function Orderdetails() {
-  const [data, setdata] = useState([]);
-
+export default function Orderdetails() { 
+  const pathName = usePathname();
+  // const [data, setData] = useState({id:"",status:"",email:""});
+  const [data, setData] = useState([]);
   const Orderhandler = async () => {
-    let res = await axios.get(API);
-    setdata(res.data.orderData);
+    const res = await axios.get(`http://localhost:8000/order/${pathName}`);
+    setData(res.data.orderData);
   };
-
+  // Orderhandler();
   useEffect(() => {
     Orderhandler();
   }, []);
@@ -33,17 +33,19 @@ export default function Orderdetails() {
               <div className="flex justify-between">
                 <div>
                   <p className="text-[16px] text-[#3F4145]">
-                    Захиалгын ID дугаар:{" "}
+                    Захиалгын ID дугаар:
                   </p>
-                  <p className="text-[16px] text-[#121316]"></p>
+                  <p className="text-[16px] text-[#121316]">{data._id}</p>
                 </div>
-                <div></div>
+                <div><p>{data.status}</p></div>
               </div>
               <div>
                 <p className="text-[16px] text-[#3F4145]">
-                  Захиалагч: Хувь хүн{" "}
+                  Захиалагч: Хувь хүн
                 </p>
-                <p className="text-[16px] text-[#3F4145]"></p>
+                <div>    <p className="text-[16px] text-[#3F4145]"></p>
+                </div>
+
               </div>
             </div>
             <div>

@@ -1,5 +1,5 @@
 'use client'
-import { usePathname, useSearchParams, useParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Navbar from "@/components/user/Navbar";
 import HorizontalMenu from "@/components/user/HorizontalMenu";
 import Footer from "@/components/user/Footer";

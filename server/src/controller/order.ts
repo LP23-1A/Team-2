@@ -48,6 +48,16 @@ const getAllOrders = async (req: Request, res: Response) => {
    }
  };
 
+ const getOrderById = async (req: Request, res: Response) => {
+  const {id} = req.params;  
+  try {
+    const orderData = await orderModel.findById(id).populate("userId").populate("productId");  
+    return res.status(201).send({ success: true, orderData });
+  } catch (error) {
+   return res.status(400).send({success: false, error });
+  }
+};
 
-  export {newOrder, getAllOrders, updateOrderById, getIncome,  deleteOrderById}
+
+  export {newOrder, getAllOrders, updateOrderById, getIncome,  deleteOrderById, getOrderById}
   
