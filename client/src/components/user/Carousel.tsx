@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> carousel hagsiin ni hiisen
 import sandal from "@/components/images/sandal.png";
 import Slider from "react-slick";
 
@@ -31,9 +34,12 @@ const Carousel = () => {
     </div>
   );
 };
+<<<<<<< HEAD
 =======
 function Carousel() {
   return <div></div>;
 }
 >>>>>>> ehlvvlsen
+=======
+>>>>>>> carousel hagsiin ni hiisen
 export default Carousel;
