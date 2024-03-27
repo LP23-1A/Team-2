@@ -5,7 +5,7 @@ import { RightArrow } from "./svg/Allicons";
 
 export default function OrderList({ data }: any) {
     const router = useRouter();
-    console.log(data);
+    console.log("order", data);
     
     return (
         <div className=" flex flex-col">
@@ -59,7 +59,7 @@ export default function OrderList({ data }: any) {
                                 <p className=" pl-6 py-[14px] w-[137px] text-[14px] flex items-center">{el.amountPaid}</p>
                                 <p className=" pl-6 py-[14px] w-[214px] text-[14px] flex items-center">{el.status}</p>
                                 <button className=" pl-6 py-[14px] w-[122px] text-[14px] flex items-center justify-center"
-                                    onClick={() => router.push("/admin/order/orderdetails")}
+                                  onClick={()=>router.push(`/admin/${el._id}`)}
                                 > {">"} </button>
 
                             </div>
