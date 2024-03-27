@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import Navbar from "@/components/user/Navbar";
 import Footer from "@/components/user/Footer";
 import HorizontalMenu from "@/components/user/HorizontalMenu";
-import BestProducts from "@/components/user/BestProducts";
-import Product from "@/components/user/Product";
+import BestProducts from "@/components/user/BestProducts"; 
+import Product from "@/components/user/NewProduct";
 import AboutTheService from "@/components/user/AboutTheService";
 const API = "http://localhost:8000/product/bestproducts";
 export default function Dashboard() {

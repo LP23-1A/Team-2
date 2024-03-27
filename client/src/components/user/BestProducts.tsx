@@ -2,8 +2,6 @@
 import BestProduct from "./BestProduct"
 
 const BestProducts = ({ data }: any) => {
-   console.log("we",data);
-   
     return (
         <div className=" flex flex-col gap-10 mt-[129px] items-center">
             <p className=" text-[42px] font-extrabold text-[#1A0B5B]">Онцлох бүтээгдэхүүн</p>
