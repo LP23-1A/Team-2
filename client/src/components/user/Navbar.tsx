@@ -13,6 +13,10 @@ import {
 import { useRouter } from "next/navigation";
 
 export default function Navbar() {
+  const print =  () => {
+    console.log("Working");
+  };
+
   const context = useContext(UserContext);
   const router = useRouter();
   const handleJumpLogin = () => {
@@ -55,7 +59,7 @@ export default function Navbar() {
             <button>Хадгалах</button>
             <Heart />
           </div>
-          <Cart />
+          <Cart onclick={print}/>
         </div>
       </div>
       <div className=" flex bg-white px-[360px] py-[22px] justify-between">

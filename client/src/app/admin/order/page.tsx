@@ -5,7 +5,7 @@ import Menu from "@/components/Menu";
 import Navbar from "@/components/Navbar";
 import Searchbar from "@/components/svg/Searchbar";
 import Download from "@/components/images/Download.png";
-const API = "http://localhost:8000/order";
+const API = "http://localhost:8000/order/income";
 import OrderList from "@/components/OrderList";
 import OrderNavbar from "@/components/OrderNavbar";
 
@@ -14,7 +14,9 @@ export default function Order() {
 
   const Orderhandler = async () => {
     let res = await axios.get(API);
-    setdata(res.data.orderData);
+    console.log("orderdata", res);
+    
+    setdata(res.data.incomeData);
   };
 
   useEffect(() => {
