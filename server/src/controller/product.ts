@@ -6,9 +6,6 @@ import { productSchema } from "../model/product";
 
 dotenv.config();
 
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
-
 export const createProduct = async (req: Request, res: Response) => {
     try {
         const result = await productSchema.create(req.body);
@@ -40,7 +37,7 @@ export const updateProduct = async (req: Request, res: Response) => {
 
 export const getAllProduct = async (req: Request, res: Response) => {
     try {
-        const getProduct = await productSchema.find()
+        const getProduct = await productSchema.find().populate('mainCategory').populate('subCategory')
         res.status(201).send(getProduct)
     } catch (error) {
         res.status(500).send({success: false, error})

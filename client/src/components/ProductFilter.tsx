@@ -23,7 +23,7 @@ const ByDates: string[] = ["Үнэ өсөхөөр", "Үнэ буурахаар",
 
 export default function ProductFilter({ data, setFilteredData, filteredData }: any) {
   const [selectedCategory, setSelectedCategory] = useState('');
-  const filterByCategory = (categoryID: string) => {    
+  const filterByCategory = (categoryID: string) => {
     if (categoryID == "All") {
       setFilteredData(data);        
     } else {
@@ -33,30 +33,6 @@ export default function ProductFilter({ data, setFilteredData, filteredData }: a
       } else {
         setFilteredData([]);
       }
-    }
-  };
-
-  const filterByDates = (selectedHour: any) => {
-    const now = new Date();
-    const today = now.getDate();
-    const yesterDay = today - 1;
-    const twoDaysAgo = today - 2;
-
-    const filteredData = data.filter((el: any) => {
-      const exactCreationDay = parseInt(el.createdAt.slice(8, 10));
-      if (selectedHour == 0 && exactCreationDay === today) {
-        return true;
-      } else if (selectedHour == 1 && exactCreationDay === yesterDay) {
-        return true;
-      } else if (selectedHour == 2 && exactCreationDay == twoDaysAgo) {
-        return true;
-      }
-      return false;
-    });
-    if (filteredData.length > 0) {
-      setFilteredData(filteredData);
-    } else {
-      setFilteredData([]);
     }
   };
 

@@ -86,7 +86,8 @@ export default function ProductData({ data, setFilteredData, filteredData }: any
                         </div>
                     </div>
                     <div className="w-[214px] py-[10px] ">
-                        <p>{props.mainCategory}</p>
+                        <p>{props.mainCategory?.categoryName}</p>
+                        <p>{props.subCategory?.categoryName}</p>
                     </div>
                     <div className="w-[186px] py-[10px] px-[5px]">
                         <p>{props.price}</p>
