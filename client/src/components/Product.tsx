@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const BASE_URL = "http://localhost:8000/product"
-const BASE_URL_END_POINT = "http://localhost:8000/product/getAllProduct"
+const BASE_URL_END_POINT = "http://localhost:8000/product"
 
 interface ProductData{
     _id: String
@@ -40,7 +40,7 @@ export default function Product() {
         <section className="w-[1420px] p-[10px] flex flex-col gap-[20px]">
             <div className="py-[10px] bg-[#ECEDF0]">
                 <button onClick={() => router.push("/admin/addProduct")} className="px-[50px] py-[10px] bg-[black] rounded-md text-[white]">+ Бүтээгдэхүүн нэмэх</button>
-            </div>
+            </div>                    
             <div className="flex gap-[30px] py-[20px]">
                 <ProductFilter
                     {...{

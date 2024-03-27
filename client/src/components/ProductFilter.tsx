@@ -18,50 +18,21 @@ interface ProductData {
   category: String
 }
 
-const ByGenders: string[] = ["Эрэгтэй", "Эмэгтэй", "Хүүхэд", "All"]
+const ByGenders: string[] = ["All", "Эрэгтэй", "Эмэгтэй", "Хүүхэд"]
 const ByDates: string[] = ["Үнэ өсөхөөр", "Үнэ буурахаар", "All"]
 
 export default function ProductFilter({ data, setFilteredData, filteredData }: any) {
   const [selectedCategory, setSelectedCategory] = useState('');
-  const filterByCategory = (categoryID: string) => {    
+  const filterByCategory = (categoryID: string) => {
     if (categoryID == "All") {
-      setFilteredData(data); 
-      console.log(filteredData, "test");
-                
+      setFilteredData(data);        
     } else {
       filteredData = data.filter((el: any) => el.categoryID == categoryID);
-      console.log(filteredData, "allData");  
       if (filteredData.length > 0) {
         setFilteredData(filteredData);
       } else {
-        console.log('no daata');
-        
         setFilteredData([]);
       }
-    }
-  };
-
-  const filterByDates = (selectedHour: any) => {
-    const now = new Date();
-    const today = now.getDate();
-    const yesterDay = today - 1;
-    const twoDaysAgo = today - 2;
-
-    const filteredData = data.filter((el: any) => {
-      const exactCreationDay = parseInt(el.createdAt.slice(8, 10));
-      if (selectedHour == 0 && exactCreationDay === today) {
-        return true;
-      } else if (selectedHour == 1 && exactCreationDay === yesterDay) {
-        return true;
-      } else if (selectedHour == 2 && exactCreationDay == twoDaysAgo) {
-        return true;
-      }
-      return false;
-    });
-    if (filteredData.length > 0) {
-      setFilteredData(filteredData);
-    } else {
-      setFilteredData([]);
     }
   };
 
@@ -77,6 +48,18 @@ export default function ProductFilter({ data, setFilteredData, filteredData }: a
       return 0;
     });
     setFilteredData(sortedData);
+  };
+
+  const handleSearch = (productName: string) => {
+    const filtered = data.filter((item: { productName: string }) =>
+      item.productName.toLowerCase().startsWith(productName.toLowerCase())
+    );
+    setFilteredData(filtered);
+  };  
+
+  const handleInputChange = (e: { target: { value: any } }) => {
+    const searchProduct = e.target.value;
+    handleSearch(searchProduct);
   };
 
   const handlePriceChange = (e: { target: { value: any } }) => {
@@ -127,7 +110,7 @@ export default function ProductFilter({ data, setFilteredData, filteredData }: a
       <div className="w-[420px] bg-[white] rounded-md">
         <div className="w-full flex gap-[10px] p-[10px]">
           <Searchbar />
-          <input className="w-full" type="text" placeholder="Бүтээгдэхүүний нэр, SKU, UPC" />
+          <input onChange={handleInputChange} className="w-full" type="text" placeholder="Бүтээгдэхүүний нэр, SKU, UPC" />
         </div>
       </div>
     </section>

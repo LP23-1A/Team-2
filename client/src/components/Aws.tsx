@@ -6,18 +6,18 @@ export function Aws({ handleImageUpload, images }: any) {
     const [selectedImageIndex, setSelectedImageIndex] = useState<null | number>(
       null
     );
-  
+
     const handleImageClick = (index: number) => {
       setSelectedImageIndex(index);
       setShowModal(!showModal);
     };
-  
+
     const handleImageInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
           handleImageUpload(e.target.files[0]);
         }
       };
-  
+
     return (
       <div className="bg-white w-[563px] h-[312px] p-4 rounded-lg">
         <div className="flex flex-col gap-8">

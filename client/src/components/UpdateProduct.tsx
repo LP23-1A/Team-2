@@ -69,10 +69,10 @@ export default function updateProduct() {
             </div>
           </div>
           {/* <form onSubmit={submit}>
-                        <input onChange={handleFileChange} type="file" accept="image/*"></input>
-                        <input value={caption} onChange={handleCaptionChange} type="text" placeholder='Caption'></input>
-                        <button type="submit">Submit</button>
-                    </form> */}
+                      <input onChange={handleFileChange} type="file" accept="image/*"></input>
+                      <input value={caption} onChange={handleCaptionChange} type="text" placeholder='Caption'></input>
+                      <button type="submit">Submit</button>
+              </form> */}
           <div className="bg-[white] p-[25px] text-[18px] font-[600] rounded-md text-[black]">
             <p>Бүтээгдэхүүний зураг</p>
             <div className="mt-[10px] flex gap-[10px]">

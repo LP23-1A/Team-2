@@ -8,7 +8,7 @@ const product = () => {
       <Navbar />
       <div className="flex h-screen">
         <Menu />
-        <div className=" w-screen bg-[#ECEDF0]">
+        <div className="w-screen bg-[#ECEDF0]">
           <div className="flex gap-[30px] p-[20px]">
             <button className="p-[10px]">Бүтээгдэхүүн</button>
             <button className="p-[10px]">Ангилал</button>
