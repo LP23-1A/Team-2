@@ -11,6 +11,8 @@ const CarouselMain = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
   };
 
   return (
@@ -19,8 +21,12 @@ const CarouselMain = () => {
         <div>
           <Carousel />
         </div>
-        <div>slide2</div>
-        <div>slide3</div>
+        <div>
+          <Carousel />
+        </div>
+        <div>
+          <Carousel />
+        </div>
       </Slider>
     </div>
   );
