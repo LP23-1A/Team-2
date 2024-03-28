@@ -4,35 +4,37 @@ const OrderSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users',
-        required:true
+        required: true
     },
-    productId : {
-        type:mongoose.Schema.Types.ObjectId,
+    productId: {
+        type: mongoose.Schema.Types.ObjectId,
         ref: `product`,
     },
     orderNumber: String,
     status: {
         type: String,
-        enum:['Шинэ-захиалга', 'Бэлтгэгдэж байна', 'Хүргэлтэнд гарсан','Хүргэгдсэн'],
+        enum: ['Шинэ-захиалга', 'Бэлтгэгдэж байна', 'Хүргэлтэнд гарсан', 'Хүргэгдсэн'],
         default: 'Шинэ-захиалга',
     },
-    phoneNumber: {
-        type:Number,   
-        length: {
-            maxlength: 8,
-            minlength: 8, }
-    },
+    phoneNumber: String,
+    firstName: String,
+    lastName: String,
+    address: String,
+    appart: String,
+    city: String,
+    country: String,
+    postalCode: String,
     deliveryDate: Date,
     amountPaid: Number,
     amountToBePaid: Number,
     coupon: String,
-    description:  String,
+    description: String,
     orderType: String,
     details: [{
-        type:String,
+        type: String,
     }],
     createdAt: {
-        type:Date,
+        type: Date,
         default: Date.now,
     },
     updatedAt: Date,

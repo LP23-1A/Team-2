@@ -11,9 +11,7 @@ export default function ProductDetails(){
     const pathName = usePathname(); 
     const [data, setData] = useState([]);
     const productDetailsHandler = async()=> {
-        const res = await axios.get(`http://localhost:8000/product/${pathName}`);  
-        console.log(res.data.product);
-               
+        const res = await axios.get(`http://localhost:8000/product/${pathName}`);            
         setData(res.data.product)      
     }
     useEffect(()=> {
