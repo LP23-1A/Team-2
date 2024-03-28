@@ -6,8 +6,9 @@ import axios from "axios";
 import useSWR from "swr";
 import Menu from "@/components/Menu";
 import Navbar from "@/components/Navbar";
+
 interface OrderData {
-  _id: any;
+  _id: string;
   status: string;
   email: string;
 }
@@ -15,7 +16,7 @@ interface OrderData {
 export default function Orderdetails() {
   const pathName = usePathname();
   // const [data, setData] = useState({id:"",status:"",email:""});
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any>([]);
   const Orderhandler = async () => {
     const res = await axios.get(`http://localhost:8000/order/${pathName}`);
     setData(res.data.orderData);
@@ -43,7 +44,7 @@ export default function Orderdetails() {
                     Захиалгын ID дугаар:
                   </p>
                   <p className="text-[16px] text-[#121316] font-bold">
-                    {data?._id}
+                    {data._id ?? ""}
                   </p>
                 </div>
                 <div>
