@@ -13,7 +13,7 @@ const Information = () => {
   };
 
   return (
-    <div className="bg-[#F9F8FE] w-[100vw] py-[60px]">
+    <div className="bg-[#F9F8FE] w-[100%] py-[60px]">
       <div className="flex flex-col gap-[30px] px-[360px]">
         <div className="flex gap-6 ">
           <h3
