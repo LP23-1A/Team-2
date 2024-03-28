@@ -14,7 +14,7 @@ const CarouselMain = () => {
   };
 
   return (
-    <div>
+    <div className="2xl:w-[1024px]">
       <Slider {...settings}>
         <div>
           <Carousel />

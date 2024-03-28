@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Navbar from "@/components/user/Navbar";
 import Footer from "@/components/user/Footer";
 import HorizontalMenu from "@/components/user/HorizontalMenu";
-import BestProducts from "@/components/user/BestProducts"; 
+import BestProducts from "@/components/user/BestProducts";
 import Product from "@/components/user/NewProduct";
 import AboutTheService from "@/components/user/AboutTheService";
 const API = "http://localhost:8000/product/bestproducts";
@@ -20,13 +20,13 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className=" flex flex-col gap-7 px-4">
+    <div className=" flex flex-col gap-7">
       <Navbar />
       <HorizontalMenu />
       <CarouselMain />
       <BestProducts data={data} />
       <Product />
-      <AboutTheService/>
+      <AboutTheService />
       <Footer />
     </div>
   );
