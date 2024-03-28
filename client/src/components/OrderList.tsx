@@ -2,11 +2,9 @@ import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function OrderList({ data }: any) {
+export default function OrderList({ data, filteredData }: any) {
     const router = useRouter();
     const uuid = require('uuid')
-
-
 
     // console.log(data[0]._id);
 

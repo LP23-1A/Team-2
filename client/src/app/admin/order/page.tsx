@@ -9,7 +9,7 @@ import OrderList from "@/components/OrderList";
 import OrderNavbar from "@/components/OrderNavbar";
 const API = "http://localhost:8000/order/income";
 
-export default function Order() {
+export default function Order({setFilteredData, filteredData} : any) {
   const [data, setdata] = useState([]);
 
   const Orderhandler = async () => {
@@ -21,6 +21,17 @@ export default function Order() {
     Orderhandler();
   }, []);
 
+  const handleSearch = (email: string) => {
+    const filtered = data.filter((item: { email?: string }) =>
+      item.email?.toLowerCase().startsWith(email.toLowerCase())
+    );
+    setFilteredData(filtered);
+  };  
+
+  const handleInputChange = (e: { target: { value: any } }) => {
+    const searchEmail = e.target.value;
+    handleSearch(searchEmail);
+  };
 
   return (
     <div>
@@ -47,7 +58,7 @@ export default function Order() {
               </div>
               <div className="flex gap-2 rounded-lg border-[2px] border-[#D6D8DB] bg-white p-2">
                 <Searchbar />
-                <input type="text" placeholder="Дугаар, Имэйл" />
+                <input onChange={handleInputChange} type="text" placeholder="Дугаар, Имэйл" />
               </div>
             </div>
 
