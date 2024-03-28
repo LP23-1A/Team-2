@@ -7,14 +7,20 @@ import {
 
 export const ProductContext = createContext({
   cart: [],
-  setCart: () => {},
+  addtocart: () => { },
+  setCart: () => { },
 });
 
 export const ProductProvider = ({ children }: { children: ReactNode }) => {
-  const [email, setCart] = useState<String>({});
+  const [cart, setCart] = useState<String>([]);
+  console.log(cart)
+  const addtocart = (): any => {
+    console.log(cart)
+    // setCart([...cart],)
+  }
 
   return (
-    <ProductContext.Provider value={{ email, setCart } as any}>
+    <ProductContext.Provider value={{ cart, setCart, addtocart } as any}>
       {children}
     </ProductContext.Provider>
   );
