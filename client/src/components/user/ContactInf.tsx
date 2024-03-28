@@ -1,3 +1,4 @@
+"use client"
 import ContactData from "@/components/user/ContactData"
 import { useRef } from "react";
 
