@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> carousel hagsiin ni hiisen
 import sandal from "@/components/images/sandal.png";
 import Slider from "react-slick";
 
@@ -19,17 +15,14 @@ const Carousel = () => {
           <div className="text-[53px] font-extrabold">
             2024 оны хамгийн <br /> шинэ загвар
           </div>
-
-          <div className="flex flex-col gap-6">
-            <div className="text-[#8A8FB9] text-[16px]">
-              Швед улсын хамгийн шилдэг брэндийг албан ёсны <br /> эрхтэйгээр
-              оруулж ирж байна
-            </div>
-            <div>
-              <button className="flex px-7 py-4 rounded-sm text-[#fff] bg-[#FB2E86]">
-                Дэлгэрэнгүй
-              </button>
-            </div>
+          <div className="text-[#8A8FB9] text-[16px]">
+            Швед улсын хамгийн шилдэг брэндийг албан ёсны <br /> эрхтэйгээр
+            оруулж ирж байна
+          </div>
+          <div>
+            <button className="flex px-7 py-4 rounded-sm text-[#fff] bg-[#FB2E86]">
+              Дэлгэрэнгүй
+            </button>
           </div>
         </div>
         <img className="size-96" src={sandal.src} alt="Sandal" />
@@ -37,12 +30,4 @@ const Carousel = () => {
     </div>
   );
 };
-<<<<<<< HEAD
-=======
-function Carousel() {
-  return <div></div>;
-}
->>>>>>> ehlvvlsen
-=======
->>>>>>> carousel hagsiin ni hiisen
 export default Carousel;

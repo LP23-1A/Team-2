@@ -1,15 +1,11 @@
-<<<<<<< HEAD
 "use client";
 import { useContext } from "react";
 import { UserContext } from "./context";
-=======
->>>>>>> carousel hagsiin ni hiisen
 import {
   LoginAvatar,
   Email,
   Phone,
   Heart,
-<<<<<<< HEAD
   CartNavbar,
   DownArrow,
   Search,
@@ -17,7 +13,7 @@ import {
 import { useRouter } from "next/navigation";
 
 export default function Navbar() {
-  const print =  () => {
+  const print = () => {
     console.log("Navbar Working");
   };
 
@@ -44,19 +40,11 @@ export default function Navbar() {
   };
   handle();
 
-=======
-  Cart,
-  DownArrow,
-  Search,
-} from "../svg/Allicons";
-export default function Navbar() {
->>>>>>> carousel hagsiin ni hiisen
   return (
     <div className="">
       <div className="flex bg-[#7E33E0] px-[360px]  text-[#F1F1F1] py-[14px] justify-between">
         <div className="flex gap-16">
           <div className="flex gap-[10px] items-center cursor-pointer">
-<<<<<<< HEAD
             <Email />
             <button>info@ecommerce.mn</button>
           </div>
@@ -67,31 +55,11 @@ export default function Navbar() {
         </div>
         <div className="flex gap-7">
           {handle()}
-=======
-            {" "}
-            <Email />
-            <button>info@ecommerce.mn</button>{" "}
-          </div>
-          <div className="flex gap-3 items-center cursor-pointer">
-            {" "}
-            <Phone />
-            <button>77123456</button>{" "}
-          </div>
-        </div>
-        <div className="flex gap-7">
-          <div className="flex gap-1 items-center cursor-pointer">
-            <button>Нэвтрэх</button> <LoginAvatar />
-          </div>
->>>>>>> carousel hagsiin ni hiisen
           <div className="flex gap-1 items-center cursor-pointer">
             <button>Хадгалах</button>
             <Heart />
           </div>
-<<<<<<< HEAD
-          <CartNavbar onclick={print}/>
-=======
-          <Cart />
->>>>>>> carousel hagsiin ni hiisen
+          <CartNavbar onclick={print} />
         </div>
       </div>
       <div className=" flex bg-white px-[360px] py-[22px] justify-between">
