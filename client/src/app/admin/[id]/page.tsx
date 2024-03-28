@@ -7,7 +7,7 @@ import useSWR from "swr";
 import Menu from "@/components/Menu";
 import Navbar from "@/components/Navbar";
 interface OrderData {
-  _id: [];
+  _id: object;
   status: string;
   email: string;
 }
