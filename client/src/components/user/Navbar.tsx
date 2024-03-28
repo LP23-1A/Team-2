@@ -13,6 +13,16 @@ import {
 import { useRouter } from "next/navigation";
 
 export default function Navbar() {
+  const [value, setValue] = useState()
+
+  const handleChangePage = async (e : any) => {
+    
+  }
+
+  const print =  () => {
+    console.log("Navbar Working");
+  };
+
   const context = useContext(UserContext);
   const router = useRouter();
   const handleJumpLogin = () => {
