@@ -1,7 +1,8 @@
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Carousel from "./Carousel";
+'use client';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Carousel from './Carousel';
 
 const CarouselMain = ({ casdata }) => {
   console.log(casdata);
@@ -18,7 +19,7 @@ const CarouselMain = ({ casdata }) => {
   };
 
   return (
-    <div className="2xl:w-[100%]">
+    <div className='2xl:w-[100%]'>
       <Slider {...settings}>
         {casdata.map((item) => (
           <div key={item.id}>
