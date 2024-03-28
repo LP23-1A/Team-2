@@ -6,6 +6,7 @@ import { Facebook, Instagram, Twitter } from "../svg/Allicons";
 const API = "http://localhost:8000/subcategory";
 
 export default function Footer() {
+  const uuid = require('uuid')
   const [data, setData] = useState([]);
   const categoryHandler = async () => {
     const res = await axios.get(API);
@@ -42,12 +43,12 @@ export default function Footer() {
           <div className=" flex flex-col gap-[37px]">
             <h1 className=" text-[22px] font-extrabold">Ангилал</h1>
 
-            <div className=" text-[#8A8FB9] flex flex-col gap-[21px]">
-              {data &&
-                data.map((el: any) => {
-                  return <p className=" cursor-pointer">{el.categoryName}</p>;
-                })}
-            </div>
+          <div className=" text-[#8A8FB9] flex flex-col gap-[21px]">
+            {data &&
+              data.map((el: any) => {
+                const uniqeId = uuid.v4();
+                return <p key={uniqeId} className=" cursor-pointer">{el.categoryName}</p>;
+              })}
           </div>
           <div className=" flex flex-col gap-[37px]">
             <h1 className=" text-[22px] font-extrabold">Бусад</h1>
@@ -77,6 +78,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

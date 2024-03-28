@@ -172,7 +172,6 @@ function DownArrow() {
         d="M2.5 4.5L6.5 8.5L10.5 4.5"
         stroke="#FB2E86"
         strokeLinecap="round"
-        strokeLinecap="round"
       />
     </svg>
   );
@@ -321,9 +320,9 @@ function HeartBlueNew() {
   );
 }
 
-function CartNavbar({ onclick }) {
+function CartNavbar() {
   return (
-    <div onClick={onclick} className="cursor cursor-pointer">
+    <div className="cursor cursor-pointer">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="18"
@@ -376,10 +375,9 @@ function CartNew({ onclick }) {
     </div>
   );
 }
-function Cart({ color, onclick }) {
+function Cart({ color }) {
   return (
     <div
-      onClick={onclick}
       className="p-2  top-2 left-4 z-20 rounded-full cursor-pointer"
       style={
         color

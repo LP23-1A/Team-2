@@ -13,10 +13,6 @@ import {
 import { useRouter } from "next/navigation";
 
 export default function Navbar() {
-  const print = () => {
-    console.log("Navbar Working");
-  };
-
   const context = useContext(UserContext);
   const router = useRouter();
   const handleJumpLogin = () => {
@@ -61,7 +57,7 @@ export default function Navbar() {
               <Heart />
             </div>
             <div className="relative w-[30px] h-[25px] flex justify-center items-center">
-              <CartNavbar onclick={print} />
+              <CartNavbar />
               <div className="w-[12px] h-[12px] bg-[#EC42A2] rounded-full text-[12px] flex justify-center items-center absolute top-0 right-0 ">
                 1
               </div>
