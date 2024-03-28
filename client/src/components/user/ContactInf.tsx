@@ -18,19 +18,19 @@ export default function ContactInformation() {
       };
 
     return(
-        <section className="w-[1200px] flex flex-col text-[#1D3178]">
+        <section className="w-[1440px] flex flex-col text-[#1D3178]">
             <div>
                 <h4 className="text-[24px] font-bold ">Heckto demo</h4>
                 <p className="mt-[10px] text-[12px]">Cart/ Information/ Shipping/ Payment</p>
             </div>
             <div className="flex justify-between ">
-                <div className="w-[792px] bg-[#BFC6E0] mt-[30px] rounded-md">
+                <div className="w-[792px] bg-[#F8F8FD] mt-[30px] rounded-md">
                     <div className="py-[50px] px-[30px]">
                         <div>
                             <p className="font-bold ">Contact Information</p>
                         </div>
                         <div className="mt-[30px] ">
-                            <input className="w-full bg-[#BFC6E0]" type="text" placeholder="Email or mobile phone number" onChange={(e) => handleOnChange("email", e.target.value)}/>
+                            <input className="w-full bg-[#F8F8FD]" type="text" placeholder="Email or mobile phone number" onChange={(e) => handleOnChange("email", e.target.value)}/>
                             <div className="mt-[10px]">
                                 <hr />
                             </div>
@@ -44,45 +44,45 @@ export default function ContactInformation() {
                         </div>
                         <div className="w-full flex justify-between mt-[30px]">
                             <div>
-                                <input className="w-[336px] bg-[#BFC6E0]" type="text" placeholder="First name (optional)" onChange={(e) => handleOnChange("firstName", e.target.value)}/>
+                                <input className="w-[336px] bg-[#F8F8FD]" type="text" placeholder="First name (optional)" onChange={(e) => handleOnChange("firstName", e.target.value)}/>
                                 <div className="mt-[10px]">
                                     <hr />
                                 </div>
                             </div>
                             <div>
-                                <input className="w-[336px] bg-[#BFC6E0]" type="text" placeholder="Last name" onChange={(e) => handleOnChange("lastName", e.target.value)}/>
+                                <input className="w-[336px] bg-[#F8F8FD]" type="text" placeholder="Last name" onChange={(e) => handleOnChange("lastName", e.target.value)}/>
                                 <div className="mt-[10px]">
                                     <hr />
                                 </div>
                             </div>
                         </div>
                         <div className="mt-[40px] ">
-                            <input className="w-full bg-[#BFC6E0]" type="text" placeholder="Address" onChange={(e) => handleOnChange("Address", e.target.value)}/>
+                            <input className="w-full bg-[#F8F8FD]" type="text" placeholder="Address" onChange={(e) => handleOnChange("Address", e.target.value)}/>
                             <div className="mt-[10px]">
                                 <hr />
                             </div>
                         </div>
                         <div className="mt-[40px] ">
-                            <input className="w-full bg-[#BFC6E0]" type="text" placeholder="Appaetnentment,suit,e.t.c (optinal)" onChange={(e) => handleOnChange("Appaetnentment", e.target.value)}/>
+                            <input className="w-full bg-[#F8F8FD]" type="text" placeholder="Appaetnentment,suit,e.t.c (optinal)" onChange={(e) => handleOnChange("Appaetnentment", e.target.value)}/>
                             <div className="mt-[10px]">
                                 <hr />
                             </div>
                         </div>
                         <div className="mt-[40px] ">
-                            <input className="w-full bg-[#BFC6E0]" type="text" placeholder="City" onChange={(e) => handleOnChange("city", e.target.value)}/>
+                            <input className="w-full bg-[#F8F8FD]" type="text" placeholder="City" onChange={(e) => handleOnChange("city", e.target.value)}/>
                             <div className="mt-[10px]">
                                 <hr />
                             </div>
                         </div>
                         <div className="w-full flex justify-between mt-[30px]">
                             <div>
-                                <input className="w-[336px] bg-[#BFC6E0]" type="text" placeholder="Bangladesh" />
+                                <input className="w-[336px] bg-[#F8F8FD]" type="text" placeholder="Bangladesh" />
                                 <div className="mt-[10px]">
                                     <hr />
                                 </div>
                             </div>
                             <div>
-                                <input className="w-[336px] bg-[#BFC6E0]" type="text" placeholder="Postal Code" />
+                                <input className="w-[336px] bg-[#F8F8FD]" type="text" placeholder="Postal Code" />
                                 <div className="mt-[10px]">
                                     <hr />
                                 </div>
@@ -95,7 +95,7 @@ export default function ContactInformation() {
                 </div>
                 <div className="w-[384px] mt-[30px]"> 
                 <ContactData/>
-                    <div className="384px p-[30px] bg-[#BFC6E0] rounded-md mt-[30px]">
+                    <div className="384px p-[30px] bg-[#F8F8FD] rounded-md mt-[30px]">
                         <div>
                             <div className="flex items-center justify-between ">
                                 <p>Нийлбэр:</p>
