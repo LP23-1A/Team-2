@@ -4,19 +4,11 @@ import { useEffect, useState } from "react";
 import Navbar from "@/components/user/Navbar";
 import Footer from "@/components/user/Footer";
 import HorizontalMenu from "@/components/user/HorizontalMenu";
-<<<<<<< HEAD
-<<<<<<< HEAD
-import BestProducts from "@/components/user/BestProducts"; 
+import BestProducts from "@/components/user/BestProducts";
 import Product from "@/components/user/NewProduct";
 import AboutTheService from "@/components/user/AboutTheService";
 const API = "http://localhost:8000/product/bestproducts";
 import CarouselMain from "@/components/user/CarouselMain";
-=======
-import Carousel from "@/components/user/Carousel";
->>>>>>> ehlvvlsen
-=======
-import CarouselMain from "@/components/user/CarouselMain";
->>>>>>> carousel hagsiin ni hiisen
 export default function Dashboard() {
   const [data, setData] = useState([]);
   const categoryHandler = async () => {
@@ -28,20 +20,13 @@ export default function Dashboard() {
   }, []);
 
   return (
-<<<<<<< HEAD
-    <div className=" flex flex-col gap-7 px-4">
+    <div className=" flex flex-col gap-7">
       <Navbar />
       <HorizontalMenu />
       <CarouselMain />
       <BestProducts data={data} />
       <Product />
-      <AboutTheService/>
-=======
-    <div>
-      <Navbar />
-      <CarouselMain />
-      <HorizontalMenu />
->>>>>>> ehlvvlsen
+      <AboutTheService />
       <Footer />
     </div>
   );
