@@ -19,6 +19,7 @@
     "chart.js": "^4.4.2",
     "cors": "^2.8.5",
     "dayjs": "^1.11.10",
+    "js-cookie": "^3.0.5",
     "next": "^14.2.0-canary.23",
     "nookies": "^2.5.2",
     "react": "^18",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "20.11.24",
     "@types/react": "18.2.62",
     "@types/react-dom": "^18",

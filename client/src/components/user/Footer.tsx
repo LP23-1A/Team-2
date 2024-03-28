@@ -50,7 +50,9 @@ export default function Footer() {
                 return <p key={uniqeId} className=" cursor-pointer">{el.categoryName}</p>;
               })}
           </div>
-          <div className=" flex flex-col gap-[37px]">
+    
+        </div>
+        <div className=" flex flex-col gap-[37px]">
             <h1 className=" text-[22px] font-extrabold">Бусад</h1>
             <div className=" text-[#8A8FB9] flex flex-col gap-[21px]">
               <p>Бидний тухай</p>
@@ -58,8 +60,8 @@ export default function Footer() {
               <p>Түгээмэл асуулт хариулт</p>
             </div>
           </div>
-        </div>
-        <div className="w-[100%] bg-[#E7E4F8]">
+      </div>
+      <div className="w-[100%] bg-[#E7E4F8]">
           <div className=" flex  text-[#9DA0AE] py-[17px] justify-center">
             <div className="flex justify-between w-[1200px]">
               <p>©ecommerce</p>
@@ -77,7 +79,6 @@ export default function Footer() {
             </div>
           </div>
         </div>
-      </div>
     </div>
     </div>
   );

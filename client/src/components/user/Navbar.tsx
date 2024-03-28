@@ -1,6 +1,7 @@
 "use client";
 import { useContext } from "react";
 import { UserContext } from "./context";
+import { ProductContext } from "./ProductContext";
 import {
   LoginAvatar,
   Email,
@@ -11,8 +12,10 @@ import {
   Search,
 } from "../svg/Allicons";
 import { useRouter } from "next/navigation";
+import Cart from "@/app/user/Cart/page";
 
 export default function Navbar() {
+  const { cart, setCart } = useContext(ProductContext);
   const context = useContext(UserContext);
   const router = useRouter();
   const handleJumpLogin = () => {
@@ -57,9 +60,10 @@ export default function Navbar() {
               <Heart />
             </div>
             <div className="relative w-[30px] h-[25px] flex justify-center items-center">
-              <CartNavbar />
-              <div className="w-[12px] h-[12px] bg-[#EC42A2] rounded-full text-[12px] flex justify-center items-center absolute top-0 right-0 ">
-                1
+              <button  onClick={() => router.push(`/user/Cart`)} >    <CartNavbar /></button>
+       
+              <div style={cart.length === 0 ?{ opacity: "0" }:{ opacity: "1"}} className="w-[12px] h-[12px] bg-[#EC42A2] rounded-full text-[12px] flex justify-center items-center absolute top-0 right-0 ">
+                {cart.length}
               </div>
             </div>
           </div>
@@ -68,7 +72,7 @@ export default function Navbar() {
       <div className=" flex bg-white py-[22px] w-[100%] justify-center">
         <div className="flex w-[1200px] justify-between">
           <div className=" flex gap-14">
-            <h1 className=" text-[34px] font-bold text-[#0D0E43]">Ecommerce</h1>
+            <h1 onClick={() => router.push(`/`)}  className=" text-[34px] font-bold text-[#0D0E43] cursor-pointer">Ecommerce</h1>
             <div className=" flex gap-6">
               <div className="flex gap-1 items-center cursor-pointer">
                 <button className=" text-[#FB2E86]">Нүүр</button>

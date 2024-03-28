@@ -1,26 +1,15 @@
 "use client";
-import {
-  createContext,
-  ReactNode,
-  useState,
-} from "react";
+import { createContext, ReactNode, useState } from "react";
 
 export const ProductContext = createContext({
   cart: [],
-  addtocart: () => { },
-  setCart: () => { },
+  setCart: () => {},
 });
 
 export const ProductProvider = ({ children }: { children: ReactNode }) => {
   const [cart, setCart] = useState<String>([]);
-  console.log(cart)
-  const addtocart = (): any => {
-    console.log(cart)
-    // setCart([...cart],)
-  }
-
   return (
-    <ProductContext.Provider value={{ cart, setCart, addtocart } as any}>
+    <ProductContext.Provider value={{ cart, setCart } as any}>
       {children}
     </ProductContext.Provider>
   );
