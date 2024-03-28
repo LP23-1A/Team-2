@@ -1,5 +1,5 @@
 "use client";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "./context";
 import {
   LoginAvatar,
@@ -18,6 +18,9 @@ export default function Navbar() {
   const handleJumpLogin = () => {
     router.push("user/login");
   };
+  const allproduct = () => {
+    router.push("../../user/AllProducts")
+  }
   const handle = () => {
     if (context.email === "") {
       return (
@@ -65,16 +68,17 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-      <div className=" flex bg-white py-[22px] w-[100%] justify-center">
-        <div className="flex w-[1200px] justify-between">
-          <div className=" flex gap-14">
-            <h1 className=" text-[34px] font-bold text-[#0D0E43]">Ecommerce</h1>
-            <div className=" flex gap-6">
-              <div className="flex gap-1 items-center cursor-pointer">
-                <button className=" text-[#FB2E86]">Нүүр</button>
-                <DownArrow />
-              </div>
-              <button className="text-[#0D0E43]">Ангилал</button>
+      <div className=" flex bg-white px-[360px] py-[22px] justify-between">
+        <div className=" flex gap-14">
+          <h1 className=" text-[34px] font-bold text-[#0D0E43]">Ecommerce</h1>
+          <div className=" flex gap-6">
+            <div className="flex gap-1 items-center cursor-pointer">
+              <button className=" text-[#FB2E86]">
+              <select name="" id="Menu">
+                <option value="Нүүр">Нүүр</option>
+                <option onChange={allproduct} value="Бүх бараа">Бүх бараа</option>
+              </select>
+              </button>
             </div>
           </div>
           <div className="flex items-center">
