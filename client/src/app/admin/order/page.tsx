@@ -13,7 +13,7 @@ export default function Order() {
   const [data, setdata] = useState([]);
 
   const Orderhandler = async () => {
-    let res = await axios.get(API);   
+    let res = await axios.get(API);
     setdata(res.data.incomeData);
   };
 
@@ -21,13 +21,14 @@ export default function Order() {
     Orderhandler();
   }, []);
 
+
   return (
     <div>
       <Navbar />
       <div className="flex h-screen">
         <Menu />
         <div className=" flex flex-col bg-[#ECEDF0] gap-[34px] w-screen ">
-          <OrderNavbar/>
+          <OrderNavbar />
           <div className="flex flex-col gap-6  mx-6">
             <div className=" flex items-center rounded-3xl justify-between">
               <div className=" flex gap-2">
@@ -50,8 +51,10 @@ export default function Order() {
               </div>
             </div>
 
-                <OrderList data = {data} />
- 
+            {
+              data.length !== 0 && <OrderList data={data} />
+            }
+
           </div>
         </div>
       </div>

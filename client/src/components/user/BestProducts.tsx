@@ -10,7 +10,7 @@ const BestProducts = ({ data }: any) => {
     return (
         <div className=" flex flex-col gap-10 mt-[129px] items-center">
             <p className=" text-[42px] font-extrabold text-[#1A0B5B]">Онцлох бүтээгдэхүүн</p>
-            <div className="flex">
+            <div className="flex gap-14">
                 {data && data.map((item: []) => {
                     return (
                         <div key={item._id} className=" group relative  gap-[17px] w-[270px]  pt-[23px] shadow-lg shadow-[#000000]/20">
