@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 const Carousel = () => {
   return (
     <div className="bg-[#F2F0FF] flex justify-center m-auto">
-      <div className="grid grid-cols-2 gap-52">
+      <div className="grid grid-cols-2 gap-52 w-[1200px]">
         <div className="flex flex-col justify-center">
           <div className="text-[16px] text-[#FB2E86]">
             Тав тухтай орчинг таны амьдралд
