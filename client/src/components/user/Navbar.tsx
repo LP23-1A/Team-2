@@ -1,5 +1,5 @@
 "use client";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "./context";
 import {
   LoginAvatar,
@@ -13,6 +13,24 @@ import {
 import { useRouter } from "next/navigation";
 
 export default function Navbar() {
+  const [selectedValue, setSelectedValue] = useState()
+
+  const handleChangePage = async (event: { target: { value: any } }) => {
+      const selectedPage = event.target.value;
+      setSelectedValue(selectedPage);
+
+      if (selectedPage === "Бүх бараа") {
+        router.push("../../user/AllProducts")
+      }
+      if (selectedPage === "Нүүр") {
+        router.push("../../user/dashboard")
+      }
+  }
+
+  const print =  () => {
+    console.log("Navbar Working");
+  };
+
   const context = useContext(UserContext);
   const router = useRouter();
   const handleJumpLogin = () => {
@@ -65,16 +83,17 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-      <div className=" flex bg-white py-[22px] w-[100%] justify-center">
-        <div className="flex w-[1200px] justify-between">
-          <div className=" flex gap-14">
-            <h1 className=" text-[34px] font-bold text-[#0D0E43]">Ecommerce</h1>
-            <div className=" flex gap-6">
-              <div className="flex gap-1 items-center cursor-pointer">
-                <button className=" text-[#FB2E86]">Нүүр</button>
-                <DownArrow />
-              </div>
-              <button className="text-[#0D0E43]">Ангилал</button>
+      <div className=" flex bg-white px-[360px] py-[22px] justify-between">
+        <div className=" flex gap-14">
+          <h1 className=" text-[34px] font-bold text-[#0D0E43]">Ecommerce</h1>
+          <div className=" flex gap-6">
+            <div className="flex gap-1 items-center cursor-pointer">
+              <button className=" text-[#FB2E86]">
+              <select name="" id="Menu" onChange={handleChangePage}>
+                <option value="Нүүр">Нүүр</option>
+                <option value="Бүх бараа">Бүх бараа</option>
+              </select>
+              </button>
             </div>
           </div>
           <div className="flex items-center">
