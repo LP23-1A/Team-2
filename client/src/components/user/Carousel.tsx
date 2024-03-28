@@ -3,8 +3,20 @@ import Slider from "react-slick";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-const Carousel = () => {
+const API = "http://localhost:8000/product/bestproducts";
+
+const Carousel = ({ item }) => {
+  const [data, setData] = useState([]);
+  const categoryHandler = async () => {
+    const res = await axios.get(API);
+    setData(res.data);
+  };
+  useEffect(() => {
+    categoryHandler();
+  }, []);
   return (
     <div className="bg-[#F2F0FF] flex justify-center m-auto">
       <div className="grid grid-cols-2 gap-52 w-[1200px]">
@@ -28,7 +40,7 @@ const Carousel = () => {
             </div>
           </div>
         </div>
-        <img className="size-96" src={sandal.src} alt="Sandal" />
+        <img className="size-96" src={item.images[0]} alt="Sandal" />
       </div>
     </div>
   );

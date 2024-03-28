@@ -23,7 +23,7 @@ export default function Dashboard() {
     <div className=" flex flex-col gap-7">
       <Navbar />
       <HorizontalMenu />
-      <CarouselMain />
+      <CarouselMain casdata={data} />
       <BestProducts data={data} />
       <Product />
       <AboutTheService />
