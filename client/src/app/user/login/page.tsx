@@ -9,7 +9,6 @@ const Login = () => {
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState("");
   const context = useContext(UserContext);
-
   const formDataRef = useRef({
     email: "",
     password: "",
