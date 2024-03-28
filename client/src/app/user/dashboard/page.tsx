@@ -20,7 +20,7 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className=" flex flex-col gap-7">
+    <div className="w-[100%]">
       <Navbar />
       <HorizontalMenu />
       <CarouselMain casdata={data} />
