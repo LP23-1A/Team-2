@@ -13,10 +13,18 @@ import {
 import { useRouter } from "next/navigation";
 
 export default function Navbar() {
-  const [value, setValue] = useState()
+  const [selectedValue, setSelectedValue] = useState()
 
-  const handleChangePage = async (e : any) => {
-    
+  const handleChangePage = async (event: { target: { value: any } }) => {
+      const selectedPage = event.target.value;
+      setSelectedValue(selectedPage);
+
+      if (selectedPage === "Бүх бараа") {
+        router.push("../../user/AllProducts")
+      }
+      if (selectedPage === "Нүүр") {
+        router.push("../../user/dashboard")
+      }
   }
 
   const print =  () => {
@@ -28,9 +36,6 @@ export default function Navbar() {
   const handleJumpLogin = () => {
     router.push("user/login");
   };
-  const allproduct = () => {
-    router.push("../../user/AllProducts")
-  }
   const handle = () => {
     if (context.email === "") {
       return (
@@ -84,9 +89,9 @@ export default function Navbar() {
           <div className=" flex gap-6">
             <div className="flex gap-1 items-center cursor-pointer">
               <button className=" text-[#FB2E86]">
-              <select name="" id="Menu">
+              <select name="" id="Menu" onChange={handleChangePage}>
                 <option value="Нүүр">Нүүр</option>
-                <option onChange={allproduct} value="Бүх бараа">Бүх бараа</option>
+                <option value="Бүх бараа">Бүх бараа</option>
               </select>
               </button>
             </div>
