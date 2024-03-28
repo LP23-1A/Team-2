@@ -24,9 +24,9 @@
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18",
     "react-range": "^1.8.14",
-    "react-slick": "^0.30.2",
-    "slick-carousel": "^1.8.1",
-    "swr": "^2.2.5"
+    "swr": "^2.2.5",
+    "use-context-selector": "^1.4.4",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",

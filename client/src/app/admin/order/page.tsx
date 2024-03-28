@@ -5,17 +5,15 @@ import Menu from "@/components/Menu";
 import Navbar from "@/components/Navbar";
 import Searchbar from "@/components/svg/Searchbar";
 import Download from "@/components/images/Download.png";
-const API = "http://localhost:8000/order/income";
 import OrderList from "@/components/OrderList";
 import OrderNavbar from "@/components/OrderNavbar";
+const API = "http://localhost:8000/order/income";
 
 export default function Order() {
   const [data, setdata] = useState([]);
 
   const Orderhandler = async () => {
-    let res = await axios.get(API);
-    console.log("orderdata", res);
-    
+    let res = await axios.get(API);   
     setdata(res.data.incomeData);
   };
 
