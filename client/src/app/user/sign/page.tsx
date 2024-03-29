@@ -22,7 +22,7 @@ const Sign = () => {
       try {
         const api = "http://localhost:8000/admin/adminsignup";
         await axios.post(api, formDataRef.current);
-        router.push("user/login");
+        router.push("login");
       } catch (error) {
         console.log(error, "axios error");
       }
