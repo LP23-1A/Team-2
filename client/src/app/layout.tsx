@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/components/Auth";
 import { MyProvider } from "@/components/user/context";
-import { ProductProvider } from "@/components/user/ProductContext";
+import { UserOrderProvider } from "@/components/user/UserOrderProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -19,11 +19,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AuthProvider>
-        <ProductProvider>
+        <UserOrderProvider>
           <MyProvider>
             <body className={inter.className}>{children}</body>
           </MyProvider>
-        </ProductProvider>
+        </UserOrderProvider>
       </AuthProvider>
     </html>
   );

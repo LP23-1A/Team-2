@@ -1,6 +1,8 @@
 "use client";
 import { useContext, useState } from "react";
+import { useRouter } from "next/navigation";
 import { UserContext } from "./context";
+import { UserOrderContext } from "./UserOrderProvider";
 import {
   LoginAvatar,
   Email,
@@ -10,7 +12,6 @@ import {
   DownArrow,
   Search,
 } from "../svg/Allicons";
-import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [selectedValue, setSelectedValue] = useState()
@@ -30,12 +31,23 @@ export default function Navbar() {
   const print =  () => {
     console.log("Navbar Working");
   };
-
+  
+  const { orderData }: any = useContext(UserOrderContext);
   const context = useContext(UserContext);
   const router = useRouter();
+
   const handleJumpLogin = () => {
     router.push("user/login");
   };
+
+  const homePage = () => {
+    router.push("/");
+  };
+
+  const cartProduct = () => {
+    router.push("/user/Cart");
+  };
+
   const handle = () => {
     if (context.email === "") {
       return (
@@ -52,6 +64,7 @@ export default function Navbar() {
       );
     }
   };
+
   handle();
 
   return (
@@ -75,25 +88,25 @@ export default function Navbar() {
               <Heart />
             </div>
             <div className="relative w-[30px] h-[25px] flex justify-center items-center">
-              <CartNavbar />
-              <div className="w-[12px] h-[12px] bg-[#EC42A2] rounded-full text-[12px] flex justify-center items-center absolute top-0 right-0 ">
-                1
+              <button onClick={cartProduct}> <CartNavbar /></button>
+              <div style={orderData.length === 0 ? { opacity: "0" } : { opacity: "1" }} className="w-[12px] h-[12px] bg-[#EC42A2] rounded-full text-[12px] flex justify-center items-center absolute top-0 right-0 ">
+                {orderData.length}
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className=" flex bg-white px-[360px] py-[22px] justify-between">
+      <div className=" flex bg-white py-[22px] w-[100%] justify-center">
+        <div className="flex w-[1200px] justify-between">
         <div className=" flex gap-14">
-          <h1 className=" text-[34px] font-bold text-[#0D0E43]">Ecommerce</h1>
-          <div className=" flex gap-6">
-            <div className="flex gap-1 items-center cursor-pointer">
-              <button className=" text-[#FB2E86]">
-              <select name="" id="Menu" onChange={handleChangePage}>
-                <option value="Нүүр">Нүүр</option>
-                <option value="Бүх бараа">Бүх бараа</option>
-              </select>
-              </button>
+            <h1 onClick={homePage} className=" text-[34px] font-bold text-[#0D0E43] cursor-pointer">Ecommerce</h1>
+            <div className=" flex gap-6">
+              <div className="flex gap-1 items-center cursor-pointer">
+                <button className=" text-[#FB2E86]">Нүүр</button>
+                <DownArrow />
+              </div>
+              <button className="text-[#0D0E43]">Ангилал</button>
+              
             </div>
           </div>
           <div className="flex items-center">

@@ -4,10 +4,9 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Carousel from './Carousel';
 
-const CarouselMain = ({ casdata }) => {
-  console.log(casdata);
-  //   const carouselData = [{ id: 1 }, { id: 2 }, { id: 3 }];
+const CarouselMain = ({ casdata }:any) => {
 
+  const uuid = require('uuid');
   const settings = {
     dots: true,
     infinite: true,
@@ -21,11 +20,14 @@ const CarouselMain = ({ casdata }) => {
   return (
     <div className='2xl:w-[100%]'>
       <Slider {...settings}>
-        {casdata.map((item) => (
-          <div key={item.id}>
-            <Carousel item={item} />
-          </div>
-        ))}
+        {casdata && casdata.map((item: any) => {
+          const uniqeId = uuid.v4();
+          return(
+            <div key={uniqeId}>
+              <Carousel item={item} />
+            </div>
+          );
+        })}
       </Slider>
     </div>
   );
