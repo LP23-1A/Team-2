@@ -375,7 +375,7 @@ function CartNew({ onclick }: any) {
     </div>
   );
 }
-function Cart({ color }) {
+function Cart({ color }: any) {
   return (
     <div
       className="p-2  top-2 left-4 z-20 rounded-full cursor-pointer"
