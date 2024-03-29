@@ -11,7 +11,7 @@ const AuthProvider = ({ children }: Props) => {
       clientId="XoXEH8JmXaMDpSUrIl2KDtSqjiCRBikm"
       authorizationParams={{
         redirect_uri:
-          typeof window !== undefined
+          typeof window !== "undefined"
             ? window.location.origin + "/admin/checkRole"
             : "",
       }}
