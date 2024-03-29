@@ -98,14 +98,16 @@ export default function Orderdetails() {
                 </p>
                 <div className="px-[24px] pt-[24px] pb-[48px]">
                   <p className="text-[16px]">Гэр</p>
-                  <p className="text-[16px]"></p>
+                  <p className="text-[16px]">{data?.address}</p>
                 </div>
               </div>
               <div className="rounded-[12px] border-[1px] border-[#ECEDF0] w-[519px]">
                 <p className="py-[20px] px-[24px] text-[16px]">
                   Төлбөрийн мэдээлэл
                 </p>
-                <div></div>
+                <div className="flex ">
+                  <p>Нийт төлсөн дүн: </p>
+                  <p>{data?.amountPaid}</p></div>
               </div>
             </div>
           </div>
