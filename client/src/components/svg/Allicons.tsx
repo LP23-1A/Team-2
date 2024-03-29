@@ -346,7 +346,7 @@ function CartNavbar() {
     </div>
   );
 }
-function CartNew({ onclick }) {
+function CartNew({ onclick }: any) {
   return (
     <div
       onClick={onclick}
@@ -506,5 +506,5 @@ export {
   CartNew,
   CartNavbar,
   HeartBlueNew,
-  ZoomInNew
+  ZoomInNew,
 };
