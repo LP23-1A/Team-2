@@ -1,14 +1,13 @@
-import sandal from "@/components/images/sandal.png";
-import Slider from "react-slick";
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const API = "http://localhost:8000/product/bestproducts";
 
-const Carousel = ({ item }) => {
+const Carousel = ({ item }: any) => {
+  const router = useRouter();
   const [data, setData] = useState([]);
   const categoryHandler = async () => {
     const res = await axios.get(API);
@@ -34,7 +33,10 @@ const Carousel = ({ item }) => {
               оруулж ирж байна
             </div>
             <div>
-              <button className="flex px-7 py-4 rounded-sm text-[#fff] bg-[#FB2E86]">
+              <button
+                onClick={() => router.push(`/user/${item._id}`)}
+                className="flex px-7 py-4 rounded-sm text-[#fff] bg-[#FB2E86]"
+              >
                 Дэлгэрэнгүй
               </button>
             </div>
