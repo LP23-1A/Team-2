@@ -16,7 +16,7 @@ const BestProducts = ({ data }: any) => {
       </p>
       <div className="flex gap-14">
         {data &&
-          data.map((item: any) => {
+          data.slice(0, 4).map((item: any) => {
             const uniqeId = uuid.v4();
             return (
               <div

@@ -9,7 +9,7 @@ import NewProduct from "@/components/user/NewProduct"; // Assuming this is the c
 import AboutTheService from "@/components/user/AboutTheService";
 import CarouselMain from "@/components/user/CarouselMain";
 
-const API = "http://localhost:8000/product/bestproducts";
+const API = "http://localhost:8000/product";
 
 export default function Dashboard() {
   const [data, setData] = useState([]);

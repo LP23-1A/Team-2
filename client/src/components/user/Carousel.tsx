@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-const API = "http://localhost:8000/product/bestproducts";
+const API = "http://localhost:8000/product";
 
 const Carousel = ({ item }: any) => {
   const router = useRouter();
