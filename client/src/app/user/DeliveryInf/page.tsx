@@ -144,7 +144,7 @@ export default function DeliveryInf() {
                     </div>
                     <div className="w-[384px] mt-[30px]">
 
-                        {orderData && orderData.map((product): any => {
+                        {orderData && orderData.map((product:any) => {
                                 const uniqeId = uuid.v4();
                             return (
                                 <section key={uniqeId} className='flex items-center justify-between mt-[20px]'>
