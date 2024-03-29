@@ -1,12 +1,17 @@
 import { Response, Request } from 'express';
 import { orderModel } from "../model/order"
+import { userModel } from '../model/user';
 
 const newOrder = async (req: Request, res: Response) => {
-  console.log("front",req.body);
-  const {userId,productId,phoneNumber,firstName,lastName,address,appart,city,amountPaid} = req.body;
+  console.log("front", req.body);
+  const { userId, productId, phoneNumber, firstName, lastName, address, appart, city, amountPaid } = req.body;
   try {
+    const user = await userModel.findOne({ email: userId })
 
-    await orderModel.create({userId:userId,productId:productId,phoneNumber:phoneNumber,firstName:firstName,lastName:lastName,address:address,appart:appart,city:city,amountPaid:amountPaid});
+    if (!user) {
+      return res.status(400).send({ success: false, error: '' });
+    }
+    await orderModel.create({ userId: user._id, productId: productId, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, address: address, appart: appart, city: city, amountPaid: amountPaid });
     return res.status(201).send({ success: true });
   } catch (error) {
     return res.status(400).send({ success: false, error });
