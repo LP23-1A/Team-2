@@ -1,31 +1,39 @@
 "use client";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import Navbar from "@/components/user/Navbar";
 import Footer from "@/components/user/Footer";
 import HorizontalMenu from "@/components/user/HorizontalMenu";
 import BestProducts from "@/components/user/BestProducts";
-import Product from "@/components/user/NewProduct";
+import NewProduct from "@/components/user/NewProduct"; // Assuming this is the correct import for the Product component
 import AboutTheService from "@/components/user/AboutTheService";
-const API = "http://localhost:8000/product/bestproducts";
 import CarouselMain from "@/components/user/CarouselMain";
+
+const API = "http://localhost:8000/product/bestproducts";
+
 export default function Dashboard() {
   const [data, setData] = useState([]);
-  const categoryHandler = async () => {
-    const res = await axios.get(API);
-    setData(res.data);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(API);
+      setData(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
+
   useEffect(() => {
-    categoryHandler();
+    fetchData();
   }, []);
 
   return (
-    <div className="w-[100%]">
+    <div className="w-full">
       <Navbar />
       <HorizontalMenu />
       <CarouselMain casdata={data} />
       <BestProducts data={data} />
-      <Product />
+      <NewProduct />
       <AboutTheService />
       <Footer />
     </div>
