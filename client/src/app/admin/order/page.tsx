@@ -63,7 +63,7 @@ export default function Order({setFilteredData, filteredData} : any) {
             </div>
 
             {
-              data.length !== 0 && <OrderList data={data} />
+              data.length !== 0 && <OrderList filteredData={filteredData} />
             }
 
           </div>
