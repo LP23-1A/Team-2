@@ -1,72 +1,42 @@
-import React, { createContext, useRef, useState } from "react";
-type fn = {
-  removeCart: (id: string) => void;
-};
-type CartType = {
-  id: number;
-  quantity: number;
-};
-
+'use client'
+import React, { createContext, useState } from "react";
 export const UserOrderContext = createContext({});
+
 export const UserOrderProvider = ({ children }: any) => {
-  const [orderData, setOrderData] = useState<CartType[] | any>([]);
 
-  const formDataRef = useRef({
-    orderNumber: "",
-    phoneNumber: "",
-    coupon: "",
-    description: "",
-    address: "",
-    city: "",
-    apartment: "",
-    firstName: "",
-    lastName: "",
-  });
+  const [orderData, setOrderData] = useState<any>([]);
 
-  const addCart = (_id: string) => {
-    const a: any = orderData.find((item: any) => item._id === _id);
-    if (a) {
-      setOrderData(
-        orderData.map((item: any) =>
-          item._id === _id ? { ...item, quantity: item.quantity + 1 } : item
-        )
-      );
+  const increaseCart = (_id: string) => {
+    const result: any = orderData.find((productItem: any) => productItem._id === _id);
+    if (result) {
+      setOrderData(orderData.map((productItem: any) => productItem._id === _id ? { ...productItem, quantity: productItem.quantity + 1 } : productItem));
     } else {
       setOrderData([...orderData, { _id, quantity: 1 }]);
     }
   };
 
-  const removeCart = (_id: any) => {
-    const a = orderData.find((item: any) => item._id === _id);
-    if (a) {
-      setOrderData(orderData.filter((item: any) => item._id !== _id));
-    }
-  };
-
   const decreaseCart = (_id: string) => {
-    const a = orderData.find((item: any) => item._id === _id);
-    if (a?.quantity === 1) {
-      setOrderData(orderData.filter((item: any) => item._id !== _id));
+    const result = orderData.find((productItem: any) => productItem._id === _id);
+    if (result?.quantity === 1) {
+      setOrderData(orderData.filter((productItem: any) => productItem._id !== _id));
     } else {
       setOrderData(
-        orderData.map((item: any) =>
-          item._id === _id ? { ...item, quantity: item.quantity - 1 } : item
+        orderData.map((productItem: any) =>
+          productItem._id === _id ? { ...productItem, quantity: productItem.quantity - 1 } : productItem
         )
       );
     }
   };
 
+  const removeCart = (_id: any) => {
+    const result = orderData.find((productItem: any) => productItem._id === _id);
+    if (result) {
+      setOrderData(orderData.filter((productItem: any) => productItem._id !== _id));
+    }
+  };
+
   return (
-    <UserOrderContext.Provider
-      value={{
-        orderData,
-        setOrderData,
-        addCart,
-        removeCart,
-        decreaseCart,
-        formDataRef,
-      }}
-    >
+    <UserOrderContext.Provider value={{ orderData, setOrderData, increaseCart, decreaseCart, removeCart, }} >
       {children}
     </UserOrderContext.Provider>
   );

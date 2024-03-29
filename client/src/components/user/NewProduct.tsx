@@ -6,25 +6,26 @@ import { CartNew, HeartBlueNew, ZoomInNew } from "../svg/Allicons";
 const API = "http://localhost:8000/product";
 
 function NewProduct() {
+
   const uuid = require('uuid')
-  const print = () => {
-    console.log("Product Working");
-  };
   const [data, setData] = useState([]);
+
   const categoryHandler = async () => {
     const res = await axios.get(API);
     setData(res.data);
   };
+
   useEffect(() => {
     categoryHandler();
   }, []);
+  
   return (
     <div className=" flex flex-col items-center gap-5 mb-5 mt-28">
       <h1 className="text-[#151875] text-[42px] font-extrabold ">
         Шинээр нэмэгдсэн
       </h1>
       <div className="flex w-[1200px]  justify-between flex-wrap ">
-        {data && data.map(({ images, productName, price }) => {
+        {data && data.slice(0,8).map(({ images, productName, price }) => {
            const uniqeId = uuid.v4();
           return (
             <div key={uniqeId} className="mb-[50px] group ">
