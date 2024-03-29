@@ -18,7 +18,7 @@ const Carousel = ({ item }: any) => {
   }, []);
   return (
     <div className="bg-[#F2F0FF] flex justify-center m-auto">
-      <div className="grid grid-cols-2 gap-52 w-[1200px]">
+      <div className="grid grid-cols-2 gap-52 w-[1200px] py-[60px]">
         <div className="flex flex-col justify-center">
           <div className="text-[16px] text-[#FB2E86]">
             Тав тухтай орчинг таны амьдралд
@@ -42,7 +42,9 @@ const Carousel = ({ item }: any) => {
             </div>
           </div>
         </div>
-        <img className="size-96" src={item.images[0]} alt="Sandal" />
+        <div className="flex justify-center items-center">
+          <img className="size-96" src={item.images[0]} alt="Sandal" />
+        </div>
       </div>
     </div>
   );
