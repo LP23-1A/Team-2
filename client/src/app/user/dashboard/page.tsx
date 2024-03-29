@@ -31,8 +31,7 @@ export default function Dashboard() {
     <div className="w-full">
       <Navbar />
       <HorizontalMenu />
-      <CarouselMain casdata={data} />
-      <BestProducts data={data} />
+      <CarouselMain casdata={data} /> <BestProducts data={data} />
       <NewProduct />
       <AboutTheService />
       <Footer />
