@@ -9,7 +9,7 @@ import {
 
 export const UserContext = createContext({
   email: "",
-  setEmail: () => "",
+  setEmail: (mail: string) => mail,
 });
 
 export const MyProvider = ({ children }: { children: ReactNode }) => {
