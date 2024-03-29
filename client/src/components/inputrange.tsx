@@ -1,42 +1,43 @@
-import * as React from "react";
+"use client";
+import React, { useState } from "react";
 import { Range } from "react-range";
 
-function inputrange() {
-  state = { values: [50] };
-  render() {
-    return (
-      <Range
-        step={0.1}
-        min={0}
-        max={100}
-        values={this.state.values}
-        onChange={(values) => this.setState({ values })}
-        renderTrack={({ props, children }) => (
-          <div
-            {...props}
-            style={{
-              ...props.style,
-              height: "6px",
-              width: "100%",
-              backgroundColor: "#ccc",
-            }}
-          >
-            {children}
-          </div>
-        )}
-        renderThumb={({ props }) => (
-          <div
-            {...props}
-            style={{
-              ...props.style,
-              height: "42px",
-              width: "42px",
-              backgroundColor: "#999",
-            }}
-          />
-        )}
-      />
-    );
-  }
+function InputRange() {
+  const [values, setValues] = useState([50]);
+
+  return (
+    <Range
+      step={0.1}
+      min={0}
+      max={100}
+      values={values}
+      onChange={(newValues) => setValues(newValues)}
+      renderTrack={({ props, children }) => (
+        <div
+          {...props}
+          style={{
+            ...props.style,
+            height: "6px",
+            width: "100%",
+            backgroundColor: "#ccc",
+          }}
+        >
+          {children}
+        </div>
+      )}
+      renderThumb={({ props }) => (
+        <div
+          {...props}
+          style={{
+            ...props.style,
+            height: "42px",
+            width: "42px",
+            backgroundColor: "#999",
+          }}
+        />
+      )}
+    />
+  );
 }
-export default inputrange;
+
+export default InputRange;
